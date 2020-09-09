@@ -21,19 +21,13 @@ for _, dependency in pairs(DEPENDENCIES) do
 	end
 end
 
-
 Game.playerJoinedEvent:Connect(function(player)
 	RoundService.AddPlayer(player)
+	local round = RoundService.CreateRound({player})
+	RoundService.StartRound(round)
 end)
 
 Game.playerLeftEvent:Connect(function(player)
 	RoundService.RemovePlayer(player)
 	utils.readyPlayers[player] = nil
 end)
-
-Game.roundEndEvent:Connect(function()
-	Task.Wait(RoundService.INTERMISSION_LENGTH)
-	RoundService.StartRound()
-end)
-
-RoundService.StartRound()

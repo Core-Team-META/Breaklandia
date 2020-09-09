@@ -1,4 +1,4 @@
-﻿local utils, Paddle, Brick, RoundService
+﻿local utils, Paddle, RoundService
 
 local BALL_TEMPLATE = script:GetCustomProperty("BallTemplate")
 
@@ -13,12 +13,9 @@ local Ball = {
 }
 Ball.__index = Ball
 
-Ball.ballSet = {}
-
 function Ball.Setup(dependencies)
 	utils = dependencies.utils
 	Paddle = dependencies.Paddle
-	Brick = dependencies.Brick
 	RoundService = dependencies.RoundService
 
 	LEFT_WALL_Y = utils.LEFT_WALL_Y
@@ -69,7 +66,7 @@ local function pointsAreOnSameSideOfLine(point1, point2, A, B) -- point1 and poi
 	return ((B - A) ^ (point1 - A)) .. ((B - A) ^ (point2 - A)) >= 0 -- scalar quadruple product is nonnegative
 end
 
-function Ball.New(position, initialVelocity)
+function Ball.New(round, position, initialVelocity)
 	local ballObject = World.SpawnAsset(BALL_TEMPLATE, {
 		position = position,
 		scale = Vector3.ONE * DEFAULT_BALL_SCALE
@@ -77,14 +74,16 @@ function Ball.New(position, initialVelocity)
 	
 	local ball = setmetatable({
 		object = ballObject,
+		round = round,
 		attachedTo = nil,
+		attachmentOffset = nil,
 		velocity = initialVelocity or Vector3.New(1, 0, 0):GetNormalized() * BALL_SPEED,
 		radius = DEFAULT_BALL_SCALE * 50, -- world size of a sphere is 100x100x100, half is 50
 		trigger = ballObject:GetCustomProperty("Trigger"):WaitForObject(),
 		lastPaddleTouched = nil
 	}, Ball)
 	
-	Ball.ballSet[ballObject] = ball
+	round.ballSet[ballObject] = ball
 	
 	local alreadyReflectedThisFrame = false
 	local function reflectAcrossNormal(normal, forcePositiveAngle)
@@ -110,19 +109,19 @@ function Ball.New(position, initialVelocity)
 			if not ball.attachedTo then
 				-- check for boundary collision
 				if currentPosition.x < FLOOR_X + ball.radius and ball.velocity.x < 0 then
-					if RoundService.roundIsActive then
+					if round.isActive then
 						ball:Destroy()
-						if not next(Ball.ballSet) then
+						if not next(round.ballSet) then
 							RoundService.LoseLife(ball.lastPaddleTouched.owner)
 						end
 					else
 						ball.velocity.x = -ball.velocity.x
 					end
-				elseif currentPosition.x > CEILING_X - ball.radius and ball.velocity.x > 0 then
+				elseif currentPosition.x > CEILING_X - ball.radius + round.position.x and ball.velocity.x > 0 then
 					ball.velocity.x = -ball.velocity.x
-				elseif currentPosition.y > RIGHT_WALL_Y - ball.radius and ball.velocity.y > 0 then
+				elseif currentPosition.y > RIGHT_WALL_Y - ball.radius + round.position.y and ball.velocity.y > 0 then
 					ball.velocity.y = -ball.velocity.y
-				elseif currentPosition.y < LEFT_WALL_Y + ball.radius and ball.velocity.y < 0 then
+				elseif currentPosition.y < LEFT_WALL_Y + ball.radius + round.position.y and ball.velocity.y < 0 then
 					ball.velocity.y = -ball.velocity.y
 				end
 				-- check for paddle collision
@@ -137,6 +136,7 @@ function Ball.New(position, initialVelocity)
 						ball.lastPaddleTouched = paddle
 						if paddle.grabEnabled then
 							paddle:GrabBall(ball)
+							ballObject:StopMove()
 							ball.velocity = reflectionNormal * BALL_SPEED
 							ballObject:SetWorldPosition(ballObject:GetWorldPosition() * Vector3.New(0, 1, 1) + paddlePosition * Vector3.New(1, 0, 0) + Vector3.New(ball.radius, 0, 0))
 						end
@@ -144,9 +144,13 @@ function Ball.New(position, initialVelocity)
 					end
 				end
 			end
+			if Object.IsValid(ballObject) and not ball.attachedTo then
+				ballObject:MoveContinuous(ball.velocity)
+			end
 			local dt = Task.Wait()
 			if dt and Object.IsValid(ballObject) and not ball.attachedTo then
-				ballObject:MoveTo(ballObject:GetWorldPosition() + ball.velocity * dt, 0)
+				--ballObject:MoveTo(ballObject:GetWorldPosition() + ball.velocity * dt, 0)
+				ballObject:MoveContinuous(ball.velocity)
 			end
 			reflectionsThisFrame = {}
 			alreadyReflectedThisFrame = false
@@ -156,7 +160,7 @@ function Ball.New(position, initialVelocity)
 	local function bounceOffNearestEdge(brickPosition)
 		local ballPosition = ballObject:GetWorldPosition() * Vector3.New(1, 1, 0)
 		local leastDistance, closestEdge = math.huge
-		for _, edge in pairs(Brick.edgeList) do
+		for _, edge in pairs(round.edgeList) do
 			if not pointsAreOnSameSideOfLine(ballPosition - ball.velocity, brickPosition, edge[1], edge[2]) -- ball and brick must not be on the same side of the edge
 			 and distanceToLineSegment(ballPosition, edge[1], edge[2]) < (ballPosition - brickPosition).size then -- edge must be closer than the center of the brick
 				local distance = distanceToLineSegment(ballPosition, edge[1], edge[2])
@@ -189,7 +193,7 @@ function Ball.New(position, initialVelocity)
 	
 	ball.trigger.beginOverlapEvent:Connect(function(_, hit)
 		local object = hit.parent
-		local brick = Brick.brickSet[object]
+		local brick = round.brickSet[object]
 		if brick then
 			bounceOffNearestEdge(brick.position)
 			brick:Break(ball.lastPaddleTouched and ball.lastPaddleTouched.owner or nil)
@@ -271,7 +275,7 @@ function Ball.New(position, initialVelocity)
 end
 
 function Ball:Destroy()
-	Ball.ballSet[self.object] = nil
+	self.round.ballSet[self.object] = nil
 	self.object:Destroy()
 end
 

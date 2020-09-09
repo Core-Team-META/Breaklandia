@@ -38,6 +38,11 @@
             }
           }
           Overrides {
+            Name: "cs:Box"
+            ObjectReference {
+            }
+          }
+          Overrides {
             Name: "cs:Width:isrep"
             Bool: true
           }
@@ -47,6 +52,10 @@
           }
           Overrides {
             Name: "cs:GrabTimeout:isrep"
+            Bool: true
+          }
+          Overrides {
+            Name: "cs:Box:isrep"
             Bool: true
           }
         }

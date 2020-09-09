@@ -1,6 +1,4 @@
-﻿local Brick
-
-local LASER_TEMPLATE = script:GetCustomProperty("LaserTemplate")
+﻿local LASER_TEMPLATE = script:GetCustomProperty("LaserTemplate")
 
 local LASER_SPEED = 2000
 local LASER_LENGTH = 200
@@ -13,7 +11,6 @@ LaserBlast.__index = LaserBlast
 LaserBlast.laserSet = {}
 
 function LaserBlast.Setup(dependencies)
-	Brick = dependencies.Brick
 end
 
 function LaserBlast.New(paddle, position)
@@ -32,14 +29,15 @@ function LaserBlast.New(paddle, position)
 		end
 	end, 5)
 	
+	local round = paddle.round
 	laserObject:GetCustomProperty("Trigger"):WaitForObject().beginOverlapEvent:Connect(function(_, hit)
-		local brick = Brick.brickSet[hit.parent]
+		local brick = round.brickSet[hit.parent]
 		if brick then
-			if Brick.brickGrid[brick.y][brick.x + 1] then -- sometimes the trigger will detect the brick after the first one the laser should hit
-				brick = Brick.brickGrid[brick.y][brick.x + 1]
+			if round.brickGrid[brick.y][brick.x + 1] then -- sometimes the trigger will detect the brick after the first one the laser should hit
+				brick = round.brickGrid[brick.y][brick.x + 1]
 			end
-			brick:Break(paddle.owner)
 			laser:Destroy()
+			brick:Break(paddle.owner)
 		end
 	end)
 	
@@ -50,6 +48,5 @@ function LaserBlast:Destroy()
 	self.object:Destroy()
 	LaserBlast.laserSet[self.object] = nil
 end
-	
 
 return LaserBlast

@@ -15,22 +15,21 @@ local POWERUP_WIDTH = 100
 local Powerup = {}
 Powerup.__index = Powerup
 
-Powerup.powerupSet = {}
-
 function Powerup.Setup(dependencies)
 	Paddle = dependencies.Paddle
 end
 
-function Powerup.New(position)
+function Powerup.New(round, position)
 	local powerupType = POWERUP_TYPES[math.random(#POWERUP_TYPES)]
 	local powerupObject = World.SpawnAsset(POWERUP_TEMPLATES[powerupType], {position = position})
 	
 	local powerup = setmetatable({
 		object = powerupObject,
-		powerupType = powerupType
+		powerupType = powerupType,
+		round = round
 	}, Powerup)
 	
-	Powerup.powerupSet[powerupObject] = powerup
+	round.powerupSet[powerupObject] = powerup
 	
 	powerupObject:MoveContinuous(Vector3.New(-POWERUP_FALL_SPEED, 0, 0))
 	Task.Spawn(function()
@@ -57,7 +56,7 @@ end
 
 function Powerup:Destroy()
 	self.object:Destroy()
-	Powerup.powerupSet[self.object] = nil
+	self.round.powerupSet[self.object] = nil
 end
 	
 

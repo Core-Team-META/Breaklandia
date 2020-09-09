@@ -39,8 +39,9 @@ function Paddle.Setup(dependencies)
 	PADDLE_OFFSET = Vector3.New(PADDLE_FORWARD, 0, utils.ELEVATION)
 end
 
-function Paddle.New(player)
+function Paddle.New(round, player)
 	local paddleObject = World.SpawnAsset(PADDLE_TEMPLATE, {position = PADDLE_OFFSET})
+	paddleObject:SetNetworkedCustomProperty("Box", round.box:GetReference())
 	--[[Task.Spawn(function()
 		while Object.IsValid(player) and Object.IsValid(paddleObject) do
 			paddleObject:MoveTo(player:GetWorldPosition() + PADDLE_OFFSET, 0)
@@ -50,6 +51,7 @@ function Paddle.New(player)
 	
 	local paddle = setmetatable({
 		object = paddleObject,
+		round = round,
 		position = PADDLE_OFFSET,
 		owner = player,
 		width = DEFAULT_PADDLE_WIDTH,
@@ -125,13 +127,17 @@ function Paddle:ApplyPowerup(powerupType)
 		end, 5)
 	elseif powerupType == "Multiball" then
 		local ballList = {}
-		for object, ball in pairs(Ball.ballSet) do
+		for object, ball in pairs(self.round.ballSet) do
 			ballList[#ballList + 1] = ball
 		end
 		for i, ball in pairs(ballList) do
 			if #ballList + i*2 > 100 then break end -- ball max
-			Ball.New(ball.object:GetWorldPosition(), Vector3.New(math.sin(math.pi*1/3), math.cos(math.pi*1/3), 0) * Ball.ballSpeed).lastPaddleTouched = ball.lastPaddleTouched
-			Ball.New(ball.object:GetWorldPosition(), Vector3.New(math.sin(math.pi*2/3), math.cos(math.pi*2/3), 0) * Ball.ballSpeed).lastPaddleTouched = ball.lastPaddleTouched
+			local ballPosition = ball.object:GetWorldPosition()
+			if ball.attachedTo then
+				ballPosition = ball.attachedTo.position + ball.attachmentOffset
+			end
+			Ball.New(self.round, ballPosition, Vector3.New(math.sin(math.pi*1/3), math.cos(math.pi*1/3), 0) * Ball.ballSpeed).lastPaddleTouched = ball.lastPaddleTouched
+			Ball.New(self.round, ballPosition, Vector3.New(math.sin(math.pi*2/3), math.cos(math.pi*2/3), 0) * Ball.ballSpeed).lastPaddleTouched = ball.lastPaddleTouched
 		end
 	end
 end

@@ -6,7 +6,7 @@ local BRICK_HEIGHT = 50
 local POWERUP_DROP_CHANCE = 1/10
 
 local AREA_WIDTH, AREA_TOP
-local AREA_HEIGHT = BRICK_HEIGHT * 13
+local AREA_HEIGHT = BRICK_HEIGHT * 15
 local AREA_WIDTH = 1300
 
 local GRID_WIDTH = AREA_WIDTH / BRICK_WIDTH
@@ -17,9 +17,6 @@ Brick.__index = Brick
 
 Brick.defaultWidth = BRICK_WIDTH
 Brick.defaultHeight = BRICK_HEIGHT
-Brick.brickSet = {}
-Brick.edgeList = {}
-Brick.brickGrid = {}
 
 function Brick.Setup(dependencies)
 	utils = dependencies.utils
@@ -32,10 +29,11 @@ function Brick.Setup(dependencies)
 end
 
 -- produce a table of edges where collinear connected edges are merged, and use those merged edges for physics instead of checking individual brick collisions
-local function recomputeEdges()
-	Brick.edgeList = {}
+local function recomputeEdges(round)
+	local edgeList = {}
+	round.edgeList = edgeList
 	local rectangles = {}
-	local grid = Brick.brickGrid
+	local grid = round.brickGrid
 	local usedCells = {}
 	for y = 1, GRID_WIDTH do
 		usedCells[y] = {}
@@ -112,25 +110,20 @@ local function recomputeEdges()
 		end
 	end
 	for _, rectangle in pairs(rectangles) do
-		local topLeft = Vector3.New(AREA_TOP - (rectangle.x-1.5)*BRICK_HEIGHT, (rectangle.y-1)*BRICK_WIDTH - AREA_WIDTH / 2, 0)
+		local topLeft = Vector3.New(AREA_TOP - (rectangle.x-1.5)*BRICK_HEIGHT, (rectangle.y-1)*BRICK_WIDTH - AREA_WIDTH / 2, 0) + round.position
 		local topRight = topLeft + Vector3.RIGHT * BRICK_WIDTH * rectangle.width
 		local bottomRight = topRight - Vector3.FORWARD * BRICK_HEIGHT * rectangle.height
 		local bottomLeft = topLeft - Vector3.FORWARD * BRICK_HEIGHT * rectangle.height
-		Brick.edgeList[#Brick.edgeList + 1] = {topLeft, topRight}
-		Brick.edgeList[#Brick.edgeList + 1] = {topRight, bottomRight}
-		Brick.edgeList[#Brick.edgeList + 1] = {bottomRight, bottomLeft}
-		Brick.edgeList[#Brick.edgeList + 1] = {bottomLeft, topLeft}
+		edgeList[#edgeList + 1] = {topLeft, topRight}
+		edgeList[#edgeList + 1] = {topRight, bottomRight}
+		edgeList[#edgeList + 1] = {bottomRight, bottomLeft}
+		edgeList[#edgeList + 1] = {bottomLeft, topLeft}
 	end
-	--[[for _, edge in pairs(Brick.edgeList) do
-		CoreDebug.DrawLine(edge[1] + Vector3.UP*25, edge[2] + Vector3.UP*25, {duration = .5, thickness = 10})
-	end]]
 end
 
-function Brick.New(y, x)
-	local position = Vector3.New(AREA_TOP - (x-1)*BRICK_HEIGHT, (y-1)*BRICK_WIDTH - AREA_WIDTH / 2 + BRICK_WIDTH / 2, 0)
-	local brickObject = World.SpawnAsset(BRICK_TEMPLATE, {
-		position = position
-	})
+function Brick.New(round, y, x)
+	local position = Vector3.New(AREA_TOP - (x-1)*BRICK_HEIGHT, (y-1)*BRICK_WIDTH - AREA_WIDTH / 2 + BRICK_WIDTH / 2, 0) + round.position
+	local brickObject = World.SpawnAsset(BRICK_TEMPLATE, {position = position})
 
 	local brick = setmetatable({
 		y = y, x = x,
@@ -138,37 +131,38 @@ function Brick.New(y, x)
 		position = position,
 		trigger = brickObject:GetCustomProperty("Trigger"):WaitForObject(),
 		width = BRICK_WIDTH,
-		height = BRICK_HEIGHT
+		height = BRICK_HEIGHT,
+		round = round
 	}, Brick)
 	
-	Brick.brickSet[brickObject] = brick
+	round.brickSet[brickObject] = brick
 	
 	return brick
 end
 
-function Brick.GenerateWall()
+function Brick.GenerateWall(round)
 	for y = 1, GRID_WIDTH do
-		if Brick.brickGrid[y] then
+		if round.brickGrid[y] then
 			for x = 1, GRID_HEIGHT do
-				if Brick.brickGrid[y][x] then
-					Brick.brickGrid[y][x]:Destroy()
+				if round.brickGrid[y][x] then
+					round.brickGrid[y][x]:Destroy()
 				end
 			end
 		end
 	end
 	for y = 1, GRID_WIDTH do
-		Brick.brickGrid[y] = {}
+		round.brickGrid[y] = {}
 		for x = 1, GRID_HEIGHT do
-			Brick.brickGrid[y][x] = Brick.New(y, x)
+			round.brickGrid[y][x] = Brick.New(round, y, x)
 		end
 	end
-	recomputeEdges()
+	recomputeEdges(round)
 end
 
 function Brick:Destroy()
 	self.object:Destroy()
-	Brick.brickSet[self.object] = nil
-	Brick.brickGrid[self.y][self.x] = nil
+	self.round.brickSet[self.object] = nil
+	self.round.brickGrid[self.y][self.x] = nil
 end
 
 function Brick:Break(player)
@@ -176,12 +170,12 @@ function Brick:Break(player)
 		RoundService.AddPoints(player, 10)
 	end
 	self:Destroy()
-	recomputeEdges()
+	recomputeEdges(self.round)
 	if math.random() < POWERUP_DROP_CHANCE then
-		Powerup.New(self.position)
+		Powerup.New(self.round, self.position)
 	end
-	if not next(Brick.brickSet) then
-		RoundService.EndRound()
+	if not next(self.round.brickSet) then
+		RoundService.EndRound(self.round)
 	end
 end
 
