@@ -1,13 +1,13 @@
 ﻿Assets {
-  Id: 14840548976223529248
-  Name: "MultiballPowerup"
+  Id: 2076401891344902436
+  Name: "PaddlePowerup"
   PlatformAssetType: 5
   TemplateAsset {
     ObjectBlock {
-      RootId: 16428561661544567979
+      RootId: 7338852670559000997
       Objects {
-        Id: 16428561661544567979
-        Name: "MultiballPowerup"
+        Id: 7338852670559000997
+        Name: "PaddlePowerup"
         Transform {
           Scale {
             X: 1
@@ -16,7 +16,7 @@
           }
         }
         ParentId: 4781671109827199097
-        ChildIds: 7506821134172771397
+        ChildIds: 2283290154157704183
         UnregisteredParameters {
           Overrides {
             Name: "cs:Trigger"
@@ -37,7 +37,7 @@
         }
       }
       Objects {
-        Id: 7506821134172771397
+        Id: 2283290154157704183
         Name: "Powerup"
         Transform {
           Location {
@@ -50,9 +50,8 @@
             Z: 1
           }
         }
-        ParentId: 16428561661544567979
-        ChildIds: 769638625569121005
-        ChildIds: 11469424991320286148
+        ParentId: 7338852670559000997
+        ChildIds: 7499295582896733775
         UnregisteredParameters {
           Overrides {
             Name: "cs:Trigger"
@@ -72,33 +71,86 @@
         }
       }
       Objects {
-        Id: 769638625569121005
+        Id: 7499295582896733775
+        Name: "Powerup"
+        Transform {
+          Location {
+            Z: -30
+          }
+          Rotation {
+            Yaw: 89.9999084
+          }
+          Scale {
+            X: 0.595108747
+            Y: 0.595108747
+            Z: 0.595108747
+          }
+        }
+        ParentId: 2283290154157704183
+        ChildIds: 8717684615010719241
+        ChildIds: 8148591244640459487
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsGroup: true
+        }
+      }
+      Objects {
+        Id: 8717684615010719241
         Name: "Powerup"
         Transform {
           Location {
           }
           Rotation {
-            Roll: 90
           }
           Scale {
-            X: 0.5
-            Y: 0.5
-            Z: 0.5
+            X: 1
+            Y: 1
+            Z: 1
           }
         }
-        ParentId: 7506821134172771397
+        ParentId: 7499295582896733775
         UnregisteredParameters {
           Overrides {
-            Name: "ma:Shared_BaseMaterial:id"
+            Name: "ma:Shared_Detail2:id"
             AssetReference {
-              Id: 10184847056121543272
+              Id: 3702191406046426907
+            }
+          }
+          Overrides {
+            Name: "ma:Shared_Detail2:color"
+            Color {
+              R: 0.200000048
+              G: 0.0476821288
+              A: 1
             }
           }
           Overrides {
             Name: "ma:Shared_BaseMaterial:color"
             Color {
-              G: 0.343999922
-              B: 0.344
+              R: 1
+              G: 0.664702058
+              B: 0.170000017
+              A: 1
+            }
+          }
+          Overrides {
+            Name: "ma:Shared_Detail1:color"
+            Color {
+              R: 0.9
+              G: 0.232450306
+              A: 1
+            }
+          }
+          Overrides {
+            Name: "ma:Shared_Detail3:color"
+            Color {
+              R: 0.919999957
+              G: 0.201059595
               A: 1
             }
           }
@@ -111,13 +163,13 @@
         }
         CoreMesh {
           MeshAsset {
-            Id: 9704302833113904543
+            Id: 18001447079606090627
           }
           Teams {
             IsTeamCollisionEnabled: true
             IsEnemyCollisionEnabled: true
           }
-          DisableCastShadows: true
+          EnableCameraCollision: true
           StaticMesh {
             Physics {
             }
@@ -125,33 +177,44 @@
         }
       }
       Objects {
-        Id: 11469424991320286148
+        Id: 8148591244640459487
         Name: "Powerup"
         Transform {
           Location {
+            Y: -44.9999924
+            Z: 54.9999962
           }
           Rotation {
-            Roll: 90
           }
           Scale {
-            X: 0.51
-            Y: 0.51
-            Z: 0.48
+            X: 0.99999994
+            Y: 0.99999994
+            Z: 0.99999994
           }
         }
-        ParentId: 7506821134172771397
+        ParentId: 7499295582896733775
         UnregisteredParameters {
-          Overrides {
-            Name: "ma:Shared_BaseMaterial:id"
-            AssetReference {
-              Id: 10184847056121543272
-            }
-          }
           Overrides {
             Name: "ma:Shared_BaseMaterial:color"
             Color {
-              G: 0.672999859
-              B: 0.673000038
+              R: 0.950000048
+              G: 0.471854359
+              A: 1
+            }
+          }
+          Overrides {
+            Name: "ma:Shared_Detail3:color"
+            Color {
+              R: 0.75
+              G: 0.417218566
+              A: 1
+            }
+          }
+          Overrides {
+            Name: "ma:Shared_Detail2:color"
+            Color {
+              R: 0.72
+              G: 0.128741741
               A: 1
             }
           }
@@ -164,13 +227,13 @@
         }
         CoreMesh {
           MeshAsset {
-            Id: 9704302833113904543
+            Id: 4807266659337586099
           }
           Teams {
             IsTeamCollisionEnabled: true
             IsEnemyCollisionEnabled: true
           }
-          DisableCastShadows: true
+          EnableCameraCollision: true
           StaticMesh {
             Physics {
             }
@@ -179,21 +242,30 @@
       }
     }
     Assets {
-      Id: 9704302833113904543
-      Name: "Capsule"
+      Id: 18001447079606090627
+      Name: "Sci-fi Chest Rare Base 01"
       PlatformAssetType: 1
       PrimaryAsset {
         AssetType: "StaticMeshAssetRef"
-        AssetId: "sm_capsule_001"
+        AssetId: "sm_prop_scf_crate_med_001_ref"
       }
     }
     Assets {
-      Id: 10184847056121543272
-      Name: "Basic Material"
+      Id: 3702191406046426907
+      Name: "Emissive Glow Transparent"
       PlatformAssetType: 2
       PrimaryAsset {
         AssetType: "MaterialAssetRef"
-        AssetId: "mi_basic_pbr_material_001"
+        AssetId: "mi_basic_emissive_001"
+      }
+    }
+    Assets {
+      Id: 4807266659337586099
+      Name: "Sci-fi Chest Rare Lid 01"
+      PlatformAssetType: 1
+      PrimaryAsset {
+        AssetType: "StaticMeshAssetRef"
+        AssetId: "sm_prop_scf_crate_med_lid_001_ref"
       }
     }
     PrimaryAssetId {

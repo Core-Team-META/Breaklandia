@@ -17,7 +17,7 @@
         }
         ParentId: 4781671109827199097
         ChildIds: 3582040142889967065
-        ChildIds: 7445479218634431118
+        ChildIds: 868168771088149915
         UnregisteredParameters {
           Overrides {
             Name: "cs:Trigger"
@@ -70,7 +70,7 @@
         }
       }
       Objects {
-        Id: 7445479218634431118
+        Id: 868168771088149915
         Name: "Brick"
         Transform {
           Location {
@@ -84,13 +84,13 @@
           }
         }
         ParentId: 11069365582241137134
-        ChildIds: 2977402281241757162
-        ChildIds: 14539641753799201080
+        ChildIds: 4759784301230535423
+        ChildIds: 11716345495619790381
         UnregisteredParameters {
           Overrides {
             Name: "cs:Trigger"
             ObjectReference {
-              SubObjectId: 3582040142889967065
+              SelfId: 17321836465729626280
             }
           }
         }
@@ -105,7 +105,7 @@
         }
       }
       Objects {
-        Id: 2977402281241757162
+        Id: 4759784301230535423
         Name: "Brick"
         Transform {
           Location {
@@ -118,19 +118,19 @@
             Z: 0.5
           }
         }
-        ParentId: 7445479218634431118
+        ParentId: 868168771088149915
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_BaseMaterial:id"
             AssetReference {
-              Id: 10184847056121543272
+              Id: 3702191406046426907
             }
           }
           Overrides {
             Name: "ma:Shared_BaseMaterial:color"
             Color {
-              G: 0.138966665
-              B: 0.344
+              G: 0.0650396
+              B: 0.161000013
               A: 1
             }
           }
@@ -157,7 +157,7 @@
         }
       }
       Objects {
-        Id: 14539641753799201080
+        Id: 11716345495619790381
         Name: "Brick"
         Transform {
           Location {
@@ -170,7 +170,7 @@
             Z: 0.51
           }
         }
-        ParentId: 7445479218634431118
+        ParentId: 868168771088149915
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_BaseMaterial:id"
@@ -216,6 +216,15 @@
       PrimaryAsset {
         AssetType: "StaticMeshAssetRef"
         AssetId: "sm_cube_002"
+      }
+    }
+    Assets {
+      Id: 3702191406046426907
+      Name: "Emissive Glow Transparent"
+      PlatformAssetType: 2
+      PrimaryAsset {
+        AssetType: "MaterialAssetRef"
+        AssetId: "mi_basic_emissive_001"
       }
     }
     Assets {

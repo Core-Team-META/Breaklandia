@@ -183,7 +183,7 @@
         }
         CoreMesh {
           MeshAsset {
-            Id: 13809098912491759158
+            Id: 4445261304270784311
           }
           Teams {
             IsTeamCollisionEnabled: true
@@ -238,12 +238,12 @@
       }
     }
     Assets {
-      Id: 4479728496041001424
-      Name: "Clear Coat 01"
+      Id: 3702191406046426907
+      Name: "Emissive Glow Transparent"
       PlatformAssetType: 2
       PrimaryAsset {
         AssetType: "MaterialAssetRef"
-        AssetId: "mi_clear-coat_001"
+        AssetId: "mi_basic_emissive_001"
       }
     }
     PrimaryAssetId {

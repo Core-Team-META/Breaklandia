@@ -18,8 +18,8 @@
         ParentId: 4781671109827199097
         ChildIds: 9566027593585287312
         ChildIds: 11118877811446929240
-        ChildIds: 11569316414309917856
-        ChildIds: 8596593379089636156
+        ChildIds: 8773993796455209788
+        ChildIds: 2905796272126788195
         UnregisteredParameters {
           Overrides {
             Name: "cs:BrickContainer"
@@ -98,7 +98,7 @@
         }
       }
       Objects {
-        Id: 11569316414309917856
+        Id: 8773993796455209788
         Name: "Collision"
         Transform {
           Location {
@@ -115,10 +115,10 @@
           }
         }
         ParentId: 1790766974316512500
-        ChildIds: 1435439705070869440
-        ChildIds: 5000958136952581191
-        ChildIds: 5176692096187940307
-        ChildIds: 8895764861884787486
+        ChildIds: 442202549794216455
+        ChildIds: 13855559723126471399
+        ChildIds: 6658089044635464466
+        ChildIds: 15373100824520432627
         WantsNetworking: true
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
@@ -131,7 +131,7 @@
         }
       }
       Objects {
-        Id: 1435439705070869440
+        Id: 442202549794216455
         Name: "Cube"
         Transform {
           Location {
@@ -147,7 +147,7 @@
             Z: 0.999987662
           }
         }
-        ParentId: 11569316414309917856
+        ParentId: 8773993796455209788
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
@@ -170,7 +170,7 @@
         }
       }
       Objects {
-        Id: 5000958136952581191
+        Id: 13855559723126471399
         Name: "Cube"
         Transform {
           Location {
@@ -186,7 +186,7 @@
             Z: 0.999987662
           }
         }
-        ParentId: 11569316414309917856
+        ParentId: 8773993796455209788
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
@@ -209,7 +209,7 @@
         }
       }
       Objects {
-        Id: 5176692096187940307
+        Id: 6658089044635464466
         Name: "Cube"
         Transform {
           Location {
@@ -225,7 +225,7 @@
             Z: 0.999987662
           }
         }
-        ParentId: 11569316414309917856
+        ParentId: 8773993796455209788
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
@@ -248,7 +248,7 @@
         }
       }
       Objects {
-        Id: 8895764861884787486
+        Id: 15373100824520432627
         Name: "Default Floor"
         Transform {
           Location {
@@ -264,7 +264,7 @@
             Z: 0.1
           }
         }
-        ParentId: 11569316414309917856
+        ParentId: 8773993796455209788
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_BaseMaterial:id"
@@ -315,7 +315,7 @@
         }
       }
       Objects {
-        Id: 8596593379089636156
+        Id: 2905796272126788195
         Name: "ClientContext"
         Transform {
           Location {
@@ -332,31 +332,31 @@
           }
         }
         ParentId: 1790766974316512500
-        ChildIds: 17284825160157805426
-        ChildIds: 8922280302567703952
-        ChildIds: 4947708904472799144
-        ChildIds: 17099129247186170417
-        ChildIds: 9202852633307575444
-        ChildIds: 8951148956420874714
-        ChildIds: 11453429752270747484
-        ChildIds: 3053154579842415044
-        ChildIds: 18107420342236154418
-        ChildIds: 1514438481820358492
-        ChildIds: 14462762772958274646
-        ChildIds: 15482733699905844003
-        ChildIds: 10342407902799323640
-        ChildIds: 15359591716126912984
-        ChildIds: 9073761984900751073
-        ChildIds: 13947411683262877657
-        ChildIds: 17592435150755115429
-        ChildIds: 7962184931955190489
-        ChildIds: 14819549840310166191
-        ChildIds: 14875863653145093310
-        ChildIds: 14143362802997088737
-        ChildIds: 17427497568704159837
-        ChildIds: 2427554954066135693
-        ChildIds: 16529735029003139039
-        ChildIds: 10539710514333260258
+        ChildIds: 8679358069370999928
+        ChildIds: 14291104537831313396
+        ChildIds: 1077806564760378561
+        ChildIds: 11165634189714754346
+        ChildIds: 4029209305563453752
+        ChildIds: 18243675538529362024
+        ChildIds: 12577820477360578252
+        ChildIds: 13037993181595968744
+        ChildIds: 5754472403797762298
+        ChildIds: 14019805900386906843
+        ChildIds: 8694224697120660864
+        ChildIds: 7614798265249728793
+        ChildIds: 13591218350290560015
+        ChildIds: 17264849276884801072
+        ChildIds: 12085141728285425731
+        ChildIds: 13241968789134270532
+        ChildIds: 17000283138494244002
+        ChildIds: 9404682773682970162
+        ChildIds: 8025033517208489822
+        ChildIds: 14659132369757114734
+        ChildIds: 12965430881012272024
+        ChildIds: 10149317551798694933
+        ChildIds: 5581739928562197777
+        ChildIds: 2231016167779882613
+        ChildIds: 12940263120228738334
         WantsNetworking: true
         Collidable_v2 {
           Value: "mc:ecollisionsetting:forceoff"
@@ -368,7 +368,7 @@
         }
       }
       Objects {
-        Id: 17284825160157805426
+        Id: 8679358069370999928
         Name: "Sci-Fi Base Wall Interior 01 - Window 01"
         Transform {
           Location {
@@ -385,7 +385,7 @@
             Z: 2.10000014
           }
         }
-        ParentId: 8596593379089636156
+        ParentId: 2905796272126788195
         UnregisteredParameters {
           Overrides {
             Name: "ma:Building_WallOuter:id"
@@ -444,7 +444,7 @@
         }
       }
       Objects {
-        Id: 8922280302567703952
+        Id: 14291104537831313396
         Name: "Sci-Fi Base Wall Interior 01 - Window 01"
         Transform {
           Location {
@@ -463,7 +463,7 @@
             Z: 1
           }
         }
-        ParentId: 8596593379089636156
+        ParentId: 2905796272126788195
         UnregisteredParameters {
           Overrides {
             Name: "ma:Building_WallOuter:id"
@@ -522,7 +522,7 @@
         }
       }
       Objects {
-        Id: 4947708904472799144
+        Id: 1077806564760378561
         Name: "Sci-Fi Base Wall Interior 01 - Window 01"
         Transform {
           Location {
@@ -541,7 +541,7 @@
             Z: 1
           }
         }
-        ParentId: 8596593379089636156
+        ParentId: 2905796272126788195
         UnregisteredParameters {
           Overrides {
             Name: "ma:Building_WallOuter:id"
@@ -600,7 +600,7 @@
         }
       }
       Objects {
-        Id: 17099129247186170417
+        Id: 11165634189714754346
         Name: "Sci-Fi Base Wall Interior 01 - Window 01"
         Transform {
           Location {
@@ -619,7 +619,7 @@
             Z: 1
           }
         }
-        ParentId: 8596593379089636156
+        ParentId: 2905796272126788195
         UnregisteredParameters {
           Overrides {
             Name: "ma:Building_WallOuter:id"
@@ -678,7 +678,7 @@
         }
       }
       Objects {
-        Id: 9202852633307575444
+        Id: 4029209305563453752
         Name: "Sci-Fi Base Wall Interior 01 - Window 01"
         Transform {
           Location {
@@ -697,7 +697,7 @@
             Z: 1
           }
         }
-        ParentId: 8596593379089636156
+        ParentId: 2905796272126788195
         UnregisteredParameters {
           Overrides {
             Name: "ma:Building_WallOuter:id"
@@ -756,7 +756,7 @@
         }
       }
       Objects {
-        Id: 8951148956420874714
+        Id: 18243675538529362024
         Name: "Sci-fi Base Pillar 02 - Base 01"
         Transform {
           Location {
@@ -773,7 +773,7 @@
             Z: 1
           }
         }
-        ParentId: 8596593379089636156
+        ParentId: 2905796272126788195
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_Trim:id"
@@ -812,7 +812,7 @@
         }
       }
       Objects {
-        Id: 11453429752270747484
+        Id: 12577820477360578252
         Name: "Sci-fi Base Pillar 02 - Base 01"
         Transform {
           Location {
@@ -829,7 +829,7 @@
             Z: 1
           }
         }
-        ParentId: 8596593379089636156
+        ParentId: 2905796272126788195
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_Trim:id"
@@ -868,7 +868,7 @@
         }
       }
       Objects {
-        Id: 3053154579842415044
+        Id: 13037993181595968744
         Name: "Sci-fi Base Pillar 02 - Base 01"
         Transform {
           Location {
@@ -885,7 +885,7 @@
             Z: 1
           }
         }
-        ParentId: 8596593379089636156
+        ParentId: 2905796272126788195
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_Trim:id"
@@ -924,7 +924,7 @@
         }
       }
       Objects {
-        Id: 18107420342236154418
+        Id: 5754472403797762298
         Name: "Sci-Fi Base Wall Interior 01 - Window 01"
         Transform {
           Location {
@@ -943,7 +943,7 @@
             Z: 3.7
           }
         }
-        ParentId: 8596593379089636156
+        ParentId: 2905796272126788195
         UnregisteredParameters {
           Overrides {
             Name: "ma:Building_WallOuter:id"
@@ -981,7 +981,7 @@
         }
       }
       Objects {
-        Id: 1514438481820358492
+        Id: 14019805900386906843
         Name: "Sci-Fi Base Wall Interior 01"
         Transform {
           Location {
@@ -997,7 +997,7 @@
             Z: 1.19776154
           }
         }
-        ParentId: 8596593379089636156
+        ParentId: 2905796272126788195
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_Trim:id"
@@ -1037,7 +1037,7 @@
         }
       }
       Objects {
-        Id: 14462762772958274646
+        Id: 8694224697120660864
         Name: "Sci-Fi Base Wall Interior 01"
         Transform {
           Location {
@@ -1053,7 +1053,7 @@
             Z: 1.19776154
           }
         }
-        ParentId: 8596593379089636156
+        ParentId: 2905796272126788195
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_Trim:id"
@@ -1093,7 +1093,7 @@
         }
       }
       Objects {
-        Id: 15482733699905844003
+        Id: 7614798265249728793
         Name: "Sci-Fi Base Wall Interior 01"
         Transform {
           Location {
@@ -1109,7 +1109,7 @@
             Z: 1.19776154
           }
         }
-        ParentId: 8596593379089636156
+        ParentId: 2905796272126788195
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_Trim:id"
@@ -1149,7 +1149,7 @@
         }
       }
       Objects {
-        Id: 10342407902799323640
+        Id: 13591218350290560015
         Name: "Sci-Fi Base Wall Interior 01"
         Transform {
           Location {
@@ -1165,7 +1165,7 @@
             Z: 1.19776154
           }
         }
-        ParentId: 8596593379089636156
+        ParentId: 2905796272126788195
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_Trim:id"
@@ -1205,7 +1205,7 @@
         }
       }
       Objects {
-        Id: 15359591716126912984
+        Id: 17264849276884801072
         Name: "Sci-Fi Base Wall Interior 01 - Window 01"
         Transform {
           Location {
@@ -1224,7 +1224,7 @@
             Z: 1
           }
         }
-        ParentId: 8596593379089636156
+        ParentId: 2905796272126788195
         UnregisteredParameters {
           Overrides {
             Name: "ma:Building_WallOuter:id"
@@ -1283,7 +1283,7 @@
         }
       }
       Objects {
-        Id: 9073761984900751073
+        Id: 12085141728285425731
         Name: "Sci-Fi Base Wall Interior 01 - Window 01"
         Transform {
           Location {
@@ -1302,7 +1302,7 @@
             Z: 1
           }
         }
-        ParentId: 8596593379089636156
+        ParentId: 2905796272126788195
         UnregisteredParameters {
           Overrides {
             Name: "ma:Building_WallOuter:id"
@@ -1361,7 +1361,7 @@
         }
       }
       Objects {
-        Id: 13947411683262877657
+        Id: 13241968789134270532
         Name: "Sci-Fi Base Wall Interior 01 - Window 01"
         Transform {
           Location {
@@ -1380,7 +1380,7 @@
             Z: 1
           }
         }
-        ParentId: 8596593379089636156
+        ParentId: 2905796272126788195
         UnregisteredParameters {
           Overrides {
             Name: "ma:Building_WallOuter:id"
@@ -1439,7 +1439,7 @@
         }
       }
       Objects {
-        Id: 17592435150755115429
+        Id: 17000283138494244002
         Name: "Sci-Fi Base Wall Interior 01 - Window 01"
         Transform {
           Location {
@@ -1458,7 +1458,7 @@
             Z: 1
           }
         }
-        ParentId: 8596593379089636156
+        ParentId: 2905796272126788195
         UnregisteredParameters {
           Overrides {
             Name: "ma:Building_WallOuter:id"
@@ -1517,7 +1517,7 @@
         }
       }
       Objects {
-        Id: 7962184931955190489
+        Id: 9404682773682970162
         Name: "Sci-fi Base Pillar 02 - Base 01"
         Transform {
           Location {
@@ -1535,7 +1535,7 @@
             Z: 1
           }
         }
-        ParentId: 8596593379089636156
+        ParentId: 2905796272126788195
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_Trim:id"
@@ -1574,7 +1574,7 @@
         }
       }
       Objects {
-        Id: 14819549840310166191
+        Id: 8025033517208489822
         Name: "Sci-fi Base Pillar 02 - Base 01"
         Transform {
           Location {
@@ -1592,7 +1592,7 @@
             Z: 1
           }
         }
-        ParentId: 8596593379089636156
+        ParentId: 2905796272126788195
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_Trim:id"
@@ -1631,7 +1631,7 @@
         }
       }
       Objects {
-        Id: 14875863653145093310
+        Id: 14659132369757114734
         Name: "Sci-fi Base Pillar 02 - Base 01"
         Transform {
           Location {
@@ -1649,7 +1649,7 @@
             Z: 1
           }
         }
-        ParentId: 8596593379089636156
+        ParentId: 2905796272126788195
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_Trim:id"
@@ -1688,7 +1688,7 @@
         }
       }
       Objects {
-        Id: 14143362802997088737
+        Id: 12965430881012272024
         Name: "Sci-Fi Base Wall Interior 01 - Window 01"
         Transform {
           Location {
@@ -1707,7 +1707,7 @@
             Z: 3.7
           }
         }
-        ParentId: 8596593379089636156
+        ParentId: 2905796272126788195
         UnregisteredParameters {
           Overrides {
             Name: "ma:Building_WallOuter:id"
@@ -1745,7 +1745,7 @@
         }
       }
       Objects {
-        Id: 17427497568704159837
+        Id: 10149317551798694933
         Name: "Sci-Fi Base Wall Interior 01"
         Transform {
           Location {
@@ -1762,7 +1762,7 @@
             Z: 1.19776154
           }
         }
-        ParentId: 8596593379089636156
+        ParentId: 2905796272126788195
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_Trim:id"
@@ -1802,7 +1802,7 @@
         }
       }
       Objects {
-        Id: 2427554954066135693
+        Id: 5581739928562197777
         Name: "Sci-Fi Base Wall Interior 01"
         Transform {
           Location {
@@ -1819,7 +1819,7 @@
             Z: 1.19776154
           }
         }
-        ParentId: 8596593379089636156
+        ParentId: 2905796272126788195
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_Trim:id"
@@ -1859,7 +1859,7 @@
         }
       }
       Objects {
-        Id: 16529735029003139039
+        Id: 2231016167779882613
         Name: "Sci-Fi Base Wall Interior 01"
         Transform {
           Location {
@@ -1876,7 +1876,7 @@
             Z: 1.19776154
           }
         }
-        ParentId: 8596593379089636156
+        ParentId: 2905796272126788195
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_Trim:id"
@@ -1916,7 +1916,7 @@
         }
       }
       Objects {
-        Id: 10539710514333260258
+        Id: 12940263120228738334
         Name: "Sci-Fi Base Wall Interior 01"
         Transform {
           Location {
@@ -1933,7 +1933,7 @@
             Z: 1.19776154
           }
         }
-        ParentId: 8596593379089636156
+        ParentId: 2905796272126788195
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_Trim:id"
