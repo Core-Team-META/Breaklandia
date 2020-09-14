@@ -4,9 +4,9 @@
   PlatformAssetType: 5
   TemplateAsset {
     ObjectBlock {
-      RootId: 4391350556458305732
+      RootId: 3461209046783251881
       Objects {
-        Id: 4391350556458305732
+        Id: 3461209046783251881
         Name: "Box"
         Transform {
           Scale {
@@ -16,6 +16,101 @@
           }
         }
         ParentId: 4781671109827199097
+        ChildIds: 6612173943258978610
+        ChildIds: 13667994057365172221
+        ChildIds: 4391350556458305732
+        UnregisteredParameters {
+          Overrides {
+            Name: "cs:BrickContainer"
+            ObjectReference {
+              SubObjectId: 6612173943258978610
+            }
+          }
+          Overrides {
+            Name: "cs:BallContainer"
+            ObjectReference {
+              SubObjectId: 13667994057365172221
+            }
+          }
+        }
+        WantsNetworking: true
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsFilePartition: true
+        }
+      }
+      Objects {
+        Id: 6612173943258978610
+        Name: "BrickContainer"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 3461209046783251881
+        WantsNetworking: true
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsFilePartition: true
+        }
+      }
+      Objects {
+        Id: 13667994057365172221
+        Name: "BallContainer"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 3461209046783251881
+        WantsNetworking: true
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Folder {
+          IsFilePartition: true
+        }
+      }
+      Objects {
+        Id: 4391350556458305732
+        Name: "Box"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 3461209046783251881
         ChildIds: 6341381684946913762
         ChildIds: 8926050326037675124
         ChildIds: 1024513393975351714

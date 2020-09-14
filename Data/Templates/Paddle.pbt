@@ -16,7 +16,6 @@
           }
         }
         ParentId: 4781671109827199097
-        ChildIds: 9257957087748789241
         ChildIds: 7342642608806997588
         UnregisteredParameters {
           Overrides {
@@ -32,14 +31,15 @@
             Float: 0
           }
           Overrides {
-            Name: "cs:PaddleClient"
+            Name: "cs:GroupClient"
             ObjectReference {
               SubObjectId: 7342642608806997588
             }
           }
           Overrides {
-            Name: "cs:Box"
+            Name: "cs:PaddleClient"
             ObjectReference {
+              SubObjectId: 15058068561410993122
             }
           }
           Overrides {
@@ -54,72 +54,15 @@
             Name: "cs:GrabTimeout:isrep"
             Bool: true
           }
-          Overrides {
-            Name: "cs:Box:isrep"
-            Bool: true
-          }
         }
         WantsNetworking: true
-        Collidable_v2 {
-          Value: "mc:ecollisionsetting:forceoff"
-        }
-        Visible_v2 {
-          Value: "mc:evisibilitysetting:inheritfromparent"
-        }
-        NetworkContext {
-        }
-      }
-      Objects {
-        Id: 9257957087748789241
-        Name: "PaddleController"
-        Transform {
-          Location {
-          }
-          Rotation {
-          }
-          Scale {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-        ParentId: 1105806842249883082
-        UnregisteredParameters {
-          Overrides {
-            Name: "cs:utils"
-            AssetReference {
-              Id: 3549602224319917585
-            }
-          }
-          Overrides {
-            Name: "cs:Container"
-            ObjectReference {
-              SubObjectId: 1105806842249883082
-            }
-          }
-          Overrides {
-            Name: "cs:Paddle"
-            ObjectReference {
-              SubObjectId: 15058068561410993122
-            }
-          }
-          Overrides {
-            Name: "cs:PaddleGroup"
-            ObjectReference {
-              SubObjectId: 7342642608806997588
-            }
-          }
-        }
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
         Visible_v2 {
           Value: "mc:evisibilitysetting:inheritfromparent"
         }
-        Script {
-          ScriptAsset {
-            Id: 9899484001348260034
-          }
+        NetworkContext {
         }
       }
       Objects {

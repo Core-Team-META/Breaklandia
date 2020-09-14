@@ -1,5 +1,5 @@
 ﻿Assets {
-  Id: 15184138351872755592
+  Id: 11485265441253006943
   Name: "LaserPowerup"
   PlatformAssetType: 5
   TemplateAsset {

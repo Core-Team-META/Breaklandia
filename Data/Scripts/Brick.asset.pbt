@@ -7,7 +7,7 @@
       Overrides {
         Name: "cs:BrickTemplate"
         AssetReference {
-          Id: 15550491423670188639
+          Id: 8365392262078967723
         }
       }
     }

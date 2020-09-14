@@ -7,25 +7,25 @@
       Overrides {
         Name: "cs:PaddlePowerupTemplate"
         AssetReference {
-          Id: 2076401891344902436
+          Id: 17609786072357222363
         }
       }
       Overrides {
         Name: "cs:LaserPowerupTemplate"
         AssetReference {
-          Id: 15184138351872755592
+          Id: 11485265441253006943
         }
       }
       Overrides {
         Name: "cs:MultiballPowerupTemplate"
         AssetReference {
-          Id: 15966232006559494015
+          Id: 14840548976223529248
         }
       }
       Overrides {
         Name: "cs:GrabPowerupTemplate"
         AssetReference {
-          Id: 124210154149060082
+          Id: 3377078706040117346
         }
       }
     }

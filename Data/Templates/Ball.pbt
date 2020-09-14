@@ -20,7 +20,7 @@
         ChildIds: 9290986186089694533
         UnregisteredParameters {
           Overrides {
-            Name: "cs:Trigger"
+            Name: "cs:ServerTrigger"
             ObjectReference {
               SubObjectId: 8434097175055040637
             }
@@ -37,11 +37,38 @@
             }
           }
           Overrides {
+            Name: "cs:Box"
+            ObjectReference {
+            }
+          }
+          Overrides {
+            Name: "cs:ClientTrigger"
+            ObjectReference {
+              SubObjectId: 1628703934406845945
+            }
+          }
+          Overrides {
+            Name: "cs:ClientBall"
+            ObjectReference {
+              SubObjectId: 14599857967596237095
+            }
+          }
+          Overrides {
+            Name: "cs:ClientContext"
+            ObjectReference {
+              SubObjectId: 9290986186089694533
+            }
+          }
+          Overrides {
             Name: "cs:AttachedPaddle:isrep"
             Bool: true
           }
           Overrides {
             Name: "cs:AttachmentOffset:isrep"
+            Bool: true
+          }
+          Overrides {
+            Name: "cs:Box:isrep"
             Bool: true
           }
         }
@@ -58,7 +85,7 @@
       }
       Objects {
         Id: 8434097175055040637
-        Name: "Trigger"
+        Name: "ServerTrigger"
         Transform {
           Location {
           }
@@ -103,11 +130,12 @@
           }
         }
         ParentId: 10563601602419401599
-        ChildIds: 69824048948706533
-        ChildIds: 4927415031536620862
+        ChildIds: 14599857967596237095
+        UnregisteredParameters {
+        }
         WantsNetworking: true
         Collidable_v2 {
-          Value: "mc:ecollisionsetting:forceoff"
+          Value: "mc:ecollisionsetting:inheritfromparent"
         }
         Visible_v2 {
           Value: "mc:evisibilitysetting:inheritfromparent"
@@ -116,54 +144,7 @@
         }
       }
       Objects {
-        Id: 69824048948706533
-        Name: "BallAttach"
-        Transform {
-          Location {
-          }
-          Rotation {
-          }
-          Scale {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-        ParentId: 9290986186089694533
-        UnregisteredParameters {
-          Overrides {
-            Name: "cs:Container"
-            ObjectReference {
-              SubObjectId: 10563601602419401599
-            }
-          }
-          Overrides {
-            Name: "cs:ClientContext"
-            ObjectReference {
-              SubObjectId: 9290986186089694533
-            }
-          }
-          Overrides {
-            Name: "cs:Ball"
-            ObjectReference {
-              SubObjectId: 4927415031536620862
-            }
-          }
-        }
-        Collidable_v2 {
-          Value: "mc:ecollisionsetting:inheritfromparent"
-        }
-        Visible_v2 {
-          Value: "mc:evisibilitysetting:inheritfromparent"
-        }
-        Script {
-          ScriptAsset {
-            Id: 4843699615864679528
-          }
-        }
-      }
-      Objects {
-        Id: 4927415031536620862
+        Id: 14599857967596237095
         Name: "Ball"
         Transform {
           Location {
@@ -177,19 +158,19 @@
           }
         }
         ParentId: 9290986186089694533
+        ChildIds: 1628703934406845945
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_BaseMaterial:id"
             AssetReference {
-              Id: 4479728496041001424
+              Id: 3702191406046426907
             }
           }
           Overrides {
             Name: "ma:Shared_BaseMaterial:color"
             Color {
-              R: 1
-              G: 1
-              B: 1
+              R: 0.24000001
+              G: 1.14440923e-07
               A: 1
             }
           }
@@ -202,13 +183,47 @@
         }
         CoreMesh {
           MeshAsset {
-            Id: 4445261304270784311
+            Id: 13809098912491759158
           }
           Teams {
+            IsTeamCollisionEnabled: true
+            IsEnemyCollisionEnabled: true
           }
+          EnableCameraCollision: true
           StaticMesh {
             Physics {
             }
+          }
+        }
+      }
+      Objects {
+        Id: 1628703934406845945
+        Name: "Trigger"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 14599857967596237095
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Trigger {
+          TeamSettings {
+            IsTeamCollisionEnabled: true
+            IsEnemyCollisionEnabled: true
+          }
+          TriggerShape_v2 {
+            Value: "mc:etriggershape:sphere"
           }
         }
       }

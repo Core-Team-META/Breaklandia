@@ -1,13 +1,13 @@
 ﻿Assets {
-  Id: 2076401891344902436
-  Name: "PaddlePowerup"
+  Id: 14840548976223529248
+  Name: "MultiballPowerup"
   PlatformAssetType: 5
   TemplateAsset {
     ObjectBlock {
-      RootId: 7338852670559000997
+      RootId: 16428561661544567979
       Objects {
-        Id: 7338852670559000997
-        Name: "PaddlePowerup"
+        Id: 16428561661544567979
+        Name: "MultiballPowerup"
         Transform {
           Scale {
             X: 1
@@ -16,7 +16,7 @@
           }
         }
         ParentId: 4781671109827199097
-        ChildIds: 2283290154157704183
+        ChildIds: 7506821134172771397
         UnregisteredParameters {
           Overrides {
             Name: "cs:Trigger"
@@ -37,7 +37,7 @@
         }
       }
       Objects {
-        Id: 2283290154157704183
+        Id: 7506821134172771397
         Name: "Powerup"
         Transform {
           Location {
@@ -50,9 +50,9 @@
             Z: 1
           }
         }
-        ParentId: 7338852670559000997
-        ChildIds: 279475631845334451
-        ChildIds: 13365692112970901126
+        ParentId: 16428561661544567979
+        ChildIds: 769638625569121005
+        ChildIds: 11469424991320286148
         UnregisteredParameters {
           Overrides {
             Name: "cs:Trigger"
@@ -72,7 +72,7 @@
         }
       }
       Objects {
-        Id: 279475631845334451
+        Id: 769638625569121005
         Name: "Powerup"
         Transform {
           Location {
@@ -86,7 +86,7 @@
             Z: 0.5
           }
         }
-        ParentId: 2283290154157704183
+        ParentId: 7506821134172771397
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_BaseMaterial:id"
@@ -97,7 +97,7 @@
           Overrides {
             Name: "ma:Shared_BaseMaterial:color"
             Color {
-              G: 0.138966665
+              G: 0.343999922
               B: 0.344
               A: 1
             }
@@ -125,7 +125,7 @@
         }
       }
       Objects {
-        Id: 13365692112970901126
+        Id: 11469424991320286148
         Name: "Powerup"
         Transform {
           Location {
@@ -139,7 +139,7 @@
             Z: 0.48
           }
         }
-        ParentId: 2283290154157704183
+        ParentId: 7506821134172771397
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_BaseMaterial:id"
@@ -150,7 +150,7 @@
           Overrides {
             Name: "ma:Shared_BaseMaterial:color"
             Color {
-              G: 0.271873444
+              G: 0.672999859
               B: 0.673000038
               A: 1
             }

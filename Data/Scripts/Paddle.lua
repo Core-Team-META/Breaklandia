@@ -1,11 +1,6 @@
-﻿local utils, LaserBlast, Ball
+﻿local utils, LaserBlast, Ball, RoundService
 
 local PADDLE_TEMPLATE = script:GetCustomProperty("PaddleTemplate")
-
-local PADDLE_FORWARD = 150
-local PADDLE_THICKNESS = 50
-local DEFAULT_PADDLE_WIDTH = 300
-local PADDLE_OFFSET
 	
 local ABILITY_BINDINGS = {
 	ability_primary = true, -- click
@@ -14,37 +9,30 @@ local ABILITY_BINDINGS = {
 }
 local LASER_FIRE_INTERVAL = .2 -- seconds per shot
 
-local Paddle = {
-	paddleForward = PADDLE_FORWARD,
-	paddleThickness = PADDLE_THICKNESS
-}
+local Paddle = {}
 Paddle.__index = Paddle
-
-Paddle.playerPaddles = {}
-
-Events.ConnectForPlayer("MousePosition", function(player, mouseY)
-	local paddle = Paddle.playerPaddles[player]
-	if paddle then
-		--local duration = .2--math.min(.2, math.abs(paddle.object:GetWorldPosition().y - mouseY)/3000)
-		--paddle.object:SetWorldPosition(Vector3.New(0, mouseY, 100) + PADDLE_OFFSET)
-		paddle.position = Vector3.New(0, mouseY, 0) + PADDLE_OFFSET
-	end
-end)
 
 function Paddle.Setup(dependencies)
 	utils = dependencies.utils
 	LaserBlast = dependencies.LaserBlast
 	Ball = dependencies.Ball
-	
-	PADDLE_OFFSET = Vector3.New(PADDLE_FORWARD, 0, utils.ELEVATION)
+	RoundService = dependencies.RoundService
+
+	--[[Events.ConnectForPlayer("MousePosition", function(player, mouseY)
+		local paddle = RoundService.players[player].paddle
+		if paddle then
+			--local duration = .2--math.min(.2, math.abs(paddle.object:GetWorldPosition().y - mouseY)/3000)
+			--paddle.object:SetWorldPosition(Vector3.New(0, mouseY, 100) + utils.PADDLE_OFFSET)
+			paddle.position = Vector3.New(0, mouseY, 0) + utils.PADDLE_OFFSET
+		end
+	end)]]
 end
 
 function Paddle.New(round, player)
-	local paddleObject = World.SpawnAsset(PADDLE_TEMPLATE, {position = PADDLE_OFFSET})
-	paddleObject:SetNetworkedCustomProperty("Box", round.box:GetReference())
+	local paddleObject = World.SpawnAsset(PADDLE_TEMPLATE, {position = utils.PADDLE_OFFSET})
 	--[[Task.Spawn(function()
 		while Object.IsValid(player) and Object.IsValid(paddleObject) do
-			paddleObject:MoveTo(player:GetWorldPosition() + PADDLE_OFFSET, 0)
+			paddleObject:MoveTo(player:GetWorldPosition() + utils.PADDLE_OFFSET, 0)
 			Task.Wait()
 		end
 	end)]]
@@ -52,13 +40,13 @@ function Paddle.New(round, player)
 	local paddle = setmetatable({
 		object = paddleObject,
 		round = round,
-		position = PADDLE_OFFSET,
+		position = utils.PADDLE_OFFSET,
 		owner = player,
-		width = DEFAULT_PADDLE_WIDTH,
-		thickness = PADDLE_THICKNESS
+		width = utils.DEFAULT_PADDLE_WIDTH,
+		thickness = utils.PADDLE_THICKNESS
 	}, Paddle)
 	
-	Paddle.playerPaddles[player] = paddle
+	round.playerPaddles[player] = paddle
 
 	local lastFire = os.clock()
 
@@ -132,29 +120,28 @@ function Paddle:ApplyPowerup(powerupType)
 		end
 		for i, ball in pairs(ballList) do
 			if #ballList + i*2 > 100 then break end -- ball max
-			local ballPosition = ball.object:GetWorldPosition()
+			local ballPosition = ball.subject:GetWorldPosition() - self.round.position
 			if ball.attachedTo then
 				ballPosition = ball.attachedTo.position + ball.attachmentOffset
 			end
-			Ball.New(self.round, ballPosition, Vector3.New(math.sin(math.pi*1/3), math.cos(math.pi*1/3), 0) * Ball.ballSpeed).lastPaddleTouched = ball.lastPaddleTouched
-			Ball.New(self.round, ballPosition, Vector3.New(math.sin(math.pi*2/3), math.cos(math.pi*2/3), 0) * Ball.ballSpeed).lastPaddleTouched = ball.lastPaddleTouched
+			Ball.New(self.round, ballPosition, Vector3.New(math.sin(math.pi*1/3), math.cos(math.pi*1/3), 0) * utils.BALL_SPEED).lastPaddleTouched = ball.lastPaddleTouched
+			Ball.New(self.round, ballPosition, Vector3.New(math.sin(math.pi*2/3), math.cos(math.pi*2/3), 0) * utils.BALL_SPEED).lastPaddleTouched = ball.lastPaddleTouched
 		end
 	end
 end
 
 function Paddle:FireLasers()
-	local spawnCenter = self.position + Vector3.FORWARD * LaserBlast.laserLength / 2
+	local spawnCenter = self.position + Vector3.FORWARD * LaserBlast.laserLength / 2 + self.round.position
 	LaserBlast.New(self, spawnCenter - Vector3.RIGHT * self.width / 2)
 	LaserBlast.New(self, spawnCenter + Vector3.RIGHT * self.width / 2)
 end
 
-function Paddle:GrabBall(ball)
+function Paddle:GrabBall(ball, ballPosition, paddlePosition)
 	ball.attachedTo = self
 	ball.lastPaddleTouched = self
-	local ballPosition = ball.object:GetWorldPosition()
-	ballPosition.x = self.position.x + ball.radius + PADDLE_THICKNESS / 2
-	ball.object:SetWorldPosition(ballPosition)
-	ball.attachmentOffset = ballPosition - self.position -- position of the ball relative to the paddle
+	local ballPosition = ballPosition or ball.subject:GetWorldPosition() - self.round.position
+	ballPosition.x = self.position.x + ball.radius + utils.PADDLE_THICKNESS / 2
+	ball.attachmentOffset = ballPosition - (paddlePosition or self.position) -- position of the ball relative to the paddle
 	ball.object:SetNetworkedCustomProperty("AttachedPaddle", self.object:GetReference())
 	ball.object:SetNetworkedCustomProperty("AttachmentOffset", ball.attachmentOffset) -- replicate the point on the paddle since on the client it will be different
 	if not self.attachedBalls then
@@ -162,12 +149,19 @@ function Paddle:GrabBall(ball)
 	end
 	self.attachedBalls[#self.attachedBalls + 1] = ball
 end
+Events.ConnectForPlayer("GrabBall", function(player, ballRef, ballPosition, paddlePosition)
+	local paddle = RoundService.players[player].paddle
+	local ballObject = ballRef:GetObject()
+	if Object.IsValid(ballObject) then
+		paddle:GrabBall(paddle.round.ballSet[ballObject], ballPosition, paddlePosition)
+	end
+end)
 
 function Paddle:ReleaseBalls()
 	if not self.attachedBalls then return end
 	for _, ball in pairs(self.attachedBalls) do
 		if Object.IsValid(ball.object) then
-			ball.object:SetWorldPosition(ball.attachmentOffset + self.position)
+			ball.subject:SetWorldPosition(ball.attachmentOffset + self.position + self.round.position)
 			ball.object:SetNetworkedCustomProperty("AttachedPaddle", ball.object:GetReference()) -- can't be set to nil so it's set to itself
 			ball.attachedTo = nil
 		end
@@ -177,7 +171,7 @@ end
 
 function Paddle:Destroy()
 	self:ReleaseBalls() -- don't destroy attached ball objects
-	Paddle.playerPaddles[self.owner] = nil
+	self.round.playerPaddles[self.owner] = nil
 	self.object:Destroy()
 	self.bindingPressedConnection:Disconnect()
 	self.bindingReleasedConnection:Disconnect()

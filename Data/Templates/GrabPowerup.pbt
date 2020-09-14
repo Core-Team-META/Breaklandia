@@ -1,5 +1,5 @@
 ﻿Assets {
-  Id: 124210154149060082
+  Id: 3377078706040117346
   Name: "GrabPowerup"
   PlatformAssetType: 5
   TemplateAsset {

@@ -1,10 +1,17 @@
-﻿local utils = require(script:GetCustomProperty("utils"))
+﻿--[[
+	Server has control over creation of all instances
+	Client has authority over ball physics, brick destruction, paddle position
+	Server keeps track of game state by simulating in parallel and receiving updates from the client
+]]
+
+local utils = require(script:GetCustomProperty("utils"))
 local Ball = require(script:GetCustomProperty("Ball"))
 local Paddle = require(script:GetCustomProperty("Paddle"))
 local Brick = require(script:GetCustomProperty("Brick"))
 local Powerup = require(script:GetCustomProperty("Powerup"))
 local LaserBlast = require(script:GetCustomProperty("LaserBlast"))
 local RoundService = require(script:GetCustomProperty("RoundService"))
+local BallPhysics = require(script:GetCustomProperty("BallPhysics"))
 
 local DEPENDENCIES = {
 	utils = utils,
@@ -13,7 +20,8 @@ local DEPENDENCIES = {
 	Brick = Brick,
 	Powerup = Powerup,
 	LaserBlast = LaserBlast,
-	RoundService = RoundService
+	RoundService = RoundService,
+	BallPhysics = BallPhysics
 }
 for _, dependency in pairs(DEPENDENCIES) do
 	if dependency.Setup then

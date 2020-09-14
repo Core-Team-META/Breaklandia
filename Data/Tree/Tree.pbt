@@ -18,9 +18,9 @@ Objects {
   ChildIds: 16813558807825262224
   ChildIds: 14713340454944924967
   ChildIds: 16881013949565504445
-  ChildIds: 11464283003489620288
   ChildIds: 4105456477874349227
   ChildIds: 9702658192086695053
+  ChildIds: 14506848262931602477
   UnregisteredParameters {
   }
   Collidable_v2 {
@@ -30,6 +30,33 @@ Objects {
     Value: "mc:evisibilitysetting:forceon"
   }
   Folder {
+  }
+}
+Objects {
+  Id: 14506848262931602477
+  Name: "ABILITY_FOLDER"
+  Transform {
+    Location {
+    }
+    Rotation {
+    }
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 4781671109827199097
+  WantsNetworking: true
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  Folder {
+    IsFilePartition: true
+    FilePartitionName: "ABILITY_FOLDER"
   }
 }
 Objects {
@@ -1781,18 +1808,6 @@ Objects {
       }
     }
     Overrides {
-      Name: "cs:LaserPowerupTimer"
-      ObjectReference {
-        SelfId: 1681734537564680400
-      }
-    }
-    Overrides {
-      Name: "cs:GrabPowerupTimer"
-      ObjectReference {
-        SelfId: 11704443035127809279
-      }
-    }
-    Overrides {
       Name: "cs:ScoreText"
       ObjectReference {
         SelfId: 16055909953172573111
@@ -1808,6 +1823,36 @@ Objects {
       Name: "cs:LifeContainer"
       ObjectReference {
         SelfId: 6661207375619324652
+      }
+    }
+    Overrides {
+      Name: "cs:BallController"
+      AssetReference {
+        Id: 18234491903343504357
+      }
+    }
+    Overrides {
+      Name: "cs:BrickController"
+      AssetReference {
+        Id: 16660121693062520470
+      }
+    }
+    Overrides {
+      Name: "cs:StateController"
+      AssetReference {
+        Id: 1332491955166838128
+      }
+    }
+    Overrides {
+      Name: "cs:BallPhysics"
+      AssetReference {
+        Id: 12999280366459454783
+      }
+    }
+    Overrides {
+      Name: "cs:PaddleController"
+      AssetReference {
+        Id: 9899484001348260034
       }
     }
   }
@@ -1881,6 +1926,12 @@ Objects {
         Id: 18305914487848899700
       }
     }
+    Overrides {
+      Name: "cs:BallPhysics"
+      AssetReference {
+        Id: 12999280366459454783
+      }
+    }
   }
   Collidable_v2 {
     Value: "mc:ecollisionsetting:inheritfromparent"
@@ -1891,38 +1942,6 @@ Objects {
   Script {
     ScriptAsset {
       Id: 7377170518785165682
-    }
-  }
-}
-Objects {
-  Id: 11464283003489620288
-  Name: "Box"
-  Transform {
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 4781671109827199097
-  WantsNetworking: true
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 4391350556458305732
-      value {
-        Overrides {
-          Name: "Name"
-          String: "Box"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 17422871333185216973
     }
   }
 }
@@ -2714,6 +2733,7 @@ Objects {
   }
   Camera {
     UseAsDefault: true
+    AttachToLocalPlayer: true
     InitialDistance: 1200
     MinDistance: 300
     MaxDistance: 600
@@ -2794,7 +2814,7 @@ Objects {
       CanMoveLeft: true
       CanMoveRight: true
       AbilityAimMode {
-        Value: "mc:eabilityaimmode:viewrelative"
+        Value: "mc:eabilityaimmode:lookrelative"
       }
       AppearanceChannelingTime: 2
       FlipOnMultiJump: true
