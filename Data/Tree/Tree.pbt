@@ -1979,13 +1979,6 @@ Objects {
   Folder {
     IsGroup: true
   }
-  InstanceHistory {
-    SelfId: 16881013949565504445
-    SubobjectId: 12743596547252287504
-    InstanceId: 16688637820073357621
-    TemplateId: 10594687112355799624
-    WasRoot: true
-  }
 }
 Objects {
   Id: 15299284558944854032
@@ -2066,12 +2059,6 @@ Objects {
       Id: 1353607577508895962
     }
   }
-  InstanceHistory {
-    SelfId: 15299284558944854032
-    SubobjectId: 10290385445252436925
-    InstanceId: 16688637820073357621
-    TemplateId: 10594687112355799624
-  }
 }
 Objects {
   Id: 2871355589397250278
@@ -2132,12 +2119,6 @@ Objects {
     BlueprintAsset {
       Id: 1353607577508895962
     }
-  }
-  InstanceHistory {
-    SelfId: 2871355589397250278
-    SubobjectId: 9026950365928682315
-    InstanceId: 16688637820073357621
-    TemplateId: 10594687112355799624
   }
 }
 Objects {
@@ -2206,12 +2187,6 @@ Objects {
       Id: 18441810659176357459
     }
   }
-  InstanceHistory {
-    SelfId: 4950307645590748866
-    SubobjectId: 2174173908629966191
-    InstanceId: 16688637820073357621
-    TemplateId: 10594687112355799624
-  }
 }
 Objects {
   Id: 53403588777424094
@@ -2262,12 +2237,6 @@ Objects {
     BlueprintAsset {
       Id: 2617361319805279588
     }
-  }
-  InstanceHistory {
-    SelfId: 53403588777424094
-    SubobjectId: 6494906934722217843
-    InstanceId: 16688637820073357621
-    TemplateId: 10594687112355799624
   }
 }
 Objects {
@@ -2344,12 +2313,6 @@ Objects {
     BlueprintAsset {
       Id: 12344193518355455075
     }
-  }
-  InstanceHistory {
-    SelfId: 14806795072979737604
-    SubobjectId: 10944728540396908457
-    InstanceId: 16688637820073357621
-    TemplateId: 10594687112355799624
   }
 }
 Objects {
@@ -2648,12 +2611,6 @@ Objects {
     BlueprintAsset {
       Id: 7887238662729938253
     }
-  }
-  InstanceHistory {
-    SelfId: 13605276057229826653
-    SubobjectId: 16595930964934683120
-    InstanceId: 16688637820073357621
-    TemplateId: 10594687112355799624
   }
 }
 Objects {

@@ -3,7 +3,8 @@
 local MAP_TEMPLATES = {
 	(script:GetCustomProperty("Map1")),
 	(script:GetCustomProperty("Map2")),
-	(script:GetCustomProperty("Map3"))
+	(script:GetCustomProperty("Map3")),
+	(script:GetCustomProperty("Map4"))
 }
 local MOUSE_ABILITY = script:GetCustomProperty("MOUSE_ABILITY")
 local ABILITY_FOLDER = script:GetCustomProperty("ABILITY_FOLDER"):WaitForObject()
