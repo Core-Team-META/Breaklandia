@@ -4,9 +4,9 @@
   PlatformAssetType: 5
   TemplateAsset {
     ObjectBlock {
-      RootId: 11069365582241137134
+      RootId: 868168771088149915
       Objects {
-        Id: 11069365582241137134
+        Id: 868168771088149915
         Name: "Brick"
         Transform {
           Scale {
@@ -17,7 +17,8 @@
         }
         ParentId: 4781671109827199097
         ChildIds: 3582040142889967065
-        ChildIds: 868168771088149915
+        ChildIds: 4759784301230535423
+        ChildIds: 11716345495619790381
         UnregisteredParameters {
           Overrides {
             Name: "cs:Trigger"
@@ -33,8 +34,7 @@
         Visible_v2 {
           Value: "mc:evisibilitysetting:inheritfromparent"
         }
-        Folder {
-          IsGroup: true
+        NetworkContext {
         }
       }
       Objects {
@@ -46,13 +46,12 @@
           Rotation {
           }
           Scale {
-            X: 1
+            X: 0.5
             Y: 1
-            Z: 1
+            Z: 0.5
           }
         }
-        ParentId: 11069365582241137134
-        WantsNetworking: true
+        ParentId: 868168771088149915
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
@@ -67,41 +66,6 @@
           TriggerShape_v2 {
             Value: "mc:etriggershape:box"
           }
-        }
-      }
-      Objects {
-        Id: 868168771088149915
-        Name: "Brick"
-        Transform {
-          Location {
-          }
-          Rotation {
-          }
-          Scale {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-        ParentId: 11069365582241137134
-        ChildIds: 4759784301230535423
-        ChildIds: 11716345495619790381
-        UnregisteredParameters {
-          Overrides {
-            Name: "cs:Trigger"
-            ObjectReference {
-              SelfId: 17321836465729626280
-            }
-          }
-        }
-        WantsNetworking: true
-        Collidable_v2 {
-          Value: "mc:ecollisionsetting:inheritfromparent"
-        }
-        Visible_v2 {
-          Value: "mc:evisibilitysetting:inheritfromparent"
-        }
-        NetworkContext {
         }
       }
       Objects {
@@ -241,5 +205,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 62
+  SerializationVersion: 63
 }

@@ -18,12 +18,6 @@
         ParentId: 4781671109827199097
         ChildIds: 7506821134172771397
         UnregisteredParameters {
-          Overrides {
-            Name: "cs:Trigger"
-            ObjectReference {
-              SelfId: 2182588633181295681
-            }
-          }
         }
         WantsNetworking: true
         Collidable_v2 {
@@ -53,12 +47,6 @@
         ParentId: 16428561661544567979
         ChildIds: 13212369908224672204
         UnregisteredParameters {
-          Overrides {
-            Name: "cs:Trigger"
-            ObjectReference {
-              SelfId: 2182588633181295681
-            }
-          }
         }
         WantsNetworking: true
         Collidable_v2 {
@@ -242,5 +230,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 62
+  SerializationVersion: 63
 }

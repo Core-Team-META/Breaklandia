@@ -1,5 +1,6 @@
 ﻿local utils, Paddle, Ball, Brick, Powerup
 
+local BOX_TEMPLATE = script:GetCustomProperty("Box")
 local MAP_TEMPLATES = {
 	(script:GetCustomProperty("Map1")),
 	(script:GetCustomProperty("Map2")),
@@ -52,18 +53,9 @@ function RoundService.RemovePlayer(player)
 end
 
 function RoundService.AddPoints(player, amount)
-	if utils.isClientContext then
-		player.clientUserData.Score = (player.clientUserData.Score or 0) + amount
-		Events.Broadcast("UpdateResource", "Score", player.clientUserData.Score)
-		if player.clientUserData.Score > (player.clientUserData.HighScore or 0) then
-			player.clientUserData.HighScore = player.clientUserData.Score
-			Events.Broadcast("UpdateResource", "HighScore", player.clientUserData.HighScore)
-		end
-	else
-		player:AddResource("Score", amount)
-		if player:GetResource("Score") > player:GetResource("HighScore") then
-			player:SetResource("HighScore", player:GetResource("Score"))
-		end
+	player:AddResource("Score", amount)
+	if player:GetResource("Score") > player:GetResource("HighScore") then
+		player:SetResource("HighScore", player:GetResource("Score"))
 	end
 end
 
@@ -74,11 +66,7 @@ function RoundService.LoseLife(player)
 		RoundService.EndRound(data.round)
 	else
 		data.lives = data.lives - 1
-		if utils.isClientContext then
-			Events.Broadcast("UpdateResource", "Lives", data.lives)
-		else
-			player:SetResource("Lives", data.lives)
-		end
+		player:SetResource("Lives", data.lives)
 		local paddle = data.paddle
 		local ball = Ball.New(paddle.round, paddle.position)
 		paddle:GrabBall(ball)
@@ -96,14 +84,15 @@ function RoundService.CreateRound(players)
 		end
 	end
 	local boxPosition = Vector3.RIGHT * 2000 * boxPositionIndex
-	local box = World.SpawnAsset(MAP_TEMPLATES[math.random(#MAP_TEMPLATES)], {position = boxPosition})
+	local box = World.SpawnAsset(BOX_TEMPLATE, {position = boxPosition})
+	local map = World.SpawnAsset(MAP_TEMPLATES[math.random(#MAP_TEMPLATES)], {parent = box})
 	occupiedBoxPositions[boxPositionIndex] = box
 	
 	local round = {
 		isActive = false,
 		players = players,
 		box = box,
-		brickContainer = box:GetCustomProperty("BrickContainer"):WaitForObject(),
+		brickContainer = box:GetCustomProperty("ServerBrickContainer"):WaitForObject(),
 		ballContainer = box:GetCustomProperty("BallContainer"):WaitForObject(),
 		position = boxPosition,
 		boxPositionIndex = boxPositionIndex,
@@ -134,15 +123,11 @@ function RoundService.StartRound(round)
 		if data.paddle then
 			data.paddle:Destroy()
 		end
-		data.lives = 4
-		
-		if utils.isClientContext then
-			Events.Broadcast("UpdateResource", "Lives", 4)
-			Events.Broadcast("UpdateResource", "Score", 0)
-		else
-			player:SetResource("Lives", 4)
+		if data.lives == 0 then
+			data.lives = 4
 			player:SetResource("Score", 0)
 		end
+		player:SetResource("Lives", data.lives)
 		
 		local paddle = Paddle.New(round, player)
 		data.paddle = paddle
@@ -157,7 +142,7 @@ function RoundService.StartRound(round)
 	end
 end
 
-function RoundService.EndRound(round)
+function RoundService.EndRound(round, advancingToNextRound)
 	if not round.isActive then return end
 	round.isActive = false
 
@@ -184,6 +169,14 @@ function RoundService.EndRound(round)
 	round.box:Destroy()
 	occupiedBoxPositions[round.boxPositionIndex] = nil
 	
+	if not advancingToNextRound then
+		for _, player in pairs(round.players) do
+			utils.SendBroadcast("Feed", ("%s scored %d points!"):format(player.name, player:GetResource("Score")))
+			RoundService.players[player].lives = 0
+			player:SetResource("Score", 0)
+		end
+	end
+
 	return RoundService.StartRound(RoundService.CreateRound(round.players)) -- tail call to prevent stack overflow
 end
 

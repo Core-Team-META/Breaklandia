@@ -118,14 +118,19 @@ function Paddle:ApplyPowerup(powerupType)
 		for object, ball in pairs(self.round.ballSet) do
 			ballList[#ballList + 1] = ball
 		end
+		local ballCount = #ballList
 		for i, ball in pairs(ballList) do
-			if #ballList + i*2 > 100 then break end -- ball max
+			if ballCount + 2 > 100 then break end -- ball max
 			local ballPosition = ball.subject:GetWorldPosition() - self.round.position
 			if ball.attachedTo then
 				ballPosition = ball.attachedTo.position + ball.attachmentOffset
 			end
 			Ball.New(self.round, ballPosition, Vector3.New(math.sin(math.pi*1/3), math.cos(math.pi*1/3), 0) * utils.BALL_SPEED).lastPaddleTouched = ball.lastPaddleTouched
 			Ball.New(self.round, ballPosition, Vector3.New(math.sin(math.pi*2/3), math.cos(math.pi*2/3), 0) * utils.BALL_SPEED).lastPaddleTouched = ball.lastPaddleTouched
+			ballCount = ballCount + 2
+		end
+		if ballCount > 10 then
+			utils.SendBroadcast("Feed", ("%s has %d balls at once!"):format(self.owner.name, ballCount))
 		end
 	end
 end
@@ -136,12 +141,14 @@ function Paddle:FireLasers()
 	LaserBlast.New(self, spawnCenter + Vector3.RIGHT * self.width / 2)
 end
 
-function Paddle:GrabBall(ball, ballPosition, paddlePosition)
+function Paddle:GrabBall(ball, ballOffsetY)
 	ball.attachedTo = self
 	ball.lastPaddleTouched = self
-	local ballPosition = ballPosition or ball.subject:GetWorldPosition() - self.round.position
-	ballPosition.x = self.position.x + ball.radius + utils.PADDLE_THICKNESS / 2
-	ball.attachmentOffset = ballPosition - (paddlePosition or self.position) -- position of the ball relative to the paddle
+	ball.attachmentOffset = Vector3.New(
+		ball.radius + utils.PADDLE_THICKNESS / 2,
+		ballOffsetY or (ball.subject:GetWorldPosition().y - self.round.position.y - self.position.y),
+		0
+	) -- position of the ball relative to the paddle
 	ball.object:SetNetworkedCustomProperty("AttachedPaddle", self.object:GetReference())
 	ball.object:SetNetworkedCustomProperty("AttachmentOffset", ball.attachmentOffset) -- replicate the point on the paddle since on the client it will be different
 	if not self.attachedBalls then
@@ -149,11 +156,15 @@ function Paddle:GrabBall(ball, ballPosition, paddlePosition)
 	end
 	self.attachedBalls[#self.attachedBalls + 1] = ball
 end
-Events.ConnectForPlayer("GrabBall", function(player, ballRef, ballPosition, paddlePosition)
+Events.ConnectForPlayer("GrabBall", function(player, ...)
 	local paddle = RoundService.players[player].paddle
-	local ballObject = ballRef:GetObject()
-	if Object.IsValid(ballObject) then
-		paddle:GrabBall(paddle.round.ballSet[ballObject], ballPosition, paddlePosition)
+	if not paddle.grabEnabled then return end
+	for _, refOffsetPair in pairs({...}) do
+		local ballRef, ballOffsetY = refOffsetPair[1], refOffsetPair[2]
+		local ballObject = ballRef:GetObject()
+		if Object.IsValid(ballObject) then
+			paddle:GrabBall(paddle.round.ballSet[ballObject], ballOffsetY)
+		end
 	end
 end)
 

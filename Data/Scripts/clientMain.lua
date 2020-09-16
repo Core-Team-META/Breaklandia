@@ -20,6 +20,8 @@ end
 local SCORE_TEXT = script:GetCustomProperty("ScoreText"):WaitForObject()
 local HIGH_SCORE_TEXT = script:GetCustomProperty("HighScoreText"):WaitForObject()
 local LIFE_CONTAINER = script:GetCustomProperty("LifeContainer"):WaitForObject()
+local FEED_ROW = script:GetCustomProperty("FeedRow")
+local FEED_CONTAINER = script:GetCustomProperty("Feed"):WaitForObject()
 
 local player = Game.GetLocalPlayer()
 
@@ -43,6 +45,22 @@ player.resourceChangedEvent:Connect(function(_, resource, value)
 	updateResource(resource, value)
 end)
 
-Events.Connect("UpdateResource", updateResource)
+Events.Connect("Feed", function(message)
+	local row = World.SpawnAsset(FEED_ROW, {parent = FEED_CONTAINER})
+	for _, text in pairs(row:GetChildren()) do
+		text.text = message
+	end
+	local oldRows = FEED_CONTAINER:GetChildren()
+	for i = 1, 50 do
+		for _, old in pairs(oldRows) do
+			if Object.IsValid(old) then
+				old.y = old.y - 1
+			end
+		end
+		Task.Wait()
+	end
+	Task.Wait(60)
+	row:Destroy()
+end)
 
 utils.SendBroadcast("Ready")

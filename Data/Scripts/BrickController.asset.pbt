@@ -3,6 +3,14 @@
   Name: "BrickController"
   PlatformAssetType: 3
   TextAsset {
+    CustomParameters {
+      Overrides {
+        Name: "cs:BrickTemplate"
+        AssetReference {
+          Id: 8365392262078967723
+        }
+      }
+    }
   }
-  SerializationVersion: 62
+  SerializationVersion: 63
 }

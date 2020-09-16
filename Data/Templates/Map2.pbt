@@ -16,23 +16,9 @@
           }
         }
         ParentId: 4781671109827199097
-        ChildIds: 9566027593585287312
-        ChildIds: 11118877811446929240
         ChildIds: 8773993796455209788
         ChildIds: 2905796272126788195
         UnregisteredParameters {
-          Overrides {
-            Name: "cs:BrickContainer"
-            ObjectReference {
-              SubObjectId: 9566027593585287312
-            }
-          }
-          Overrides {
-            Name: "cs:BallContainer"
-            ObjectReference {
-              SubObjectId: 11118877811446929240
-            }
-          }
         }
         WantsNetworking: true
         Collidable_v2 {
@@ -43,58 +29,6 @@
         }
         Folder {
           IsGroup: true
-        }
-      }
-      Objects {
-        Id: 9566027593585287312
-        Name: "BrickContainer"
-        Transform {
-          Location {
-          }
-          Rotation {
-          }
-          Scale {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-        ParentId: 1790766974316512500
-        WantsNetworking: true
-        Collidable_v2 {
-          Value: "mc:ecollisionsetting:inheritfromparent"
-        }
-        Visible_v2 {
-          Value: "mc:evisibilitysetting:inheritfromparent"
-        }
-        Folder {
-          IsFilePartition: true
-        }
-      }
-      Objects {
-        Id: 11118877811446929240
-        Name: "BallContainer"
-        Transform {
-          Location {
-          }
-          Rotation {
-          }
-          Scale {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-        ParentId: 1790766974316512500
-        WantsNetworking: true
-        Collidable_v2 {
-          Value: "mc:ecollisionsetting:inheritfromparent"
-        }
-        Visible_v2 {
-          Value: "mc:evisibilitysetting:inheritfromparent"
-        }
-        Folder {
-          IsFilePartition: true
         }
       }
       Objects {
@@ -2041,5 +1975,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 62
+  SerializationVersion: 63
 }

@@ -31,7 +31,7 @@ function LaserBlast.New(paddle, position)
 	
 	local round = paddle.round
 	laserObject:GetCustomProperty("Trigger"):WaitForObject().beginOverlapEvent:Connect(function(_, hit)
-		local brick = round.brickSet[hit.parent]
+		local brick = round.brickSet[hit]
 		if brick then
 			if round.brickGrid[brick.y][brick.x + 1] then -- sometimes the trigger will detect the brick after the first one the laser should hit
 				brick = round.brickGrid[brick.y][brick.x + 1]

@@ -44,7 +44,9 @@ local function startTimerCountdown(endTime, timerUI, emptyToSolid)
 	local subjectPaddle = StateController.currentPaddle -- the paddle that this powerup is activated on
 	timerTasks[timerUI] = Task.Spawn(function()
 		local timeRemaining = endTime - time()
-		timerClock.text = tostring(math.ceil(timeRemaining))
+		for _, text in pairs(timerClock:GetChildren()) do
+			text.text = tostring(math.ceil(timeRemaining))
+		end
 		local progress = 1 - timeRemaining / (endTime - startTime)
 		rightInner.rotationAngle = math.min(1, progress * 2) * 180
 		leftInner.rotationAngle = math.max(0, math.min(1, progress * 2 - 1)) * 180
@@ -56,6 +58,16 @@ local function startTimerCountdown(endTime, timerUI, emptyToSolid)
 			timerTasks[timerUI]:Cancel()
 			timerTasks[timerUI] = nil
 			timerUI.visibility = Visibility.FORCE_OFF
+			if timerUI == GRAB_TIMER then
+				for object, ball in pairs(StateController.round.ballSet) do
+					local paddleRef = object:GetCustomProperty("AttachedPaddle")
+					if (not paddleRef or paddleRef:GetObject() == object) and ball.attachedPaddle then
+						-- ball was attached on the client but not by the server before the timer ran out
+						ball.attachedPaddle = nil
+						ball.ballClient.parent = ball.clientContext
+					end
+				end
+			end
 		end
 	end)
 	timerTasks[timerUI].repeatCount = -1
@@ -92,7 +104,7 @@ Events.Connect("StartRound", function(boxReference)
 	local round = {
 		isActive = true,
 		box = box,
-		brickContainer = box:GetCustomProperty("BrickContainer"):WaitForObject(),
+		brickContainer = box:GetCustomProperty("ClientBrickContainer"):WaitForObject(),
 		ballContainer = box:GetCustomProperty("BallContainer"):WaitForObject(),
 		position = box:GetWorldPosition(),
 		powerupSet = {},

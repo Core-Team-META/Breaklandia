@@ -15,15 +15,17 @@ function PaddleController.Setup(dependencies)
 end
 
 function PaddleController.SetPaddle(container)
+	local group = container:GetCustomProperty("GroupClient"):WaitForObject()
+	local paddleObject = container:GetCustomProperty("PaddleClient"):WaitForObject()
+	
 	local paddle = {
 		object = container,
 		position = Vector3.ZERO,
-		width = utils.DEFAULT_PADDLE_WIDTH
+		width = utils.DEFAULT_PADDLE_WIDTH,
+		groupClient = group,
+		paddleClient = paddleObject
 	}
 	StateController.currentPaddle = paddle
-	
-	local group = container:GetCustomProperty("GroupClient"):WaitForObject()
-	local paddleObject = container:GetCustomProperty("PaddleClient"):WaitForObject()
 
 	local function checkPaddleProperties()
 		paddle.width = container:GetCustomProperty("Width")

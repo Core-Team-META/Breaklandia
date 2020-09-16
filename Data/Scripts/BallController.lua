@@ -30,11 +30,13 @@ function BallController.SetRound(round)
 			round = round,
 			object = ballObject,
 			ballClient = ballClient,
+			clientContext = clientContext,
 			subject = ballClient,
 			trigger = clientTrigger,
 			radius = utils.BALL_RADIUS,
 			velocity = ballObject:GetWorldRotation() * Vector3.FORWARD * utils.BALL_SPEED,
-			reflectionsThisFrame = {}
+			reflectionsThisFrame = {},
+			attachedPaddle = nil
 		}
 		round.ballSet[ballObject] = ball
 		ball.trigger.beginOverlapEvent:Connect(function(_, hit)
@@ -83,25 +85,25 @@ function BallController.SetRound(round)
 		end
 
 		local attachmentOffset = ballObject:GetCustomProperty("AttachmentOffset")
-		local attachedPaddle = nil
 
 		local function updateAttachedPaddle()
 			local paddleRef = ballObject:GetCustomProperty("AttachedPaddle")
-			if not paddleRef then return end
-			local paddle = paddleRef:WaitForObject()
-			if paddle and paddle ~= ballObject then -- can't be set to nil so it's set to itself
-				ballClient.parent = paddle:GetCustomProperty("GroupClient"):WaitForObject()
-				ballClient:SetPosition(attachmentOffset)
-				attachedPaddle = ballClient.parent
-			else
-				ballClient.parent = clientContext
-				attachedPaddle = nil
+			if paddleRef then
+				local paddle = paddleRef:WaitForObject()
+				if paddle and paddle ~= ballObject then -- can't be set to nil so it's set to itself
+					ballClient.parent = paddle:GetCustomProperty("GroupClient"):WaitForObject()
+					ballClient:SetPosition(attachmentOffset)
+					ball.attachedPaddle = ballClient.parent
+					return
+				end
 			end
+			ballClient.parent = clientContext
+			ball.attachedPaddle = nil
 		end
 
 		local function updateAttachmentOffset()
 			attachmentOffset = ballObject:GetCustomProperty("AttachmentOffset")
-			if attachedPaddle then
+			if ball.attachedPaddle then
 				ballClient:SetPosition(attachmentOffset)
 			end
 		end
@@ -119,10 +121,10 @@ function BallController.SetRound(round)
 	
 		Task.Spawn(function()
 			while Object.IsValid(ballObject) and Object.IsValid(ballClient) do
-				if not attachedPaddle then
+				if not ball.attachedPaddle then
 					BallPhysics.CheckCollisions(ball)
 				end
-				if Object.IsValid(ballObject) and not attachedPaddle then
+				if Object.IsValid(ballObject) and not ball.attachedPaddle then
 					ballClient:MoveContinuous(ball.velocity)
 				end
 				Task.Wait()

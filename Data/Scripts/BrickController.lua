@@ -1,4 +1,5 @@
 ﻿local utils, BallPhysics
+local BRICK_TEMPLATE = script:GetCustomProperty("BrickTemplate")
 
 local BrickController = {}
 
@@ -9,13 +10,21 @@ end
 
 function BrickController.SetRound(round)
 	BrickController.currentRound = round
-	local function getBrickCoordinates(position)
+	for y = 1, utils.GRID_WIDTH do
+		round.brickGrid[y] = {}
+		for x = 1, utils.GRID_HEIGHT do
+			local position = Vector3.New(utils.AREA_TOP - (x-1)*utils.BRICK_HEIGHT, (y-1)*utils.BRICK_WIDTH - utils.AREA_WIDTH / 2 + utils.BRICK_WIDTH / 2, 0)
+			local brickObject = World.SpawnAsset(BRICK_TEMPLATE, {position = position, parent = round.brickContainer})
+			local brick = {y = y, x = x, position = position, object = brickObject}
+			round.brickGrid[y][x] = brick
+			round.brickSet[brickObject] = brick
+		end
+	end
+	round.edgeList = BallPhysics.ComputeEdges(round)
+	--[[local function getBrickCoordinates(position)
 		local x = (utils.AREA_TOP - position.x)/utils.BRICK_HEIGHT + 1
 		local y = (utils.AREA_WIDTH / 2 - utils.BRICK_WIDTH / 2 + position.y)/utils.BRICK_WIDTH + 1
 		return math.floor(y + .5), math.floor(x + .5) -- should already be integers but rounding makes sure
-	end
-	for y = 1, utils.GRID_WIDTH do
-		round.brickGrid[y] = {}
 	end
 	local function addBrick(brickObject)
 		if round.brickSet[brickObject] then return end -- already detected this brick
@@ -46,7 +55,27 @@ function BrickController.SetRound(round)
 	round.brickContainer.childAddedEvent:Connect(function(_, brickObject)
 		addBrick(brickObject)
 		round.edgeList = BallPhysics.ComputeEdges(round)
+	end)]]
+	
+	round.box.networkedPropertyChangedEvent:Connect(function(_, property)
+		if property == "BrickString" then
+			local brickSequence = utils.DecodeBrickString(round.box:GetCustomProperty("BrickString"))
+			local brickIndex = 0
+			for y = 1, utils.GRID_WIDTH do
+				for x = 1, utils.GRID_HEIGHT do
+					brickIndex = brickIndex + 1
+					local brick = round.brickGrid[y][x]
+					if brick and not brickSequence[brickIndex] then -- this brick was destroyed
+						round.brickSet[brick.object] = nil
+						round.brickGrid[y][x] = nil
+						brick.object:Destroy()
+					end
+				end
+			end
+			round.edgeList = BallPhysics.ComputeEdges(round)
+		end
 	end)
+	
 end
 
 local sendingBrickState = nil
@@ -56,20 +85,8 @@ function BrickController.Break(brickObject, ball)
 	local brick = round.brickSet[brickObject]
 	round.brickSet[brickObject] = nil
 	round.brickGrid[brick.y][brick.x] = nil
-	local existingBricks = ""
-	for y = 1, utils.GRID_WIDTH do
-		for x = 1, utils.GRID_HEIGHT do
-			if round.brickGrid[y][x] then
-				existingBricks = existingBricks.."1"
-			else
-				existingBricks = existingBricks.."0"
-			end
-		end
-	end
-	existingBricks = ("0"):rep((-#existingBricks)%4)..existingBricks
-	existingBricks = existingBricks:gsub("....", function(x)
-		return ("%X"):format(tonumber(x, 2))
-	end) -- 195 bits -> 196 bits -> 49 characters
+	brick.object:Destroy()
+	local existingBricks = utils.GetBrickString(round)
 	if sendingBrickState then -- auto-retry sending the brick state, but only the latest one
 		sendingBrickState = existingBricks
 	else
@@ -98,6 +115,7 @@ function BrickController.Destroy(brickObject)
 	if brick then
 		round.brickSet[brickObject] = nil
 		round.brickGrid[brick.y][brick.x] = nil
+		brick.object:Destroy()
 		round.edgeList = BallPhysics.ComputeEdges(round)
 	end
 end

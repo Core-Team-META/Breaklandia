@@ -11,6 +11,7 @@ local function pointsAreOnSameSideOfLine(point1, point2, A, B) -- point1 and poi
 end
 
 function ReflectAcrossNormal(ball, normal, forcePositiveAngle)
+	if not Object.IsValid(ball.subject) then return end
 	local ballPosition = ball.subject:GetWorldPosition() - ball.round.position
 	ball.velocity = ball.velocity - normal * (ball.velocity .. normal) * 2 -- vector reflection math
 	local minimumAngle = math.pi/12
@@ -54,6 +55,8 @@ function BounceOffNearestEdge(ball, brickPosition)
 	end
 end
 
+local ballsGrabbing = {}
+local lastSendTime, busySending = 0, false
 function CheckCollisions(ball)
 	if not Object.IsValid(ball.subject) then
 		print(CoreDebug.GetStackTrace())
@@ -90,9 +93,52 @@ function CheckCollisions(ball)
 			ball.lastPaddleTouched = paddle
 			if utils.isClientContext then
 				if paddle.object:GetCustomProperty("GrabTimeout") > time() then
-					ball.subject:StopMove()
-					ball.velocity = reflectionNormal * utils.BALL_SPEED
-					utils.SendBroadcast("GrabBall", ball.object:GetReference(), currentPosition, paddlePosition)
+					if not ballsGrabbing[ball] and not ball.attachedPaddle then
+						ball.subject:StopMove()
+						ball.velocity = reflectionNormal * utils.BALL_SPEED
+						ball.attachedPaddle = paddle.paddleClient
+						ball.subject.parent = paddle.groupClient
+						ballsGrabbing[ball] = {ball.object:GetReference(), (currentPosition - paddlePosition).y}
+						if not busySending then
+							busySending = true
+							Task.Spawn(function()
+								while next(ballsGrabbing) do
+									if time() - lastSendTime < .2 then
+										Task.Wait(.2 - (time() - lastSendTime))
+									end
+									while true do
+										local grabbedList = {}
+										local grabbed = {}
+										for ballGrabbing, data in pairs(ballsGrabbing) do
+											if Object.IsValid(ballGrabbing.object) then
+												local attachedPaddle = ballGrabbing.object:GetCustomProperty("AttachedPaddle")
+												attachedPaddle = attachedPaddle and attachedPaddle:GetObject() and attachedPaddle:GetObject() ~= ballGrabbing.object
+												if not attachedPaddle then
+													if #grabbedList < 3 then
+														grabbedList[#grabbedList + 1] = data
+													end
+												else
+													grabbed[#grabbed + 1] = ballGrabbing
+												end
+											else
+												grabbed[#grabbed + 1] = ballGrabbing -- ball is not valid, remove from list
+											end
+										end
+										for i = 1, #grabbed do
+											ballsGrabbing[grabbed[i]] = nil
+										end
+										if Events.BroadcastToServer("GrabBall", table.unpack(grabbedList)) == BroadcastEventResultCode.EXCEEDED_RATE_LIMIT then
+											Task.Wait()
+										else
+											break
+										end
+									end
+									lastSendTime = time()
+									busySending = false
+								end
+							end)
+						end
+					end
 				end
 			elseif paddle.grabEnabled then
 				--[[paddle:GrabBall(ball)
@@ -201,6 +247,9 @@ function ComputeEdges(round)
 			CoreDebug.DrawLine(edge[1] + round.position + Vector3.UP*25, edge[2] + round.position + Vector3.UP*25, {duration = 1, thickness = 15})
 		end
 	end]]
+	if not utils.isClientContext then
+		round.box:SetNetworkedCustomProperty("BrickString", utils.GetBrickString(round))
+	end
 	return edgeList
 end
 

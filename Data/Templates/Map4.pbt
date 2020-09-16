@@ -16,23 +16,9 @@
           }
         }
         ParentId: 4781671109827199097
-        ChildIds: 2950299918599224654
-        ChildIds: 7011768308359206981
         ChildIds: 9623551360948656741
         ChildIds: 18361136157040250761
         UnregisteredParameters {
-          Overrides {
-            Name: "cs:BrickContainer"
-            ObjectReference {
-              SubObjectId: 2950299918599224654
-            }
-          }
-          Overrides {
-            Name: "cs:BallContainer"
-            ObjectReference {
-              SubObjectId: 7011768308359206981
-            }
-          }
         }
         WantsNetworking: true
         Collidable_v2 {
@@ -43,59 +29,6 @@
         }
         Folder {
           IsGroup: true
-        }
-      }
-      Objects {
-        Id: 2950299918599224654
-        Name: "BrickContainer"
-        Transform {
-          Location {
-          }
-          Rotation {
-          }
-          Scale {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-        ParentId: 1796103638974853610
-        WantsNetworking: true
-        Collidable_v2 {
-          Value: "mc:ecollisionsetting:inheritfromparent"
-        }
-        Visible_v2 {
-          Value: "mc:evisibilitysetting:inheritfromparent"
-        }
-        Folder {
-          IsFilePartition: true
-        }
-      }
-      Objects {
-        Id: 7011768308359206981
-        Name: "BallContainer"
-        Transform {
-          Location {
-          }
-          Rotation {
-            Yaw: 2.56132171e-06
-          }
-          Scale {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-        ParentId: 1796103638974853610
-        WantsNetworking: true
-        Collidable_v2 {
-          Value: "mc:ecollisionsetting:inheritfromparent"
-        }
-        Visible_v2 {
-          Value: "mc:evisibilitysetting:inheritfromparent"
-        }
-        Folder {
-          IsFilePartition: true
         }
       }
       Objects {
@@ -377,7 +310,7 @@
         Transform {
           Location {
             X: -1481.49988
-            Y: -839.315063
+            Y: -961.876
             Z: 10
           }
           Rotation {
@@ -892,7 +825,7 @@
         Transform {
           Location {
             X: -687.678345
-            Y: -839.315063
+            Y: -961.876
             Z: 10
           }
           Rotation {
@@ -1407,7 +1340,7 @@
         Transform {
           Location {
             X: 108.048889
-            Y: -839.315063
+            Y: -961.876
             Z: 10
           }
           Rotation {
@@ -1922,7 +1855,7 @@
         Transform {
           Location {
             X: 901.966431
-            Y: -839.315063
+            Y: -961.876
             Z: 10
           }
           Rotation {
@@ -2436,8 +2369,8 @@
         Name: "Group"
         Transform {
           Location {
-            X: 1275.41199
-            Y: 862.579468
+            X: 1275.41187
+            Y: 895.220825
             Z: 10
           }
           Rotation {
@@ -2953,7 +2886,7 @@
         Transform {
           Location {
             X: 481.59021
-            Y: 862.5802
+            Y: 895.221558
             Z: 10
           }
           Rotation {
@@ -3469,7 +3402,7 @@
         Transform {
           Location {
             X: -314.136597
-            Y: 862.580688
+            Y: 895.222046
             Z: 10
           }
           Rotation {
@@ -3985,7 +3918,7 @@
         Transform {
           Location {
             X: -1108.05396
-            Y: 862.581177
+            Y: 895.222534
             Z: 10
           }
           Rotation {
@@ -4591,5 +4524,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 62
+  SerializationVersion: 63
 }

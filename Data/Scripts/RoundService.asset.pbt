@@ -17,6 +17,12 @@
         }
       }
       Overrides {
+        Name: "cs:Box"
+        AssetReference {
+          Id: 17422871333185216973
+        }
+      }
+      Overrides {
         Name: "cs:Map1"
         AssetReference {
           Id: 14431087918210614244
@@ -42,5 +48,5 @@
       }
     }
   }
-  SerializationVersion: 62
+  SerializationVersion: 63
 }

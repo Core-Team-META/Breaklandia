@@ -46,7 +46,7 @@ function Ball.New(round, position, initialVelocity)
 			end
 			if Object.IsValid(ballObject) and not ball.attachedTo then
 				ball.subject:MoveContinuous(ball.velocity)
-				--CoreDebug.DrawSphere(ball.subject:GetWorldPosition(), 30, {thickkness = 10, color = Color.New(.5, .5, 0)})
+				--CoreDebug.DrawSphere(ball.subject:GetWorldPosition(), 30, {thickness = 5, color = Color.New(1, 1, 1)})
 			end
 			local dt = Task.Wait()
 			--[[if dt and Object.IsValid(ballObject) and not ball.attachedTo then
@@ -56,14 +56,14 @@ function Ball.New(round, position, initialVelocity)
 		end
 	end)
 	
-	--[[ball.trigger.beginOverlapEvent:Connect(function(_, hit)
+	ball.trigger.beginOverlapEvent:Connect(function(_, hit)
 		local object = hit.parent
 		local brick = round.brickSet[object]
 		if brick then
 			BallPhysics.BounceOffNearestEdge(ball, brick.position)
 			--brick:Break(ball.lastPaddleTouched and ball.lastPaddleTouched.owner or nil)
 		end
-	end)]]
+	end)
 	
 	return ball
 end
@@ -71,7 +71,7 @@ end
 function Ball:Destroy()
 	self.round.ballSet[self.object] = nil
 	self.object:Destroy()
-	if not next(self.round.ballSet) then
+	if not next(self.round.ballSet) and self.round.isActive then
 		RoundService.LoseLife(self.lastPaddleTouched.owner)
 	end
 end

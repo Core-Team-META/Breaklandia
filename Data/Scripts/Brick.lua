@@ -1,5 +1,5 @@
 ﻿local utils, Ball, Powerup, RoundService, BallPhysics
-local BRICK_TEMPLATE = script:GetCustomProperty("BrickTemplate")
+local TRIGGER_TEMPLATE = script:GetCustomProperty("TriggerTemplate")
 
 local BRICK_WIDTH, BRICK_HEIGHT
 local POWERUP_DROP_CHANCE
@@ -30,13 +30,13 @@ end
 
 function Brick.New(round, y, x)
 	local position = Vector3.New(AREA_TOP - (x-1)*BRICK_HEIGHT, (y-1)*BRICK_WIDTH - AREA_WIDTH / 2 + BRICK_WIDTH / 2, 0)
-	local brickObject = World.SpawnAsset(BRICK_TEMPLATE, {position = position, parent = round.brickContainer})
+	local brickObject = World.SpawnAsset(TRIGGER_TEMPLATE, {position = position, parent = round.brickContainer})
 
 	local brick = setmetatable({
 		y = y, x = x,
 		object = brickObject,
 		position = position,
-		trigger = brickObject:GetCustomProperty("Trigger"):WaitForObject(),
+		trigger = brickObject,
 		width = BRICK_WIDTH,
 		height = BRICK_HEIGHT,
 		round = round
@@ -79,22 +79,18 @@ function Brick:Break(player)
 		Powerup.New(self.round, self.position)
 	end
 	if not next(self.round.brickSet) then
-		RoundService.EndRound(self.round)
+		RoundService.EndRound(self.round, true) -- second parameter keeps the score
 	end
 end
 
-Events.ConnectForPlayer("BreakBrick", function(player, brickState)
+Events.ConnectForPlayer("BreakBrick", function(player, brickString)
 	local round = RoundService.players[player].round
-	local bits = brickState:gsub(".", function(x)
-		local n = tonumber(x, 16)
-		return ((n>>3)&1)..((n>>2)&1)..((n>>1)&1)..(n&1)
-	end)
-	bits = bits:sub(-utils.GRID_WIDTH*utils.GRID_HEIGHT) -- first couple bits can be padding
+	local brickSequence = utils.DecodeBrickString(brickString)
 	local brickIndex = 0
 	for y = 1, utils.GRID_WIDTH do
 		for x = 1, utils.GRID_HEIGHT do
 			brickIndex = brickIndex + 1
-			if round.brickGrid[y][x] and bits:sub(brickIndex, brickIndex) == "0" then -- this brick was destroyed
+			if round.brickGrid[y][x] and not brickSequence[brickIndex] then -- this brick was destroyed
 				round.brickGrid[y][x]:Break(player)
 			end
 		end

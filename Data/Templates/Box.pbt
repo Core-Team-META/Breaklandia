@@ -16,14 +16,21 @@
           }
         }
         ParentId: 4781671109827199097
-        ChildIds: 6612173943258978610
+        ChildIds: 340449830993538426
+        ChildIds: 17131977063785009748
         ChildIds: 13667994057365172221
         ChildIds: 4391350556458305732
         UnregisteredParameters {
           Overrides {
-            Name: "cs:BrickContainer"
+            Name: "cs:ServerBrickContainer"
             ObjectReference {
-              SubObjectId: 6612173943258978610
+              SubObjectId: 340449830993538426
+            }
+          }
+          Overrides {
+            Name: "cs:ClientBrickContainer"
+            ObjectReference {
+              SubObjectId: 17131977063785009748
             }
           }
           Overrides {
@@ -31,6 +38,14 @@
             ObjectReference {
               SubObjectId: 13667994057365172221
             }
+          }
+          Overrides {
+            Name: "cs:BrickString"
+            String: ""
+          }
+          Overrides {
+            Name: "cs:BrickString:isrep"
+            Bool: true
           }
         }
         WantsNetworking: true
@@ -45,8 +60,8 @@
         }
       }
       Objects {
-        Id: 6612173943258978610
-        Name: "BrickContainer"
+        Id: 340449830993538426
+        Name: "ServerBrickContainer"
         Transform {
           Location {
           }
@@ -66,8 +81,33 @@
         Visible_v2 {
           Value: "mc:evisibilitysetting:inheritfromparent"
         }
-        Folder {
-          IsFilePartition: true
+        NetworkContext {
+          Type: Server
+        }
+      }
+      Objects {
+        Id: 17131977063785009748
+        Name: "ClientBrickContainer"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 3461209046783251881
+        WantsNetworking: true
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        NetworkContext {
         }
       }
       Objects {
@@ -98,7 +138,7 @@
       }
       Objects {
         Id: 4391350556458305732
-        Name: "Box"
+        Name: "Collision"
         Transform {
           Location {
           }
@@ -119,7 +159,7 @@
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
         Visible_v2 {
-          Value: "mc:evisibilitysetting:inheritfromparent"
+          Value: "mc:evisibilitysetting:forceoff"
         }
         NetworkContext {
           Type: RuntimeStatic
@@ -325,5 +365,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 62
+  SerializationVersion: 63
 }

@@ -2,7 +2,7 @@
   Id: 3986389406052087404
   Name: "Custom Detail 1 from Sci-fi Base Sconce 01"
   PlatformAssetType: 13
-  SerializationVersion: 62
+  SerializationVersion: 63
   CustomMaterialAsset {
     BaseMaterialId: 13161121229103846131
     ParameterOverrides {

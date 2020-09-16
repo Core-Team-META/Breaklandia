@@ -5,12 +5,12 @@
   TextAsset {
     CustomParameters {
       Overrides {
-        Name: "cs:BrickTemplate"
+        Name: "cs:TriggerTemplate"
         AssetReference {
-          Id: 8365392262078967723
+          Id: 4186457484079492479
         }
       }
     }
   }
-  SerializationVersion: 62
+  SerializationVersion: 63
 }
