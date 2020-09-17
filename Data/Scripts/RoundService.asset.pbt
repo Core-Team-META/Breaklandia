@@ -17,6 +17,15 @@
         }
       }
       Overrides {
+        Name: "cs:HighScore"
+        NetReference {
+          Key: "C5E3F573C765C94F"
+          Type {
+            Value: "mc:enetreferencetype:leaderboard"
+          }
+        }
+      }
+      Overrides {
         Name: "cs:Box"
         AssetReference {
           Id: 17422871333185216973

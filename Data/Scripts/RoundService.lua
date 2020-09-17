@@ -1,6 +1,8 @@
 ﻿local utils, Paddle, Ball, Brick, Powerup
 
 local BOX_TEMPLATE = script:GetCustomProperty("Box")
+local HIGH_SCORE = script:GetCustomProperty("HighScore")
+
 local MAP_TEMPLATES = {
 	(script:GetCustomProperty("Map1")),
 	(script:GetCustomProperty("Map2")),
@@ -54,8 +56,13 @@ end
 
 function RoundService.AddPoints(player, amount)
 	player:AddResource("Score", amount)
-	if player:GetResource("Score") > player:GetResource("HighScore") then
-		player:SetResource("HighScore", player:GetResource("Score"))
+	local score = player:GetResource("Score")
+	if score > player:GetResource("HighScore") then
+		player:SetResource("HighScore", score)
+		local data = Storage.GetPlayerData(player)
+		data.HighScore = score
+		Storage.SetPlayerData(player, data)
+		Leaderboards.SubmitPlayerScore(HIGH_SCORE, player, score)
 	end
 end
 

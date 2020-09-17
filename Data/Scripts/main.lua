@@ -30,6 +30,7 @@ for _, dependency in pairs(DEPENDENCIES) do
 end
 
 Game.playerJoinedEvent:Connect(function(player)
+	player.canMount = false
 	RoundService.AddPlayer(player)
 	local round = RoundService.CreateRound({player})
 	RoundService.StartRound(round)

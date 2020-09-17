@@ -100,6 +100,7 @@ Objects {
     }
   }
   ParentId: 9702658192086695053
+  ChildIds: 1821016063774626287
   ChildIds: 1735557410747877248
   ChildIds: 6661207375619324652
   ChildIds: 1681734537564680400
@@ -2928,6 +2929,84 @@ Objects {
   }
 }
 Objects {
+  Id: 1821016063774626287
+  Name: "Leaderboard"
+  Transform {
+    Location {
+    }
+    Rotation {
+    }
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 9988479098138247358
+  ChildIds: 14633221673011838678
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  Control {
+    Width: 100
+    Height: 100
+    UIX: -30
+    UIY: 30
+    RenderTransformPivot {
+      Anchor {
+        Value: "mc:euianchor:middlecenter"
+      }
+    }
+    Panel {
+    }
+    AnchorLayout {
+      SelfAnchor {
+        Anchor {
+          Value: "mc:euianchor:topright"
+        }
+      }
+      TargetAnchor {
+        Anchor {
+          Value: "mc:euianchor:topright"
+        }
+      }
+    }
+  }
+}
+Objects {
+  Id: 14633221673011838678
+  Name: "LeaderboardRow"
+  Transform {
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 1821016063774626287
+  TemplateInstance {
+    ParameterOverrideMap {
+      key: 10005530197510500831
+      value {
+        Overrides {
+          Name: "Name"
+          String: "LeaderboardRow"
+        }
+        Overrides {
+          Name: "Label"
+          String: "Highest Scores"
+        }
+      }
+    }
+    TemplateAsset {
+      Id: 2587742162255074138
+    }
+  }
+}
+Objects {
   Id: 12257806942484725429
   Name: "clientMain"
   Transform {
@@ -3009,6 +3088,27 @@ Objects {
         SelfId: 1735557410747877248
       }
     }
+    Overrides {
+      Name: "cs:Leaderboard"
+      ObjectReference {
+        SelfId: 1821016063774626287
+      }
+    }
+    Overrides {
+      Name: "cs:LeaderboardRow"
+      AssetReference {
+        Id: 2587742162255074138
+      }
+    }
+    Overrides {
+      Name: "cs:HighScore"
+      NetReference {
+        Key: "C5E3F573C765C94F"
+        Type {
+          Value: "mc:enetreferencetype:leaderboard"
+        }
+      }
+    }
   }
   Collidable_v2 {
     Value: "mc:ecollisionsetting:inheritfromparent"
@@ -3086,7 +3186,12 @@ Objects {
         Id: 12999280366459454783
       }
     }
+    Overrides {
+      Name: "cs:HighScores"
+      String: ""
+    }
   }
+  WantsNetworking: true
   Collidable_v2 {
     Value: "mc:ecollisionsetting:inheritfromparent"
   }
@@ -3890,7 +3995,6 @@ Objects {
   Settings {
     IsDefault: true
     PlayerMovementSettings {
-      WalkSpeed: 1200
       MaxAcceleration: 36000
       WalkableFloorAngle: 44
       JumpMaxCount: 1
@@ -3922,8 +4026,6 @@ Objects {
       MountedJumpVelocity: 900
       HeadVisibleToSelf: true
       IsSlideEnabled: true
-      CanMoveLeft: true
-      CanMoveRight: true
       AbilityAimMode {
         Value: "mc:eabilityaimmode:lookrelative"
       }
@@ -3985,6 +4087,7 @@ Objects {
     IsDefault: true
     GameSettings {
       RagdollOnDeath: true
+      EnablePlayerStorage: true
       ChatMode {
         Value: "mc:echatmode:teamandall"
       }

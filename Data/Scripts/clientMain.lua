@@ -22,8 +22,12 @@ local HIGH_SCORE_TEXT = script:GetCustomProperty("HighScoreText"):WaitForObject(
 local LIFE_CONTAINER = script:GetCustomProperty("LifeContainer"):WaitForObject()
 local FEED_ROW = script:GetCustomProperty("FeedRow")
 local FEED_CONTAINER = script:GetCustomProperty("Feed"):WaitForObject()
+local LEADERBOARD = script:GetCustomProperty("Leaderboard"):WaitForObject()
+local LEADERBOARD_ROW = script:GetCustomProperty("LeaderboardRow")
+local HIGH_SCORE = script:GetCustomProperty("HighScore")
 
 local player = Game.GetLocalPlayer()
+player.isVisibleToSelf = false
 
 local function updateResource(resource, value)
 	if resource == "Score" then
@@ -64,3 +68,18 @@ Events.Connect("Feed", function(message)
 end)
 
 utils.SendBroadcast("Ready")
+
+Task.Spawn(function()
+	local rows = {}
+	while true do
+		local leaderboard = Leaderboards.GetLeaderboard(HIGH_SCORE, LeaderboardType.GLOBAL)
+		for i = 1, math.min(10, #leaderboard) do
+			if not rows[i] then
+				rows[i] = World.SpawnAsset(LEADERBOARD_ROW, {parent = LEADERBOARD})
+				rows[i].y = 60*i
+			end
+			rows[i].text = leaderboard[i].name.." "..math.floor(leaderboard[i].score)
+		end
+		Task.Wait(10)
+	end
+end)
