@@ -66,7 +66,10 @@ function CheckCollisions(ball)
 	if utils.isClientContext then -- only the client has authority over whether the drop counted
 		if currentPosition.x < utils.FLOOR_X + ball.radius and ball.velocity.x < 0 then
 			if ball.round.isActive then
-				ball:Destroy()
+				if ball.round.ballSet[ball.object] then -- don't play the sound multiple times if it hasn't been destroyed yet
+					utils.PlaySound("dropBall", ball.subject:GetWorldPosition())
+					ball:Destroy()
+				end
 			else
 				ball.velocity.x = -ball.velocity.x
 			end
@@ -92,6 +95,7 @@ function CheckCollisions(ball)
 			ReflectAcrossNormal(ball, reflectionNormal, true)
 			ball.lastPaddleTouched = paddle
 			if utils.isClientContext then
+				utils.PlaySound("paddleHit", ball.subject:GetWorldPosition())
 				if paddle.object:GetCustomProperty("GrabTimeout") > time() then
 					if not ballsGrabbing[ball] and not ball.attachedPaddle then
 						ball.subject:StopMove()

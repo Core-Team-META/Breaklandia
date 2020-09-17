@@ -17,25 +17,10 @@ function Paddle.Setup(dependencies)
 	LaserBlast = dependencies.LaserBlast
 	Ball = dependencies.Ball
 	RoundService = dependencies.RoundService
-
-	--[[Events.ConnectForPlayer("MousePosition", function(player, mouseY)
-		local paddle = RoundService.players[player].paddle
-		if paddle then
-			--local duration = .2--math.min(.2, math.abs(paddle.object:GetWorldPosition().y - mouseY)/3000)
-			--paddle.object:SetWorldPosition(Vector3.New(0, mouseY, 100) + utils.PADDLE_OFFSET)
-			paddle.position = Vector3.New(0, mouseY, 0) + utils.PADDLE_OFFSET
-		end
-	end)]]
 end
 
 function Paddle.New(round, player)
 	local paddleObject = World.SpawnAsset(PADDLE_TEMPLATE, {position = utils.PADDLE_OFFSET})
-	--[[Task.Spawn(function()
-		while Object.IsValid(player) and Object.IsValid(paddleObject) do
-			paddleObject:MoveTo(player:GetWorldPosition() + utils.PADDLE_OFFSET, 0)
-			Task.Wait()
-		end
-	end)]]
 	
 	local paddle = setmetatable({
 		object = paddleObject,

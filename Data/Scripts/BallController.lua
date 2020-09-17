@@ -49,8 +49,12 @@ function BallController.SetRound(round)
 		end)
 		
 		function ball:Destroy()
+			if not round.ballSet[ballObject] then return end -- destroy already called
 			round.ballSet[ballObject] = nil
 			ballsDestroying[ballObject] = true
+			if not next(round.ballSet) then
+				utils.PlaySound("loseLife", ball.subject:GetWorldPosition())
+			end
 			if not busySending then
 				busySending = true
 				while next(ballsDestroying) do

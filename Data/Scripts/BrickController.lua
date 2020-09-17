@@ -85,11 +85,13 @@ function BrickController.SetRound(round)
 					local brick = round.brickGrid[y][x]
 					if brick then
 						if not brickSequence[brickIndex] then -- this brick was destroyed
+							utils.PlaySound("destroyBrick", brick.object:GetWorldPosition())
 							round.brickSet[brick.object] = nil
 							round.brickGrid[y][x] = nil
 							brick.object:Destroy()
 						elseif brickSequence[brickIndex] < brick.life then
-							brick.life = brick.life - 1
+							utils.PlaySound("breakBrick", brick.object:GetWorldPosition())
+							brick.life = brickSequence[brickIndex]
 							BrickController.ColorBrick(brick)
 						end
 					end
@@ -113,8 +115,10 @@ function BrickController.Break(brickObject, ball)
 	local brick = round.brickSet[brickObject]
 	brick.life = brick.life - 1
 	if brick.life <= 0 then
+		utils.PlaySound("destroyBrick", brick.object:GetWorldPosition())
 		BrickController.Destroy(brickObject)
 	else
+		utils.PlaySound("breakBrick", brick.object:GetWorldPosition())
 		BrickController.ColorBrick(brick)
 	end
 	local existingBricks = utils.GetBrickString(round)

@@ -84,8 +84,10 @@ Events.Connect("PaddleReference", function(reference)
 	end)
 	paddleObject.networkedPropertyChangedEvent:Connect(function(_, property)
 		if property == "LaserTimeout" then
+			utils.PlaySound("laserPowerupGet", paddleObject:GetWorldPosition())
 			startTimerCountdown(paddleObject:GetCustomProperty("LaserTimeout"), LASER_TIMER)
 		elseif property == "GrabTimeout" then
+			utils.PlaySound("grabPowerupGet", paddleObject:GetWorldPosition())
 			startTimerCountdown(paddleObject:GetCustomProperty("GrabTimeout"), GRAB_TIMER)
 		end
 	end)

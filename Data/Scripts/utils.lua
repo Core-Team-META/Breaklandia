@@ -58,6 +58,23 @@ PADDLE_THICKNESS = 50
 PADDLE_OFFSET = Vector3.New(PADDLE_FORWARD, 0, ELEVATION)
 DEFAULT_PADDLE_WIDTH = 300
 
+SOUNDS = {
+	paddleHit = script:GetCustomProperty("paddleHit"),
+	laserShot = script:GetCustomProperty("laserShot"),
+	breakBrick = script:GetCustomProperty("breakBrick"),
+	destroyBrick = script:GetCustomProperty("destroyBrick"),
+	multiball = script:GetCustomProperty("multiball"),
+	laserPowerupGet = script:GetCustomProperty("laserPowerupGet"),
+	grabPowerupGet = script:GetCustomProperty("grabPowerupGet"),
+	paddlePowerupGet = script:GetCustomProperty("paddlePowerupGet"),
+	dropBall = script:GetCustomProperty("dropBall"),
+	loseLife = script:GetCustomProperty("loseLife")
+}
+function PlaySound(name, position)
+	local sound = World.SpawnAsset(SOUNDS[name], {position = position})
+	return sound
+end
+
 local b64table = {}
 local b64string = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz/="
 for i = 1, 64 do

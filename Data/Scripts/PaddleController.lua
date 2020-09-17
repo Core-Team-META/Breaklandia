@@ -33,7 +33,12 @@ function PaddleController.SetPaddle(container)
 	end
 
 	checkPaddleProperties()
-	container.networkedPropertyChangedEvent:Connect(checkPaddleProperties)
+	container.networkedPropertyChangedEvent:Connect(function(_, property)
+		if property == "Width" then
+			utils.PlaySound("paddlePowerupGet", paddleObject:GetWorldPosition())
+		end
+		checkPaddleProperties()
+	end)
 	
 	local updatePeriod = .1
 	Task.Spawn(function()
@@ -43,7 +48,6 @@ function PaddleController.SetPaddle(container)
 			local hitResult = UI.GetCursorHitResult()
 			local lookPos = player:GetWorldPosition() + (player:GetWorldScale() * Vector3.UP) * 100 -- position of the head
 			local mousePos = hitResult and hitResult:GetImpactPosition()
-			--local mousePos = UI.GetCursorPlaneIntersection(Vector3.ZERO, Vector3.UP)
 			if mousePos then
 				local impactPosition = Vector3.New(mousePos) -- copy
 				mousePos.y = math.max(utils.LEFT_WALL_Y, math.min(utils.RIGHT_WALL_Y, mousePos.y - StateController.boxPositionY))
@@ -62,10 +66,6 @@ function PaddleController.SetPaddle(container)
 							end)
 							player:SetLookWorldRotation(oldLookRotation) -- move the camera back
 						end
-						--[[local response = Events.BroadcastToServer("MousePosition", mousePos.y) -- retry not needed, already updates ~every frame
-						if response ~= BroadcastEventResultCode.SUCCESS then
-							skipUpdate = true -- skip sending on the next frame
-						end]]
 					end
 					dt = dt - updatePeriod
 				end
