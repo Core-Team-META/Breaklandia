@@ -57,8 +57,7 @@ function Ball.New(round, position, initialVelocity)
 	end)
 	
 	ball.trigger.beginOverlapEvent:Connect(function(_, hit)
-		local object = hit.parent
-		local brick = round.brickSet[object]
+		local brick = round.brickSet[hit]
 		if brick then
 			BallPhysics.BounceOffNearestEdge(ball, brick.position)
 			--brick:Break(ball.lastPaddleTouched and ball.lastPaddleTouched.owner or nil)

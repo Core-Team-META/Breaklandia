@@ -26,6 +26,18 @@
               SubObjectId: 3582040142889967065
             }
           }
+          Overrides {
+            Name: "cs:Emissive"
+            ObjectReference {
+              SubObjectId: 4759784301230535423
+            }
+          }
+          Overrides {
+            Name: "cs:Inside"
+            ObjectReference {
+              SubObjectId: 11716345495619790381
+            }
+          }
         }
         WantsNetworking: true
         Collidable_v2 {
@@ -70,7 +82,7 @@
       }
       Objects {
         Id: 4759784301230535423
-        Name: "Brick"
+        Name: "Emissive"
         Transform {
           Location {
           }
@@ -93,8 +105,9 @@
           Overrides {
             Name: "ma:Shared_BaseMaterial:color"
             Color {
-              G: 0.0650396
-              B: 0.161000013
+              R: 1
+              G: 1
+              B: 1
               A: 1
             }
           }
@@ -122,7 +135,7 @@
       }
       Objects {
         Id: 11716345495619790381
-        Name: "Brick"
+        Name: "Inside"
         Transform {
           Location {
           }
@@ -145,8 +158,9 @@
           Overrides {
             Name: "ma:Shared_BaseMaterial:color"
             Color {
-              G: 0.271873444
-              B: 0.673000038
+              R: 1
+              G: 1
+              B: 1
               A: 1
             }
           }

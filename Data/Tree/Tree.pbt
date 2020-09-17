@@ -19,7 +19,6 @@ Objects {
   ChildIds: 14713340454944924967
   ChildIds: 16881013949565504445
   ChildIds: 4105456477874349227
-  ChildIds: 16360658502857122725
   ChildIds: 9702658192086695053
   ChildIds: 14506848262931602477
   UnregisteredParameters {
@@ -3020,49 +3019,6 @@ Objects {
   Script {
     ScriptAsset {
       Id: 12876817496711431425
-    }
-  }
-}
-Objects {
-  Id: 16360658502857122725
-  Name: "Box"
-  Transform {
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 4781671109827199097
-  WantsNetworking: true
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 3461209046783251881
-      value {
-        Overrides {
-          Name: "Name"
-          String: "Box"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-          }
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 17422871333185216973
     }
   }
 }

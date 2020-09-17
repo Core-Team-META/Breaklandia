@@ -58,32 +58,40 @@ PADDLE_THICKNESS = 50
 PADDLE_OFFSET = Vector3.New(PADDLE_FORWARD, 0, ELEVATION)
 DEFAULT_PADDLE_WIDTH = 300
 
+local b64table = {}
+local b64string = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz/="
+for i = 1, 64 do
+	b64table[i-1] = b64string:sub(i, i)
+	b64table[b64string:sub(i, i)] = i-1
+end
+
 function GetBrickString(round)
 	local existingBricks = ""
 	for y = 1, GRID_WIDTH do
 		for x = 1, GRID_HEIGHT do
 			if round.brickGrid[y][x] then
-				existingBricks = existingBricks.."1"
+				existingBricks = existingBricks..round.brickGrid[y][x].life
 			else
 				existingBricks = existingBricks.."0"
 			end
 		end
 	end
-	existingBricks = ("0"):rep((-#existingBricks)%4)..existingBricks
-	existingBricks = existingBricks:gsub("....", function(x)
-		return ("%X"):format(tonumber(x, 2))
-	end) -- 195 bits -> 196 bits -> 49 characters
+	existingBricks = ("0"):rep((-#existingBricks)%3)..existingBricks
+	existingBricks = existingBricks:gsub("...", function(x)
+		return b64table[tonumber(x, 4)]
+	end) -- 195 bricks -> 3 base 4 digits encoded per character = 65 characters
 	return existingBricks
 end
 
 function DecodeBrickString(brickString)
 	local bits = brickString:gsub(".", function(x)
-		local n = tonumber(x, 16)
-		return ((n>>3)&1)..((n>>2)&1)..((n>>1)&1)..(n&1)
+		local n = b64table[x]
+		return ((n//16)%4)..((n//4)%4)..(n%4)
 	end):sub(-GRID_WIDTH*GRID_HEIGHT) -- first couple bits can be padding
 	local brickSequence = {}
 	for i = 1, #bits do
-		brickSequence[i] = bits:sub(i, i) == "1"
+		local value = tonumber(bits:sub(i, i))
+		brickSequence[i] = value ~= 0 and value or false
 	end
 	return brickSequence
 end

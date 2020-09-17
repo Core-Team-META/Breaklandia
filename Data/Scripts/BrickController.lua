@@ -8,16 +8,34 @@ function BrickController.Setup(dependencies)
 	BallPhysics = dependencies.BallPhysics
 end
 
+local brickColors = {
+	{"008ED6FF", "004870FF"}, -- cyan
+	{"00D600FF", "007000FF"}, -- green
+	{"D60000FF", "700000FF"} -- red
+}
 function BrickController.SetRound(round)
 	BrickController.currentRound = round
+	local brickSequence = utils.DecodeBrickString(round.box:GetCustomProperty("BrickString"))
+	local brickIndex = 0
 	for y = 1, utils.GRID_WIDTH do
 		round.brickGrid[y] = {}
 		for x = 1, utils.GRID_HEIGHT do
-			local position = Vector3.New(utils.AREA_TOP - (x-1)*utils.BRICK_HEIGHT, (y-1)*utils.BRICK_WIDTH - utils.AREA_WIDTH / 2 + utils.BRICK_WIDTH / 2, 0)
-			local brickObject = World.SpawnAsset(BRICK_TEMPLATE, {position = position, parent = round.brickContainer})
-			local brick = {y = y, x = x, position = position, object = brickObject}
-			round.brickGrid[y][x] = brick
-			round.brickSet[brickObject] = brick
+			brickIndex = brickIndex + 1
+			if brickSequence[brickIndex] then
+				local position = Vector3.New(utils.AREA_TOP - (x-1)*utils.BRICK_HEIGHT, (y-1)*utils.BRICK_WIDTH - utils.AREA_WIDTH / 2 + utils.BRICK_WIDTH / 2, 0)
+				local brickObject = World.SpawnAsset(BRICK_TEMPLATE, {position = position, parent = round.brickContainer})
+				local brick = {
+					y = y, x = x,
+					position = position,
+					object = brickObject,
+					life = brickSequence[brickIndex],
+					insideObject = brickObject:GetCustomProperty("Inside"):WaitForObject(),
+					emissiveObject = brickObject:GetCustomProperty("Emissive"):WaitForObject()
+				}
+				BrickController.ColorBrick(brick)
+				round.brickGrid[y][x] = brick
+				round.brickSet[brickObject] = brick
+			end
 		end
 	end
 	round.edgeList = BallPhysics.ComputeEdges(round)
@@ -65,10 +83,15 @@ function BrickController.SetRound(round)
 				for x = 1, utils.GRID_HEIGHT do
 					brickIndex = brickIndex + 1
 					local brick = round.brickGrid[y][x]
-					if brick and not brickSequence[brickIndex] then -- this brick was destroyed
-						round.brickSet[brick.object] = nil
-						round.brickGrid[y][x] = nil
-						brick.object:Destroy()
+					if brick then
+						if not brickSequence[brickIndex] then -- this brick was destroyed
+							round.brickSet[brick.object] = nil
+							round.brickGrid[y][x] = nil
+							brick.object:Destroy()
+						elseif brickSequence[brickIndex] < brick.life then
+							brick.life = brick.life - 1
+							BrickController.ColorBrick(brick)
+						end
 					end
 				end
 			end
@@ -78,14 +101,22 @@ function BrickController.SetRound(round)
 	
 end
 
+function BrickController.ColorBrick(brick)
+	brick.insideObject:SetColor(Color.FromStandardHex(brickColors[brick.life][1]))
+	brick.emissiveObject:SetColor(Color.FromStandardHex(brickColors[brick.life][2]))
+end
+
 local sendingBrickState = nil
 local lastSendTime = 0
 function BrickController.Break(brickObject, ball)
 	local round = BrickController.currentRound
 	local brick = round.brickSet[brickObject]
-	round.brickSet[brickObject] = nil
-	round.brickGrid[brick.y][brick.x] = nil
-	brick.object:Destroy()
+	brick.life = brick.life - 1
+	if brick.life <= 0 then
+		BrickController.Destroy(brickObject)
+	else
+		BrickController.ColorBrick(brick)
+	end
 	local existingBricks = utils.GetBrickString(round)
 	if sendingBrickState then -- auto-retry sending the brick state, but only the latest one
 		sendingBrickState = existingBricks
@@ -101,12 +132,6 @@ function BrickController.Break(brickObject, ball)
 		lastSendTime = time()
 		sendingBrickState = nil
 	end
-	--[[if ball then
-		utils.SendBroadcast("BreakBrick", brickObject:GetReference(), ball.object:GetReference(), ball.subject:GetWorldPosition() - round.position)
-	else
-		utils.SendBroadcast("BreakBrick", brickObject:GetReference())
-	end]]
-	round.edgeList = BallPhysics.ComputeEdges(round)
 end
 
 function BrickController.Destroy(brickObject)

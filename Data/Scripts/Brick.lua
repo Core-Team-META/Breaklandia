@@ -28,7 +28,7 @@ function Brick.Setup(dependencies)
 	GRID_WIDTH, GRID_HEIGHT = utils.GRID_WIDTH, utils.GRID_HEIGHT
 end
 
-function Brick.New(round, y, x)
+function Brick.New(round, y, x, life)
 	local position = Vector3.New(AREA_TOP - (x-1)*BRICK_HEIGHT, (y-1)*BRICK_WIDTH - AREA_WIDTH / 2 + BRICK_WIDTH / 2, 0)
 	local brickObject = World.SpawnAsset(TRIGGER_TEMPLATE, {position = position, parent = round.brickContainer})
 
@@ -39,7 +39,8 @@ function Brick.New(round, y, x)
 		trigger = brickObject,
 		width = BRICK_WIDTH,
 		height = BRICK_HEIGHT,
-		round = round
+		round = round,
+		life = life or 1
 	}, Brick)
 	
 	round.brickSet[brickObject] = brick
@@ -51,7 +52,7 @@ function Brick.GenerateWall(round)
 	for y = 1, GRID_WIDTH do
 		round.brickGrid[y] = {}
 		for x = 1, GRID_HEIGHT do
-			round.brickGrid[y][x] = Brick.New(round, y, x)
+			round.brickGrid[y][x] = Brick.New(round, y, x, x%3+1)
 		end
 	end
 	round.gridWidth = GRID_WIDTH
@@ -73,13 +74,17 @@ function Brick:Break(player)
 	if player then
 		RoundService.AddPoints(player, 10)
 	end
-	self:Destroy()
-	self.round.edgeList = BallPhysics.ComputeEdges(self.round)
-	if math.random() < POWERUP_DROP_CHANCE then
-		Powerup.New(self.round, self.position)
-	end
-	if not next(self.round.brickSet) then
-		RoundService.EndRound(self.round, true) -- second parameter keeps the score
+	self.life = self.life - 1
+	self.round.box:SetNetworkedCustomProperty("BrickString", utils.GetBrickString(self.round))
+	if self.life <= 0 then
+		self:Destroy()
+		self.round.edgeList = BallPhysics.ComputeEdges(self.round)
+		if math.random() < POWERUP_DROP_CHANCE then
+			Powerup.New(self.round, self.position)
+		end
+		if not next(self.round.brickSet) then
+			RoundService.EndRound(self.round, true) -- second parameter keeps the score
+		end
 	end
 end
 
@@ -90,7 +95,8 @@ Events.ConnectForPlayer("BreakBrick", function(player, brickString)
 	for y = 1, utils.GRID_WIDTH do
 		for x = 1, utils.GRID_HEIGHT do
 			brickIndex = brickIndex + 1
-			if round.brickGrid[y][x] and not brickSequence[brickIndex] then -- this brick was destroyed
+			local value = brickSequence[brickIndex]
+			if round.brickGrid[y][x] and (not value or (value < round.brickGrid[y][x].life)) then -- this brick was destroyed
 				round.brickGrid[y][x]:Break(player)
 			end
 		end
