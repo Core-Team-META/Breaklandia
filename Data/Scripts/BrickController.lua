@@ -9,7 +9,7 @@ function BrickController.Setup(dependencies)
 end
 
 local brickColors = {
-	{"008ED6FF", "004870FF"}, -- blue
+	{"0000D6FF", "000070FF"}, -- blue
 	{"00D600FF", "007000FF"}, -- green
 	{"D60000FF", "700000FF"}, -- red
 	{"00D6D6FF", "007070FF"}, -- cyan
@@ -82,6 +82,10 @@ local lastSendTime = 0
 function BrickController.Break(brickObject, ball)
 	local round = BrickController.currentRound
 	local brick = round.brickSet[brickObject]
+	if brick.life == 7 then -- indestructible
+		utils.PlaySound("hitIndestructibleBrick", brick.object:GetWorldPosition())
+		return
+	end
 	brick.life = brick.life - 1
 	if brick.life <= 0 then
 		utils.PlaySound("destroyBrick", brick.object:GetWorldPosition())

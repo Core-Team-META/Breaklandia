@@ -3,6 +3,6 @@
     StringVar: "HighScore"
   }
   SimpleValue {
-    IntVar: 10520
+    IntVar: 23460
   }
 }

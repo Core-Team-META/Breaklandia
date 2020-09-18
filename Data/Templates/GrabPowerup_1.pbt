@@ -112,8 +112,8 @@
           Overrides {
             Name: "ma:Shared_Detail2:color"
             Color {
-              R: 0.0328476727
-              G: 0.0800000057
+              R: 0.0221721791
+              G: 0.054
               A: 1
             }
           }

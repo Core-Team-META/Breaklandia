@@ -1,13 +1,13 @@
 ﻿Assets {
-  Id: 2076401891344902436
-  Name: "PaddlePowerup"
+  Id: 7332894578670880601
+  Name: "LifePowerup"
   PlatformAssetType: 5
   TemplateAsset {
     ObjectBlock {
-      RootId: 7338852670559000997
+      RootId: 10189842350482904482
       Objects {
-        Id: 7338852670559000997
-        Name: "PaddlePowerup"
+        Id: 10189842350482904482
+        Name: "LifePowerup"
         Transform {
           Scale {
             X: 1
@@ -16,7 +16,7 @@
           }
         }
         ParentId: 4781671109827199097
-        ChildIds: 2283290154157704183
+        ChildIds: 435880901738840829
         UnregisteredParameters {
         }
         WantsNetworking: true
@@ -31,7 +31,7 @@
         }
       }
       Objects {
-        Id: 2283290154157704183
+        Id: 435880901738840829
         Name: "Powerup"
         Transform {
           Location {
@@ -44,8 +44,8 @@
             Z: 1
           }
         }
-        ParentId: 7338852670559000997
-        ChildIds: 7499295582896733775
+        ParentId: 10189842350482904482
+        ChildIds: 10846905284710731453
         UnregisteredParameters {
         }
         WantsNetworking: true
@@ -59,7 +59,7 @@
         }
       }
       Objects {
-        Id: 7499295582896733775
+        Id: 10846905284710731453
         Name: "Powerup"
         Transform {
           Location {
@@ -74,9 +74,10 @@
             Z: 0.595108747
           }
         }
-        ParentId: 2283290154157704183
-        ChildIds: 8717684615010719241
-        ChildIds: 8148591244640459487
+        ParentId: 435880901738840829
+        ChildIds: 15627285451332415580
+        ChildIds: 10378716281827239405
+        ChildIds: 12179592502401565676
         Collidable_v2 {
           Value: "mc:ecollisionsetting:inheritfromparent"
         }
@@ -88,7 +89,40 @@
         }
       }
       Objects {
-        Id: 8717684615010719241
+        Id: 15627285451332415580
+        Name: "Hearts Volume VFX"
+        Transform {
+          Location {
+            Z: 60
+          }
+          Rotation {
+          }
+          Scale {
+            X: 2
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 10846905284710731453
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Blueprint {
+          BlueprintAsset {
+            Id: 9690580990262130575
+          }
+          TeamSettings {
+          }
+          Vfx {
+            AutoPlay: true
+          }
+        }
+      }
+      Objects {
+        Id: 10378716281827239405
         Name: "Powerup"
         Transform {
           Location {
@@ -101,7 +135,7 @@
             Z: 1
           }
         }
-        ParentId: 7499295582896733775
+        ParentId: 10846905284710731453
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_Detail2:id"
@@ -112,8 +146,9 @@
           Overrides {
             Name: "ma:Shared_Detail2:color"
             Color {
-              R: 0.0690000057
-              G: 0.0164503232
+              R: 0.08
+              G: 0.0800000057
+              B: 0.08
               A: 1
             }
           }
@@ -121,23 +156,26 @@
             Name: "ma:Shared_BaseMaterial:color"
             Color {
               R: 1
-              G: 0.596026659
+              G: 1
+              B: 1
               A: 1
             }
           }
           Overrides {
             Name: "ma:Shared_Detail1:color"
             Color {
-              R: 0.190000013
-              G: 0.0490728021
+              R: 0.32
+              G: 0.320000052
+              B: 0.32
               A: 1
             }
           }
           Overrides {
             Name: "ma:Shared_Detail3:color"
             Color {
-              R: 0.287
-              G: 0.062721841
+              R: 0.2
+              G: 0.200000048
+              B: 0.2
               A: 1
             }
           }
@@ -164,7 +202,7 @@
         }
       }
       Objects {
-        Id: 8148591244640459487
+        Id: 12179592502401565676
         Name: "Powerup"
         Transform {
           Location {
@@ -179,29 +217,32 @@
             Z: 0.99999994
           }
         }
-        ParentId: 7499295582896733775
+        ParentId: 10846905284710731453
         UnregisteredParameters {
           Overrides {
             Name: "ma:Shared_BaseMaterial:color"
             Color {
-              R: 0.950000048
-              G: 0.471854359
+              R: 1
+              G: 1
+              B: 1
               A: 1
             }
           }
           Overrides {
             Name: "ma:Shared_Detail3:color"
             Color {
-              R: 0.75
-              G: 0.417218566
+              R: 0.31
+              G: 0.309999943
+              B: 0.31
               A: 1
             }
           }
           Overrides {
             Name: "ma:Shared_Detail2:color"
             Color {
-              R: 0.72
-              G: 0.128741741
+              R: 0.19
+              G: 0.190000057
+              B: 0.19
               A: 1
             }
           }
@@ -226,6 +267,15 @@
             }
           }
         }
+      }
+    }
+    Assets {
+      Id: 9690580990262130575
+      Name: "Hearts Volume VFX"
+      PlatformAssetType: 8
+      PrimaryAsset {
+        AssetType: "VfxBlueprintAssetRef"
+        AssetId: "fxbp_heart_volume"
       }
     }
     Assets {

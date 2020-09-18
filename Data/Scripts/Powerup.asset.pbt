@@ -28,6 +28,12 @@
           Id: 124210154149060082
         }
       }
+      Overrides {
+        Name: "cs:LifePowerupTemplate"
+        AssetReference {
+          Id: 7332894578670880601
+        }
+      }
     }
   }
   SerializationVersion: 63

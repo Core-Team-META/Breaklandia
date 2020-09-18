@@ -64,6 +64,18 @@
           Id: 5696136033217144251
         }
       }
+      Overrides {
+        Name: "cs:lifePowerupGet"
+        AssetReference {
+          Id: 15906643237844770552
+        }
+      }
+      Overrides {
+        Name: "cs:hitIndestructibleBrick"
+        AssetReference {
+          Id: 17868963822350484326
+        }
+      }
     }
   }
   SerializationVersion: 63

@@ -38,11 +38,18 @@ local function updateResource(resource, value)
 		HIGH_SCORE_TEXT.text = ("%02d"):format(value)
 	elseif resource == "Lives" then
 		local lifeIcons = LIFE_CONTAINER:GetChildren()
+		local currentLifeCount = 0
 		for i = 1, value do
+			if lifeIcons[i].visibility == Visibility.INHERIT then
+				currentLifeCount = currentLifeCount + 1
+			end
 			lifeIcons[i].visibility = Visibility.INHERIT
 		end
 		for i = value+1, #lifeIcons do
 			lifeIcons[i].visibility = Visibility.FORCE_OFF
+		end
+		if value > currentLifeCount and player:GetResource("Score") ~= 0 then -- life powerup was collected
+			utils.PlaySound("lifePowerupGet", player:GetWorldPosition())
 		end
 	end
 end

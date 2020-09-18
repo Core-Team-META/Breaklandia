@@ -44,7 +44,7 @@ function BounceOffNearestEdge(ball, brickPosition)
 		end
 		local alreadyReflectedThisNormal = false
 		for _, previousNormal in pairs(ball.reflectionsThisFrame) do
-			if (previousNormal - reflectionNormal).sizeSquared < .1 then
+			if (previousNormal ^ reflectionNormal).sizeSquared < .1 then
 				alreadyReflectedThisNormal = true
 			end
 		end

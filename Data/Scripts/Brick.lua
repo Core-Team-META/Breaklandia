@@ -130,11 +130,27 @@ local layouts = {
 		5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
 		6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
 		6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6
-	};
+	}; {
+		1, 6, 0, 6, 0, 6, 0, 6, 0, 6, 0, 6, 1,
+		1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1,
+		1, 6, 0, 6, 0, 6, 0, 6, 0, 6, 0, 6, 1,
+		1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1,
+		1, 6, 0, 6, 0, 6, 0, 6, 0, 6, 0, 6, 1,
+		1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1,
+		1, 6, 0, 6, 0, 6, 0, 6, 0, 6, 0, 6, 1,
+		1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1,
+		1, 6, 0, 6, 0, 6, 0, 6, 0, 6, 0, 6, 1,
+		1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1,
+		1, 6, 0, 6, 0, 6, 0, 6, 0, 6, 0, 6, 1,
+		1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1,
+		1, 6, 0, 6, 0, 6, 0, 6, 0, 6, 0, 6, 1,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		7, 7, 7, 7, 7, 0, 0, 0, 7, 7, 7, 7, 7
+	}
 }
 
 function Brick.GenerateWall(round)
-	local layout = layouts[math.random(#layouts)]
+	local layout = layouts[(round.level - 1)%#layouts + 1]
 	local brickIndex = 0
 	for y = 1, GRID_WIDTH do
 		round.brickGrid[y] = {}
@@ -163,6 +179,7 @@ function Brick:Destroy()
 end
 
 function Brick:Break(player, damage)
+	if self.life == 7 then return end -- indestructible
 	if player then
 		RoundService.AddPoints(player, 10)
 	end
@@ -174,7 +191,14 @@ function Brick:Break(player, damage)
 		if math.random() < POWERUP_DROP_CHANCE then
 			Powerup.New(self.round, self.position)
 		end
-		if not next(self.round.brickSet) then
+		local breakableBrickExists = false
+		for _, brick in pairs(self.round.brickSet) do
+			if brick.life ~= 7 then -- found a destructible brick
+				breakableBrickExists = true
+				break
+			end
+		end
+		if not breakableBrickExists then
 			RoundService.EndRound(self.round, true) -- second parameter keeps the score
 		end
 	end

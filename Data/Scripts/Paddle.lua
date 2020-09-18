@@ -119,6 +119,11 @@ function Paddle:ApplyPowerup(powerupType)
 		if ballCount > 10 then
 			utils.SendBroadcast("Feed", ("%s has %d balls at once!"):format(self.owner.name, ballCount))
 		end
+	elseif powerupType == "Life" then
+		local player = self.owner
+		local data = RoundService.players[player]
+		data.lives = math.min(utils.MAX_LIVES, data.lives + 1)
+		player:SetResource("Lives", data.lives)
 	end
 end
 

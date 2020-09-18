@@ -29,6 +29,7 @@ function RoundService.AddPlayer(player)
 	local data = {lives = 4}
 	RoundService.players[player] = data
 	player:SetResource("HighScore", Storage.GetPlayerData(player).HighScore or 0)
+	player.serverUserData.level = 6
 	
 	local ability = World.SpawnAsset(MOUSE_ABILITY)
 	ability.owner = player
@@ -115,9 +116,10 @@ function RoundService.CreateRound(players)
 	for _, player in pairs(players) do
 		RoundService.players[player].round = round
 		player:SetWorldPosition(boxPosition + Vector3.UP * 100)
+		round.level = player.serverUserData.level
 	end
 	
-	Brick.GenerateWall(round)
+	Brick.GenerateWall(round, round.level)
 	
 	return round
 end
@@ -131,7 +133,8 @@ function RoundService.StartRound(round)
 		if data.paddle then
 			data.paddle:Destroy()
 		end
-		if data.lives == 0 then
+		if data.startingNewGame then
+			data.startingNewGame = false
 			data.lives = 4
 			player:SetResource("Score", 0)
 		end
@@ -179,9 +182,15 @@ function RoundService.EndRound(round, advancingToNextRound)
 	
 	if not advancingToNextRound then
 		for _, player in pairs(round.players) do
+			player.serverUserData.level = 1 -- start over at level 1
 			utils.SendBroadcast("Feed", ("%s scored %d points!"):format(player.name, player:GetResource("Score")))
 			RoundService.players[player].lives = 0
+			RoundService.players[player].startingNewGame = true
 			player:SetResource("Score", 0)
+		end
+	else
+		for _, player in pairs(round.players) do
+			player.serverUserData.level = player.serverUserData.level + 1
 		end
 	end
 

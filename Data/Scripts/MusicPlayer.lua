@@ -9,5 +9,4 @@ while true do
 		musicList[i].object:Play()
 		repeat Task.Wait() until not musicList[i].object.isPlaying
 	end
-	Task.Wait()
 end
