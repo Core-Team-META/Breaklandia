@@ -23,6 +23,8 @@ local LIFE_CONTAINER = script:GetCustomProperty("LifeContainer"):WaitForObject()
 local FEED_ROW = script:GetCustomProperty("FeedRow")
 local FEED_CONTAINER = script:GetCustomProperty("Feed"):WaitForObject()
 local LEADERBOARD = script:GetCustomProperty("Leaderboard"):WaitForObject()
+local LEADERBOARD_HERE = LEADERBOARD:GetCustomProperty("HereLeaderboard"):WaitForObject()
+local LEADERBOARD_GLOBAL = LEADERBOARD:GetCustomProperty("GlobalLeaderboard"):WaitForObject()
 local LEADERBOARD_ROW = script:GetCustomProperty("LeaderboardRow")
 local HIGH_SCORE = script:GetCustomProperty("HighScore")
 
@@ -48,6 +50,7 @@ end
 player.resourceChangedEvent:Connect(function(_, resource, value)
 	updateResource(resource, value)
 end)
+updateResource("HighScore", player:GetResource("HighScore"))
 
 Events.Connect("Feed", function(message)
 	local row = World.SpawnAsset(FEED_ROW, {parent = FEED_CONTAINER})
@@ -69,17 +72,56 @@ end)
 
 utils.SendBroadcast("Ready")
 
-Task.Spawn(function()
+LEADERBOARD:GetCustomProperty("HereButton"):WaitForObject().clickedEvent:Connect(function()
+	LEADERBOARD_HERE.visibility = Visibility.INHERIT
+	LEADERBOARD_GLOBAL.visibility = Visibility.FORCE_OFF
+end)
+LEADERBOARD:GetCustomProperty("GlobalButton"):WaitForObject().clickedEvent:Connect(function()
+	LEADERBOARD_HERE.visibility = Visibility.FORCE_OFF
+	LEADERBOARD_GLOBAL.visibility = Visibility.INHERIT
+end)
+Task.Spawn(function() -- global leaderboard update loop
 	local rows = {}
 	while true do
 		local leaderboard = Leaderboards.GetLeaderboard(HIGH_SCORE, LeaderboardType.GLOBAL)
 		for i = 1, math.min(10, #leaderboard) do
 			if not rows[i] then
-				rows[i] = World.SpawnAsset(LEADERBOARD_ROW, {parent = LEADERBOARD})
+				rows[i] = World.SpawnAsset(LEADERBOARD_ROW, {parent = LEADERBOARD_GLOBAL})
 				rows[i].y = 60*i
 			end
-			rows[i].text = leaderboard[i].name.." "..math.floor(leaderboard[i].score)
+			local text = leaderboard[i].name.." "..math.floor(leaderboard[i].score)
+			for _, uitext in pairs(rows[i]:GetChildren()) do
+				uitext.text = text
+			end
 		end
 		Task.Wait(10)
+	end
+end)
+Task.Spawn(function() -- local leaderboard update loop
+	local rows = {}
+	while true do
+		local userList = Game.GetPlayers()
+		local scores = {}
+		for _, user in pairs(userList) do
+			local score = user:GetResource("HighScore")
+			scores[user] = score
+		end
+		table.sort(userList, function(a, b)
+			return scores[a] > scores[b]
+		end)
+		for i = 1, #userList do
+			if not rows[i] then
+				rows[i] = World.SpawnAsset(LEADERBOARD_ROW, {parent = LEADERBOARD_HERE})
+				rows[i].y = 60*i
+			end
+			local text = userList[i].name.." "..math.floor(scores[userList[i]])
+			for _, uitext in pairs(rows[i]:GetChildren()) do
+				uitext.text = text
+			end
+		end
+		for i = #userList+1, #rows do -- remove excess rows when players leave
+			rows[i]:Destroy()
+		end
+		Task.Wait(1)
 	end
 end)

@@ -105,14 +105,16 @@ function Paddle:ApplyPowerup(powerupType)
 		end
 		local ballCount = #ballList
 		for i, ball in pairs(ballList) do
-			if ballCount + 2 > 100 then break end -- ball max
+			if ballCount + 1 > 100 then break end -- ball max
 			local ballPosition = ball.subject:GetWorldPosition() - self.round.position
 			if ball.attachedTo then
 				ballPosition = ball.attachedTo.position + ball.attachmentOffset
 			end
 			Ball.New(self.round, ballPosition, Vector3.New(math.sin(math.pi*1/3), math.cos(math.pi*1/3), 0) * utils.BALL_SPEED).lastPaddleTouched = ball.lastPaddleTouched
+			ballCount = ballCount + 1
+			if ballCount + 1 > 100 then break end -- ball max
 			Ball.New(self.round, ballPosition, Vector3.New(math.sin(math.pi*2/3), math.cos(math.pi*2/3), 0) * utils.BALL_SPEED).lastPaddleTouched = ball.lastPaddleTouched
-			ballCount = ballCount + 2
+			ballCount = ballCount + 1
 		end
 		if ballCount > 10 then
 			utils.SendBroadcast("Feed", ("%s has %d balls at once!"):format(self.owner.name, ballCount))

@@ -40,10 +40,7 @@ function PaddleController.SetPaddle(container)
 		checkPaddleProperties()
 	end)
 	
-	local updatePeriod = .1
 	Task.Spawn(function()
-		local dt = 0
-		local skipUpdate = false
 		while Object.IsValid(container) do
 			local hitResult = UI.GetCursorHitResult()
 			local lookPos = player:GetWorldPosition() + (player:GetWorldScale() * Vector3.UP) * 100 -- position of the head
@@ -53,24 +50,17 @@ function PaddleController.SetPaddle(container)
 				mousePos.y = math.max(utils.LEFT_WALL_Y, math.min(utils.RIGHT_WALL_Y, mousePos.y - StateController.boxPositionY))
 				paddle.position = Vector3.New(0, mousePos.y, 0) + utils.PADDLE_OFFSET
 				group:SetWorldPosition(paddle.position + Vector3.New(0, StateController.boxPositionY, 0))
-				if dt > updatePeriod then
-					if skipUpdate then
-						skipUpdate = false
-					else
-						if mousePos then
-							local rotation = Rotation.New((impactPosition - lookPos):GetNormalized(), Vector3.UP)
-							local oldLookRotation = player:GetLookWorldRotation()
-							player:SetLookWorldRotation(rotation) -- look at the mouse
-							pcall(function() -- activate has issues with pausing/unpausing in preview mode
-								PaddleController.MOUSE_ABILITY:Activate() -- replicates the camera ray
-							end)
-							player:SetLookWorldRotation(oldLookRotation) -- move the camera back
-						end
-					end
-					dt = dt - updatePeriod
+				if mousePos then
+					local rotation = Rotation.New((impactPosition - lookPos):GetNormalized(), Vector3.UP)
+					local oldLookRotation = player:GetLookWorldRotation()
+					player:SetLookWorldRotation(rotation) -- look at the mouse
+					pcall(function() -- activate has issues with pausing/unpausing in preview mode
+						PaddleController.MOUSE_ABILITY:Activate() -- replicates the camera ray
+					end)
+					player:SetLookWorldRotation(oldLookRotation) -- move the camera back
 				end
 			end
-			dt = dt + Task.Wait()
+			Task.Wait()
 		end
 	end)
 end

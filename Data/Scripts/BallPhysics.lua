@@ -96,7 +96,7 @@ function CheckCollisions(ball)
 			ball.lastPaddleTouched = paddle
 			if utils.isClientContext then
 				utils.PlaySound("paddleHit", ball.subject:GetWorldPosition())
-				if paddle.object:GetCustomProperty("GrabTimeout") > time() then
+				if paddle.grabEnabled then
 					if not ballsGrabbing[ball] and not ball.attachedPaddle then
 						ball.subject:StopMove()
 						ball.velocity = reflectionNormal * utils.BALL_SPEED

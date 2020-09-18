@@ -114,6 +114,22 @@ local layouts = {
 		3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 1,
 		3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2,
 		3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3
+	}; {
+		1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+		1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+		1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+		2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+		2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+		3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+		3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+		4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
+		4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
+		5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+		5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+		6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
+		6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6
 	};
 }
 
@@ -146,11 +162,11 @@ function Brick:Destroy()
 	self.round.brickGrid[self.y][self.x] = nil
 end
 
-function Brick:Break(player)
+function Brick:Break(player, damage)
 	if player then
 		RoundService.AddPoints(player, 10)
 	end
-	self.life = self.life - 1
+	self.life = self.life - (damage or 1)
 	self.round.box:SetNetworkedCustomProperty("BrickString", utils.GetBrickString(self.round))
 	if self.life <= 0 then
 		self:Destroy()
@@ -171,9 +187,10 @@ Events.ConnectForPlayer("BreakBrick", function(player, brickString)
 	for y = 1, utils.GRID_WIDTH do
 		for x = 1, utils.GRID_HEIGHT do
 			brickIndex = brickIndex + 1
-			local value = brickSequence[brickIndex]
-			if round.brickGrid[y][x] and (not value or (value < round.brickGrid[y][x].life)) then -- this brick was destroyed
-				round.brickGrid[y][x]:Break(player)
+			local value = brickSequence[brickIndex] or 0
+			local brick = round.brickGrid[y][x]
+			if brick and value < brick.life then -- this brick was destroyed/damaged
+				round.brickGrid[y][x]:Break(player, brick.life - value)
 			end
 		end
 	end

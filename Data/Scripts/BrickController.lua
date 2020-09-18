@@ -9,9 +9,13 @@ function BrickController.Setup(dependencies)
 end
 
 local brickColors = {
-	{"008ED6FF", "004870FF"}, -- cyan
+	{"008ED6FF", "004870FF"}, -- blue
 	{"00D600FF", "007000FF"}, -- green
-	{"D60000FF", "700000FF"} -- red
+	{"D60000FF", "700000FF"}, -- red
+	{"00D6D6FF", "007070FF"}, -- cyan
+	{"D600D6FF", "700070FF"}, -- magenta
+	{"D6D600FF", "707000FF"}, -- yellow
+	{"707070FF", "707070FF"} -- indestructible (grey) (todo)
 }
 function BrickController.SetRound(round)
 	BrickController.currentRound = round
@@ -39,41 +43,6 @@ function BrickController.SetRound(round)
 		end
 	end
 	round.edgeList = BallPhysics.ComputeEdges(round)
-	--[[local function getBrickCoordinates(position)
-		local x = (utils.AREA_TOP - position.x)/utils.BRICK_HEIGHT + 1
-		local y = (utils.AREA_WIDTH / 2 - utils.BRICK_WIDTH / 2 + position.y)/utils.BRICK_WIDTH + 1
-		return math.floor(y + .5), math.floor(x + .5) -- should already be integers but rounding makes sure
-	end
-	local function addBrick(brickObject)
-		if round.brickSet[brickObject] then return end -- already detected this brick
-		local y, x = getBrickCoordinates(brickObject:GetPosition())
-		local brick = {
-			object = brick,
-			position = brickObject:GetPosition(),
-			y = y,
-			x = x
-		}
-		round.brickSet[brickObject] = brick
-		round.brickGrid[y][x] = brick
-		brickObject.destroyEvent:Connect(function()
-			if round.brickSet[brickObject] then -- brick was destroyed by server
-				local brick 
-				round.brickSet[brickObject] = nil
-				round.brickGrid[y][x] = nil
-				round.edgeList = BallPhysics.ComputeEdges(round)
-			end
-		end)
-	end
-	
-	for _, brick in pairs(round.brickContainer:GetChildren()) do
-		addBrick(brick)
-	end
-	round.edgeList = BallPhysics.ComputeEdges(round)
-	
-	round.brickContainer.childAddedEvent:Connect(function(_, brickObject)
-		addBrick(brickObject)
-		round.edgeList = BallPhysics.ComputeEdges(round)
-	end)]]
 	
 	round.box.networkedPropertyChangedEvent:Connect(function(_, property)
 		if property == "BrickString" then

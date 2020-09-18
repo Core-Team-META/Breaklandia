@@ -59,6 +59,7 @@ local function startTimerCountdown(endTime, timerUI, emptyToSolid)
 			timerTasks[timerUI] = nil
 			timerUI.visibility = Visibility.FORCE_OFF
 			if timerUI == GRAB_TIMER then
+				StateController.currentPaddle.grabEnabled = false
 				for object, ball in pairs(StateController.round.ballSet) do
 					local paddleRef = object:GetCustomProperty("AttachedPaddle")
 					if (not paddleRef or paddleRef:GetObject() == object) and ball.attachedPaddle then
@@ -88,6 +89,7 @@ Events.Connect("PaddleReference", function(reference)
 			startTimerCountdown(paddleObject:GetCustomProperty("LaserTimeout"), LASER_TIMER)
 		elseif property == "GrabTimeout" then
 			utils.PlaySound("grabPowerupGet", paddleObject:GetWorldPosition())
+			StateController.currentPaddle.grabEnabled = true
 			startTimerCountdown(paddleObject:GetCustomProperty("GrabTimeout"), GRAB_TIMER)
 		end
 	end)

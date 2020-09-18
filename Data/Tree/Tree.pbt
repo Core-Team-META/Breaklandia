@@ -74,6 +74,7 @@ Objects {
     }
   }
   ParentId: 4781671109827199097
+  ChildIds: 3846085128276031378
   ChildIds: 12257806942484725429
   ChildIds: 9988479098138247358
   Collidable_v2 {
@@ -2943,7 +2944,36 @@ Objects {
     }
   }
   ParentId: 9988479098138247358
-  ChildIds: 14633221673011838678
+  ChildIds: 7086211148063481587
+  ChildIds: 13261402634799000936
+  ChildIds: 12403298176153897993
+  ChildIds: 17857025272255335645
+  UnregisteredParameters {
+    Overrides {
+      Name: "cs:HereButton"
+      ObjectReference {
+        SelfId: 7086211148063481587
+      }
+    }
+    Overrides {
+      Name: "cs:GlobalButton"
+      ObjectReference {
+        SelfId: 13261402634799000936
+      }
+    }
+    Overrides {
+      Name: "cs:HereLeaderboard"
+      ObjectReference {
+        SelfId: 12403298176153897993
+      }
+    }
+    Overrides {
+      Name: "cs:GlobalLeaderboard"
+      ObjectReference {
+        SelfId: 17857025272255335645
+      }
+    }
+  }
   Collidable_v2 {
     Value: "mc:ecollisionsetting:inheritfromparent"
   }
@@ -2977,7 +3007,55 @@ Objects {
   }
 }
 Objects {
-  Id: 14633221673011838678
+  Id: 17857025272255335645
+  Name: "GlobalLeaderboard"
+  Transform {
+    Location {
+    }
+    Rotation {
+    }
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 1821016063774626287
+  ChildIds: 14685003186711171897
+  UnregisteredParameters {
+  }
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  Control {
+    Width: 100
+    Height: 100
+    RenderTransformPivot {
+      Anchor {
+        Value: "mc:euianchor:middlecenter"
+      }
+    }
+    Panel {
+    }
+    AnchorLayout {
+      SelfAnchor {
+        Anchor {
+          Value: "mc:euianchor:topright"
+        }
+      }
+      TargetAnchor {
+        Anchor {
+          Value: "mc:euianchor:topright"
+        }
+      }
+    }
+  }
+}
+Objects {
+  Id: 14685003186711171897
   Name: "LeaderboardRow"
   Transform {
     Scale {
@@ -2986,23 +3064,380 @@ Objects {
       Z: 1
     }
   }
-  ParentId: 1821016063774626287
+  ParentId: 17857025272255335645
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
   TemplateInstance {
     ParameterOverrideMap {
+      key: 9293575015102341591
+      value {
+        Overrides {
+          Name: "Label"
+          String: "High Scores (Global)"
+        }
+      }
+    }
+    ParameterOverrideMap {
       key: 10005530197510500831
+      value {
+        Overrides {
+          Name: "Label"
+          String: "High Scores (Global)"
+        }
+      }
+    }
+    ParameterOverrideMap {
+      key: 13512878243618755291
+      value {
+        Overrides {
+          Name: "Label"
+          String: "High Scores (Global)"
+        }
+      }
+    }
+    ParameterOverrideMap {
+      key: 13869148485365805241
+      value {
+        Overrides {
+          Name: "Label"
+          String: "High Scores (Global)"
+        }
+      }
+    }
+    ParameterOverrideMap {
+      key: 15727628853237688651
       value {
         Overrides {
           Name: "Name"
           String: "LeaderboardRow"
         }
         Overrides {
+          Name: "Position"
+          Vector {
+          }
+        }
+        Overrides {
+          Name: "Rotation"
+          Rotator {
+          }
+        }
+      }
+    }
+    ParameterOverrideMap {
+      key: 17091386681941051417
+      value {
+        Overrides {
           Name: "Label"
-          String: "Highest Scores"
+          String: "High Scores (Global)"
         }
       }
     }
     TemplateAsset {
       Id: 2587742162255074138
+    }
+  }
+}
+Objects {
+  Id: 12403298176153897993
+  Name: "HereLeaderboard"
+  Transform {
+    Location {
+    }
+    Rotation {
+    }
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 1821016063774626287
+  ChildIds: 14113451347964409255
+  UnregisteredParameters {
+  }
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:forceoff"
+  }
+  Control {
+    Width: 100
+    Height: 100
+    RenderTransformPivot {
+      Anchor {
+        Value: "mc:euianchor:middlecenter"
+      }
+    }
+    Panel {
+    }
+    AnchorLayout {
+      SelfAnchor {
+        Anchor {
+          Value: "mc:euianchor:topright"
+        }
+      }
+      TargetAnchor {
+        Anchor {
+          Value: "mc:euianchor:topright"
+        }
+      }
+    }
+  }
+}
+Objects {
+  Id: 14113451347964409255
+  Name: "LeaderboardRow"
+  Transform {
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 12403298176153897993
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  TemplateInstance {
+    ParameterOverrideMap {
+      key: 9293575015102341591
+      value {
+        Overrides {
+          Name: "Label"
+          String: "High Scores"
+        }
+      }
+    }
+    ParameterOverrideMap {
+      key: 10005530197510500831
+      value {
+        Overrides {
+          Name: "Label"
+          String: "High Scores"
+        }
+      }
+    }
+    ParameterOverrideMap {
+      key: 13512878243618755291
+      value {
+        Overrides {
+          Name: "Label"
+          String: "High Scores"
+        }
+      }
+    }
+    ParameterOverrideMap {
+      key: 13869148485365805241
+      value {
+        Overrides {
+          Name: "Label"
+          String: "High Scores"
+        }
+      }
+    }
+    ParameterOverrideMap {
+      key: 15727628853237688651
+      value {
+        Overrides {
+          Name: "Name"
+          String: "LeaderboardRow"
+        }
+        Overrides {
+          Name: "Position"
+          Vector {
+          }
+        }
+        Overrides {
+          Name: "Rotation"
+          Rotator {
+          }
+        }
+      }
+    }
+    ParameterOverrideMap {
+      key: 17091386681941051417
+      value {
+        Overrides {
+          Name: "Label"
+          String: "High Scores"
+        }
+      }
+    }
+    TemplateAsset {
+      Id: 2587742162255074138
+    }
+  }
+}
+Objects {
+  Id: 13261402634799000936
+  Name: "Global"
+  Transform {
+    Location {
+    }
+    Rotation {
+    }
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 1821016063774626287
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  Control {
+    Width: 100
+    Height: 40
+    UIY: -30
+    RenderTransformPivot {
+      Anchor {
+        Value: "mc:euianchor:middlecenter"
+      }
+    }
+    Button {
+      Label: "Global"
+      FontColor {
+        R: 1
+        G: 1
+        B: 1
+        A: 1
+      }
+      FontSize: 20
+      ButtonColor {
+        R: 0.0990000069
+        G: 0.0990000069
+        B: 0.0990000069
+        A: 1
+      }
+      HoveredColor {
+        R: 1
+        G: 1
+        B: 1
+        A: 1
+      }
+      PressedColor {
+        R: 1
+        G: 1
+        B: 1
+        A: 1
+      }
+      DisabledColor {
+        R: 1
+        G: 1
+        B: 1
+        A: 1
+      }
+      Brush {
+        Id: 841534158063459245
+      }
+      IsButtonEnabled: true
+    }
+    AnchorLayout {
+      SelfAnchor {
+        Anchor {
+          Value: "mc:euianchor:topleft"
+        }
+      }
+      TargetAnchor {
+        Anchor {
+          Value: "mc:euianchor:topleft"
+        }
+      }
+    }
+  }
+}
+Objects {
+  Id: 7086211148063481587
+  Name: "Here"
+  Transform {
+    Location {
+    }
+    Rotation {
+    }
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 1821016063774626287
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  Control {
+    Width: 100
+    Height: 40
+    UIX: -100
+    UIY: -30
+    RenderTransformPivot {
+      Anchor {
+        Value: "mc:euianchor:middlecenter"
+      }
+    }
+    Button {
+      Label: "Here"
+      FontColor {
+        R: 1
+        G: 1
+        B: 1
+        A: 1
+      }
+      FontSize: 20
+      ButtonColor {
+        R: 0.0990000069
+        G: 0.0990000069
+        B: 0.0990000069
+        A: 1
+      }
+      HoveredColor {
+        R: 1
+        G: 1
+        B: 1
+        A: 1
+      }
+      PressedColor {
+        R: 1
+        G: 1
+        B: 1
+        A: 1
+      }
+      DisabledColor {
+        R: 1
+        G: 1
+        B: 1
+        A: 1
+      }
+      Brush {
+        Id: 841534158063459245
+      }
+      IsButtonEnabled: true
+    }
+    AnchorLayout {
+      SelfAnchor {
+        Anchor {
+          Value: "mc:euianchor:topleft"
+        }
+      }
+      TargetAnchor {
+        Anchor {
+          Value: "mc:euianchor:topleft"
+        }
+      }
     }
   }
 }
@@ -3120,6 +3555,32 @@ Objects {
     ScriptAsset {
       Id: 12876817496711431425
     }
+  }
+}
+Objects {
+  Id: 3846085128276031378
+  Name: "BGM"
+  Transform {
+    Location {
+    }
+    Rotation {
+    }
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 9702658192086695053
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  Folder {
+    IsFilePartition: true
+    FilePartitionName: "BGM"
   }
 }
 Objects {

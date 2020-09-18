@@ -41,7 +41,7 @@ ELEVATION = 25 -- distance up from the floor everything is at
 
 BRICK_WIDTH = 100
 BRICK_HEIGHT = 50
-POWERUP_DROP_CHANCE = 1/8
+POWERUP_DROP_CHANCE = 1/7
 
 AREA_WIDTH = RIGHT_WALL_Y - LEFT_WALL_Y
 AREA_HEIGHT = BRICK_HEIGHT * 15
@@ -93,17 +93,17 @@ function GetBrickString(round)
 			end
 		end
 	end
-	existingBricks = ("0"):rep((-#existingBricks)%3)..existingBricks
-	existingBricks = existingBricks:gsub("...", function(x)
-		return b64table[tonumber(x, 4)]
-	end) -- 195 bricks -> 3 base 4 digits encoded per character = 65 characters
+	existingBricks = ("0"):rep((-#existingBricks)%8)..existingBricks
+	existingBricks = existingBricks:gsub("..", function(x)
+		return b64table[tonumber(x, 8)]
+	end) -- 195 bricks -> 2 base 8 digits encoded per character
 	return existingBricks
 end
 
 function DecodeBrickString(brickString)
 	local bits = brickString:gsub(".", function(x)
 		local n = b64table[x]
-		return ((n//16)%4)..((n//4)%4)..(n%4)
+		return ((n//8)%8)..(n%8)
 	end):sub(-GRID_WIDTH*GRID_HEIGHT) -- first couple bits can be padding
 	local brickSequence = {}
 	for i = 1, #bits do
