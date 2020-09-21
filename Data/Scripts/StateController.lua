@@ -68,6 +68,8 @@ local function startTimerCountdown(endTime, timerUI, emptyToSolid)
 						ball.ballClient.parent = ball.clientContext
 					end
 				end
+			elseif timerUI == LASER_TIMER then
+				StateController.currentPaddle.laserEnabled = false
 			end
 		end
 	end)
@@ -86,6 +88,7 @@ Events.Connect("PaddleReference", function(reference)
 	paddleObject.networkedPropertyChangedEvent:Connect(function(_, property)
 		if property == "LaserTimeout" then
 			utils.PlaySound("laserPowerupGet", paddleObject:GetWorldPosition())
+			StateController.currentPaddle.laserEnabled = true
 			startTimerCountdown(paddleObject:GetCustomProperty("LaserTimeout"), LASER_TIMER)
 		elseif property == "GrabTimeout" then
 			utils.PlaySound("grabPowerupGet", paddleObject:GetWorldPosition())
@@ -119,6 +122,9 @@ Events.Connect("StartRound", function(boxReference)
 		playerPaddles = {}
 	}
 	StateController.round = round
+	if StateController.currentPaddle then
+		StateController.currentPaddle.round = round
+	end
 	BallController.SetRound(round)
 	BrickController.SetRound(round)
 	StateController.round.playerPaddles[player] = StateController.currentPaddle

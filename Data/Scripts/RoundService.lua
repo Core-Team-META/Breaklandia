@@ -29,7 +29,7 @@ function RoundService.AddPlayer(player)
 	local data = {lives = 4}
 	RoundService.players[player] = data
 	player:SetResource("HighScore", Storage.GetPlayerData(player).HighScore or 0)
-	player.serverUserData.level = 6
+	player.serverUserData.level = 1
 	
 	local ability = World.SpawnAsset(MOUSE_ABILITY)
 	ability.owner = player

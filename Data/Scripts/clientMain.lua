@@ -4,13 +4,15 @@ local BrickController = require(script:GetCustomProperty("BrickController"))
 local StateController = require(script:GetCustomProperty("StateController"))
 local PaddleController = require(script:GetCustomProperty("PaddleController"))
 local BallPhysics = require(script:GetCustomProperty("BallPhysics"))
+local LaserBlast = require(script:GetCustomProperty("LaserBlast"))
 local DEPENDENCIES = {
 	utils = utils,
 	BallController = BallController,
 	BrickController = BrickController,
 	StateController = StateController,
 	PaddleController = PaddleController,
-	BallPhysics = BallPhysics
+	BallPhysics = BallPhysics,
+	LaserBlast = LaserBlast
 }
 for _, dependency in pairs(DEPENDENCIES) do
 	if dependency.Setup then

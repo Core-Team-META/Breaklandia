@@ -60,6 +60,14 @@ DEFAULT_PADDLE_WIDTH = 300
 
 MAX_LIVES = 6
 
+ABILITY_BINDINGS = {
+	ability_primary = true, -- click
+	ability_extra_17 = true, -- space
+	ability_extra_20 = true -- Q
+}
+
+LASER_FIRE_INTERVAL = .2 -- seconds per shot
+
 SOUNDS = {
 	paddleHit = script:GetCustomProperty("paddleHit"),
 	laserShot = script:GetCustomProperty("laserShot"),

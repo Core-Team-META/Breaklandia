@@ -1,13 +1,6 @@
-﻿local utils, LaserBlast, Ball, RoundService
+﻿local utils, Ball, RoundService
 
 local PADDLE_TEMPLATE = script:GetCustomProperty("PaddleTemplate")
-	
-local ABILITY_BINDINGS = {
-	ability_primary = true, -- click
-	ability_extra_17 = true, -- space
-	ability_extra_20 = true -- Q
-}
-local LASER_FIRE_INTERVAL = .2 -- seconds per shot
 
 local Paddle = {}
 Paddle.__index = Paddle
@@ -33,35 +26,8 @@ function Paddle.New(round, player)
 	
 	round.playerPaddles[player] = paddle
 
-	local lastFire = os.clock()
-
-	local firingTask = nil
-	paddle.bindingPressedConnection = player.bindingPressedEvent:Connect(function(_, abilityBinding)
-		if ABILITY_BINDINGS[abilityBinding] then
-			paddle.abilityHeld = true
-			if firingTask then return end
-			if paddle.laserEnabled then
-				firingTask = Task.Spawn(function()
-					if not paddle.laserEnabled or not Object.IsValid(paddleObject) then
-						firingTask:Cancel()
-						firingTask = nil
-						return
-					end
-					paddle:FireLasers()
-				end, lastFire + LASER_FIRE_INTERVAL - os.clock())
-				firingTask.repeatCount = -1
-				firingTask.repeatInterval = LASER_FIRE_INTERVAL
-			end
-		end
-	end)
-
 	paddle.bindingReleasedConnection = player.bindingReleasedEvent:Connect(function(_, abilityBinding)
-		if ABILITY_BINDINGS[abilityBinding] then
-			paddle.abilityHeld = false
-			if firingTask then
-				firingTask:Cancel()
-				firingTask = nil
-			end
+		if utils.ABILITY_BINDINGS[abilityBinding] then
 			if paddle.attachedBalls then
 				paddle:ReleaseBalls()
 			end
@@ -127,12 +93,6 @@ function Paddle:ApplyPowerup(powerupType)
 	end
 end
 
-function Paddle:FireLasers()
-	local spawnCenter = self.position + Vector3.FORWARD * LaserBlast.laserLength / 2 + self.round.position
-	LaserBlast.New(self, spawnCenter - Vector3.RIGHT * self.width / 2)
-	LaserBlast.New(self, spawnCenter + Vector3.RIGHT * self.width / 2)
-end
-
 function Paddle:GrabBall(ball, ballOffsetY)
 	ball.attachedTo = self
 	ball.lastPaddleTouched = self
@@ -176,7 +136,6 @@ function Paddle:Destroy()
 	self:ReleaseBalls() -- don't destroy attached ball objects
 	self.round.playerPaddles[self.owner] = nil
 	self.object:Destroy()
-	self.bindingPressedConnection:Disconnect()
 	self.bindingReleasedConnection:Disconnect()
 end
 

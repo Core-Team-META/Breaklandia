@@ -3738,6 +3738,12 @@ Objects {
       }
     }
     Overrides {
+      Name: "cs:LaserBlast"
+      AssetReference {
+        Id: 7766220486297453908
+      }
+    }
+    Overrides {
       Name: "cs:FeedRow"
       AssetReference {
         Id: 16346612924480021801

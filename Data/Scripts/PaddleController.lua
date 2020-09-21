@@ -1,4 +1,4 @@
-﻿local utils, StateController
+﻿local utils, StateController, LaserBlast
 local ABILITY_FOLDER = script:GetCustomProperty("ABILITY_FOLDER"):WaitForObject()
 local player = Game.GetLocalPlayer()
 
@@ -7,6 +7,7 @@ local PaddleController = {}
 function PaddleController.Setup(dependencies)
 	utils = dependencies.utils
 	StateController = dependencies.StateController
+	LaserBlast = dependencies.LaserBlast
 	PaddleController.MOUSE_ABILITY = ABILITY_FOLDER:FindChildByName(player.name)
 	while not PaddleController.MOUSE_ABILITY do
 		Task.Wait()
@@ -61,6 +62,44 @@ function PaddleController.SetPaddle(container)
 				end
 			end
 			Task.Wait()
+		end
+	end)
+
+	local lastFire = os.clock()
+
+	local firingTask = nil
+	paddle.bindingPressedConnection = player.bindingPressedEvent:Connect(function(_, abilityBinding)
+		if utils.ABILITY_BINDINGS[abilityBinding] then
+			paddle.abilityHeld = true
+			if firingTask then return end
+			if paddle.laserEnabled then
+				firingTask = Task.Spawn(function()
+					if not paddle.laserEnabled or not Object.IsValid(paddleObject) then
+						firingTask:Cancel()
+						firingTask = nil
+						return
+					end
+					utils.PlaySound("laserShot", paddleObject:GetWorldPosition())
+					local spawnCenter = paddle.position + Vector3.FORWARD * LaserBlast.laserLength / 2 + paddle.round.position
+					LaserBlast.New(paddle, spawnCenter - Vector3.RIGHT * paddle.width / 2)
+					LaserBlast.New(paddle, spawnCenter + Vector3.RIGHT * paddle.width / 2)
+				end, lastFire + utils.LASER_FIRE_INTERVAL - os.clock())
+				firingTask.repeatCount = -1
+				firingTask.repeatInterval = utils.LASER_FIRE_INTERVAL
+			end
+		end
+	end)
+
+	paddle.bindingReleasedConnection = player.bindingReleasedEvent:Connect(function(_, abilityBinding)
+		if utils.ABILITY_BINDINGS[abilityBinding] then
+			paddle.abilityHeld = false
+			if firingTask then
+				firingTask:Cancel()
+				firingTask = nil
+			end
+			if paddle.attachedBalls then
+				paddle:ReleaseBalls()
+			end
 		end
 	end)
 end
