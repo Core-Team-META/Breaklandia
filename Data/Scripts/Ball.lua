@@ -84,4 +84,17 @@ Events.ConnectForPlayer("BallDropped", function(player, ...)
 	end
 end)
 
+Events.ConnectForPlayer("MultiballPositions", function(player, serials)
+	local playerPaddle = RoundService.players[player].paddle
+	local round = playerPaddle.round
+	for serial in serials:gmatch("...") do
+		local data = utils.decFrom64(serial)
+		local posX = data%(2^9)
+		local posY = data >> 9
+		local ballPosition = Vector3.New((posX / 2^9) * utils.AREA_HEIGHT + utils.FLOOR_X, (posY / 2^9) * utils.AREA_WIDTH + utils.LEFT_WALL_Y, utils.ELEVATION)
+		Ball.New(round, ballPosition, Vector3.New(math.sin(math.pi*1/3), math.cos(math.pi*1/3), 0) * utils.BALL_SPEED).lastPaddleTouched = playerPaddle
+		Ball.New(round, ballPosition, Vector3.New(math.sin(math.pi*2/3), math.cos(math.pi*2/3), 0) * utils.BALL_SPEED).lastPaddleTouched = playerPaddle
+	end
+end)
+
 return Ball

@@ -1,4 +1,4 @@
-﻿isClientContext = pcall(function() Game.GetLocalPlayer() end)
+﻿isClientContext = pcall(Game.GetLocalPlayer)
 
 if isClientContext then
 	local clientQueue = 0
@@ -44,10 +44,10 @@ BRICK_HEIGHT = 50
 POWERUP_DROP_CHANCE = 1/7
 
 AREA_WIDTH = RIGHT_WALL_Y - LEFT_WALL_Y
-AREA_HEIGHT = BRICK_HEIGHT * 15
+AREA_HEIGHT = CEILING_X - FLOOR_X
 AREA_TOP = CEILING_X - BRICK_HEIGHT * 3 -- top of where bricks are generated
 GRID_WIDTH = AREA_WIDTH / BRICK_WIDTH
-GRID_HEIGHT = AREA_HEIGHT / BRICK_HEIGHT
+GRID_HEIGHT = 15
 
 BALL_SCALE = .5
 BALL_RADIUS = BALL_SCALE * 50
@@ -59,6 +59,7 @@ PADDLE_OFFSET = Vector3.New(PADDLE_FORWARD, 0, ELEVATION)
 DEFAULT_PADDLE_WIDTH = 300
 
 MAX_LIVES = 6
+MAX_BALLS = 100
 
 ABILITY_BINDINGS = {
 	ability_primary = true, -- click
@@ -87,11 +88,27 @@ function PlaySound(name, position)
 	return sound
 end
 
-local b64table = {}
+b64table = {}
 local b64string = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz/="
 for i = 1, 64 do
 	b64table[i-1] = b64string:sub(i, i)
 	b64table[b64string:sub(i, i)] = i-1
+end
+
+function decTo64(num)
+	local oct = ("%o"):format(num)
+	oct = ("0"):rep((-#oct)%2)..oct
+	return (oct:gsub("..", function(o) -- pairs of 2 octal digits map directly to 1 base 64 digit
+		return b64table[tonumber(o, 8)]
+	end))
+end
+
+function decFrom64(serial)
+	local num = 0
+	for i = 1, #serial do
+		num = num + 64^(#serial - i) * b64table[serial:sub(i, i)]
+	end
+	return num
 end
 
 function GetBrickString(round)
@@ -105,7 +122,7 @@ function GetBrickString(round)
 			end
 		end
 	end
-	existingBricks = ("0"):rep((-#existingBricks)%8)..existingBricks
+	existingBricks = ("0"):rep((-#existingBricks)%2)..existingBricks
 	existingBricks = existingBricks:gsub("..", function(x)
 		return b64table[tonumber(x, 8)]
 	end) -- 195 bricks -> 2 base 8 digits encoded per character

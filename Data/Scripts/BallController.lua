@@ -1,4 +1,4 @@
-﻿local utils, BrickController, BallPhysics
+﻿local utils, BrickController, BallPhysics, StateController
 
 local BallController = {}
 
@@ -6,6 +6,7 @@ function BallController.Setup(dependencies)
 	utils = dependencies.utils
 	BrickController = dependencies.BrickController
 	BallPhysics = dependencies.BallPhysics
+	StateController = dependencies.StateController
 end
 
 local ballsDestroying = {}
@@ -146,5 +147,33 @@ function BallController.SetRound(round)
 		addBall(ball)
 	end)
 end
+
+Events.Connect("Multiball", function()
+	local ballList = {}
+	for object, ball in pairs(StateController.round.ballSet) do
+		ballList[#ballList + 1] = ball
+	end
+	local ballCount = #ballList
+	local serials = {""}
+	for i, ball in pairs(ballList) do
+		if ballCount >= utils.MAX_BALLS then break end
+		local ballPosition = ball.subject:GetWorldPosition() - StateController.round.position
+		if ball.attachedTo then
+			ballPosition = ball.attachedTo.position + ball.attachmentOffset
+		end
+		local posY = math.max(0, math.min(1, (ballPosition.y - utils.LEFT_WALL_Y) / utils.AREA_WIDTH)) * 2^9
+		local posX = math.max(0, math.min(1, (ballPosition.x - utils.FLOOR_X) / utils.AREA_HEIGHT)) * 2^9
+		posY, posX = math.floor(posY + .5), math.floor(posX + .5)
+		local serial = utils.decTo64((posY << 9) + posX) -- 3 characters
+		if #serials[#serials] < 120 then -- multiple ball position serials are concatenated
+			serials[#serials] = serials[#serials]..serial
+		else -- multiple broadcasts are used if they can't all fit in one
+			serials[#serials+1] = serial
+		end
+	end
+	for i = 1, #serials do
+		utils.SendBroadcast("MultiballPositions", serials[i])
+	end
+end)
 
 return BallController

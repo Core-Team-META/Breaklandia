@@ -28,7 +28,7 @@ local function getRandomPowerup() -- roulette wheel selection
 	local value = math.random() * WEIGHT_SUM
 	for name, weight in pairs(POWERUP_WEIGHTS) do
 		value = value - weight
-		if value <= 0 then
+		if value < 0 then
 			return name
 		end
 	end
