@@ -16,6 +16,24 @@
           SelfId: 11704443035127809279
         }
       }
+      Overrides {
+        Name: "cs:LaserTimer"
+        ObjectReference {
+          SelfId: 9989136062415341521
+        }
+      }
+      Overrides {
+        Name: "cs:GrabTimer"
+        ObjectReference {
+          SelfId: 17143101524803686597
+        }
+      }
+      Overrides {
+        Name: "cs:PowerupTimers"
+        ObjectReference {
+          SelfId: 13780791317169723459
+        }
+      }
     }
   }
   SerializationVersion: 63

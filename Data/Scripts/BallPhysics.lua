@@ -68,7 +68,28 @@ function CheckCollisions(ball)
 			if ball.round.isActive then
 				if ball.round.ballSet[ball.object] then -- don't play the sound multiple times if it hasn't been destroyed yet
 					utils.PlaySound("dropBall", ball.subject:GetWorldPosition())
-					ball:Destroy()
+					Task.Spawn(function()
+						ball:Destroy()
+					end)
+					local ballCount = 0
+					for _ in pairs(ball.round.ballSet) do
+						ballCount = ballCount + 1
+					end
+					if ballCount == 1 then -- this was the last ball
+						local light = ball.round.light
+						if light.visibility == Visibility.FORCE_OFF then
+							light.visibility = Visibility.INHERIT
+							for i = 0, 30 do
+								light.attenuationRadius = 6000 * i/30
+								Task.Wait()
+							end
+							for i = 70, 0, -1 do
+								light.attenuationRadius = 6000 * i/70
+								Task.Wait()
+							end
+							light.visibility = Visibility.FORCE_OFF
+						end
+					end
 				end
 			else
 				ball.velocity.x = -ball.velocity.x

@@ -16,6 +16,7 @@
           }
         }
         ParentId: 4781671109827199097
+        ChildIds: 2619359630050434269
         ChildIds: 340449830993538426
         ChildIds: 17131977063785009748
         ChildIds: 13667994057365172221
@@ -44,6 +45,12 @@
             String: ""
           }
           Overrides {
+            Name: "cs:Light"
+            ObjectReference {
+              SubObjectId: 3606808785250412434
+            }
+          }
+          Overrides {
             Name: "cs:BrickString:isrep"
             Bool: true
           }
@@ -57,6 +64,81 @@
         }
         Folder {
           IsFilePartition: true
+        }
+      }
+      Objects {
+        Id: 2619359630050434269
+        Name: "ClientContext"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 3461209046783251881
+        ChildIds: 3606808785250412434
+        WantsNetworking: true
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:forceoff"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        NetworkContext {
+        }
+      }
+      Objects {
+        Id: 3606808785250412434
+        Name: "Point Light"
+        Transform {
+          Location {
+            X: 150
+            Z: -20
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 2619359630050434269
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:forceoff"
+        }
+        Light {
+          Intensity: 100
+          Color {
+            R: 1
+            G: 4.76837158e-07
+            A: 1
+          }
+          VolumetricIntensity: 5
+          TeamSettings {
+          }
+          Light {
+            Temperature: 6500
+            LocalLight {
+              AttenuationRadius: 6000
+              PointLight {
+                SourceRadius: 20
+                SoftSourceRadius: 20
+                FallOffExponent: 8
+                UseFallOffExponent: true
+              }
+            }
+            MaxDrawDistance: 5000
+            MaxDistanceFadeRange: 1000
+          }
         }
       }
       Objects {

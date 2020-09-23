@@ -62,6 +62,15 @@ Assets {
   }
 }
 Assets {
+  Id: 4828348498481955795
+  Name: "BG Flat 006"
+  PlatformAssetType: 9
+  PrimaryAsset {
+    AssetType: "PlatformBrushAssetRef"
+    AssetId: "BackgroundNoOutline_015"
+  }
+}
+Assets {
   Id: 2617361319805279588
   Name: "Nebula"
   PlatformAssetType: 6

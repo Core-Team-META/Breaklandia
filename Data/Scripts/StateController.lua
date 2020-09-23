@@ -1,7 +1,10 @@
 ﻿local utils, BallController, BrickController, PaddleController
 
-local LASER_TIMER = script:GetCustomProperty("LaserPowerupTimer"):WaitForObject()
-local GRAB_TIMER = script:GetCustomProperty("GrabPowerupTimer"):WaitForObject()
+--local LASER_TIMER = script:GetCustomProperty("LaserPowerupTimer"):WaitForObject()
+--local GRAB_TIMER = script:GetCustomProperty("GrabPowerupTimer"):WaitForObject()
+local LASER_TIMER = script:GetCustomProperty("LaserTimer"):WaitForObject()
+local GRAB_TIMER = script:GetCustomProperty("GrabTimer"):WaitForObject()
+local POWERUP_TIMERS = script:GetCustomProperty("PowerupTimers"):WaitForObject()
 
 LASER_TIMER.visibility = Visibility.FORCE_OFF
 GRAB_TIMER.visibility = Visibility.FORCE_OFF
@@ -13,8 +16,8 @@ while not camera do
 	camera = player:GetActiveCamera()
 end
 
-UI.SetCursorVisible(true)
-UI.SetCanCursorInteractWithUI(true)
+--UI.SetCursorVisible(true)
+UI.SetCanCursorInteractWithUI(true) -- cursor can move but is not visible
 
 local StateController = {
 	currentPaddle = nil,
@@ -30,9 +33,10 @@ end
 
 local timerTasks = {}
 local function startTimerCountdown(endTime, timerUI, emptyToSolid)
-	local timerClock = timerUI:GetCustomProperty("Clock"):WaitForObject()
-	local leftInner = timerUI:GetCustomProperty("LeftInner"):WaitForObject()
-	local rightInner = timerUI:GetCustomProperty("RightInner"):WaitForObject()
+	--local timerClock = timerUI:GetCustomProperty("Clock"):WaitForObject()
+	--local leftInner = timerUI:GetCustomProperty("LeftInner"):WaitForObject()
+	--local rightInner = timerUI:GetCustomProperty("RightInner"):WaitForObject()
+	local meter = timerUI:GetCustomProperty("Meter"):WaitForObject()
 	timerUI.visibility = Visibility.INHERIT
 	local startTime = time()
 	
@@ -44,16 +48,21 @@ local function startTimerCountdown(endTime, timerUI, emptyToSolid)
 	local subjectPaddle = StateController.currentPaddle -- the paddle that this powerup is activated on
 	timerTasks[timerUI] = Task.Spawn(function()
 		local timeRemaining = endTime - time()
-		for _, text in pairs(timerClock:GetChildren()) do
+		--[[for _, text in pairs(timerClock:GetChildren()) do
 			text.text = tostring(math.ceil(timeRemaining))
-		end
+		end]]
 		local progress = 1 - timeRemaining / (endTime - startTime)
-		rightInner.rotationAngle = math.min(1, progress * 2) * 180
+		-- legacy radial timer UI
+		--[[rightInner.rotationAngle = math.min(1, progress * 2) * 180
 		leftInner.rotationAngle = math.max(0, math.min(1, progress * 2 - 1)) * 180
 		if emptyToSolid then -- fill the radial meter from empty to solid instead of solid to empty
 			rightInner.rotationAngle = rightInner.rotationAngle - 180
 			leftInner.rotationAngle = leftInner.rotationAngle - 180
-		end
+		end]]
+		meter.width = math.floor(200 * (1 - progress) + .5)
+		local paddlePos = UI.GetScreenPosition(subjectPaddle.position + subjectPaddle.round.position) or Vector2.ZERO
+		POWERUP_TIMERS.x = paddlePos.x
+		POWERUP_TIMERS.y = paddlePos.y
 		if timeRemaining < 0 or not Object.IsValid(subjectPaddle.object) then
 			timerTasks[timerUI]:Cancel()
 			timerTasks[timerUI] = nil
@@ -113,6 +122,7 @@ Events.Connect("StartRound", function(boxReference)
 		box = box,
 		brickContainer = box:GetCustomProperty("ClientBrickContainer"):WaitForObject(),
 		ballContainer = box:GetCustomProperty("BallContainer"):WaitForObject(),
+		light = box:GetCustomProperty("Light"):WaitForObject(),
 		position = box:GetWorldPosition(),
 		powerupSet = {},
 		ballSet = {},

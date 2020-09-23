@@ -25,6 +25,8 @@ local LIFE_CONTAINER = script:GetCustomProperty("LifeContainer"):WaitForObject()
 local FEED_ROW = script:GetCustomProperty("FeedRow")
 local FEED_CONTAINER = script:GetCustomProperty("Feed"):WaitForObject()
 local LEADERBOARD = script:GetCustomProperty("Leaderboard"):WaitForObject()
+local HERE_BUTTON = LEADERBOARD:GetCustomProperty("HereButton"):WaitForObject()
+local GLOBAL_BUTTON = LEADERBOARD:GetCustomProperty("GlobalButton"):WaitForObject()
 local LEADERBOARD_HERE = LEADERBOARD:GetCustomProperty("HereLeaderboard"):WaitForObject()
 local LEADERBOARD_GLOBAL = LEADERBOARD:GetCustomProperty("GlobalLeaderboard"):WaitForObject()
 local LEADERBOARD_ROW = script:GetCustomProperty("LeaderboardRow")
@@ -81,14 +83,31 @@ end)
 
 utils.SendBroadcast("Ready")
 
-LEADERBOARD:GetCustomProperty("HereButton"):WaitForObject().clickedEvent:Connect(function()
-	LEADERBOARD_HERE.visibility = Visibility.INHERIT
-	LEADERBOARD_GLOBAL.visibility = Visibility.FORCE_OFF
+local currentButton = GLOBAL_BUTTON
+local function toggleLeaderboard(button)
+	if currentButton == button then return end
+	if currentButton == GLOBAL_BUTTON then
+		LEADERBOARD_HERE.visibility = Visibility.INHERIT
+		LEADERBOARD_GLOBAL.visibility = Visibility.FORCE_OFF
+		currentButton = HERE_BUTTON
+		HERE_BUTTON.text = "Here"
+		GLOBAL_BUTTON.text = "Global (T)"
+	else
+		LEADERBOARD_HERE.visibility = Visibility.FORCE_OFF
+		LEADERBOARD_GLOBAL.visibility = Visibility.INHERIT
+		currentButton = GLOBAL_BUTTON
+		HERE_BUTTON.text = "Here (T)"
+		GLOBAL_BUTTON.text = "Global"
+	end
+end
+HERE_BUTTON.clickedEvent:Connect(toggleLeaderboard)
+GLOBAL_BUTTON.clickedEvent:Connect(toggleLeaderboard)
+player.bindingPressedEvent:Connect(function(_, abilityBinding)
+	if abilityBinding == "ability_extra_24" then -- T
+		toggleLeaderboard()
+	end
 end)
-LEADERBOARD:GetCustomProperty("GlobalButton"):WaitForObject().clickedEvent:Connect(function()
-	LEADERBOARD_HERE.visibility = Visibility.FORCE_OFF
-	LEADERBOARD_GLOBAL.visibility = Visibility.INHERIT
-end)
+
 Task.Spawn(function() -- global leaderboard update loop
 	local rows = {}
 	while true do
