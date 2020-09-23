@@ -310,8 +310,8 @@
         Name: "Group"
         Transform {
           Location {
-            X: -1481.49988
-            Y: -961.876
+            X: -1365.68652
+            Y: -961.876221
             Z: 10
           }
           Rotation {
@@ -825,8 +825,8 @@
         Name: "Group"
         Transform {
           Location {
-            X: -687.678345
-            Y: -961.876
+            X: -571.865
+            Y: -961.876221
             Z: 10
           }
           Rotation {
@@ -1340,8 +1340,8 @@
         Name: "Group"
         Transform {
           Location {
-            X: 108.048889
-            Y: -961.876
+            X: 223.862183
+            Y: -961.876221
             Z: 10
           }
           Rotation {
@@ -1855,8 +1855,8 @@
         Name: "Group"
         Transform {
           Location {
-            X: 901.966431
-            Y: -961.876
+            X: 1017.77979
+            Y: -961.876221
             Z: 10
           }
           Rotation {
@@ -2445,8 +2445,8 @@
         Name: "Group"
         Transform {
           Location {
-            X: 1275.41187
-            Y: 895.220825
+            X: 1391.22534
+            Y: 895.220764
             Z: 10
           }
           Rotation {
@@ -2961,8 +2961,8 @@
         Name: "Group"
         Transform {
           Location {
-            X: 481.59021
-            Y: 895.221558
+            X: 597.403564
+            Y: 895.221497
             Z: 10
           }
           Rotation {
@@ -3477,8 +3477,8 @@
         Name: "Group"
         Transform {
           Location {
-            X: -314.136597
-            Y: 895.222046
+            X: -198.323242
+            Y: 895.222
             Z: 10
           }
           Rotation {
@@ -3993,8 +3993,8 @@
         Name: "Group"
         Transform {
           Location {
-            X: -1108.05396
-            Y: 895.222534
+            X: -992.240601
+            Y: 895.222473
             Z: 10
           }
           Rotation {
@@ -4509,9 +4509,9 @@
         Name: "Scoreboard"
         Transform {
           Location {
-            X: 1613.96155
-            Y: 1081.70215
-            Z: 206.400299
+            X: 1574.047
+            Y: 861.171631
+            Z: 234.977875
           }
           Rotation {
             Pitch: 0.000191245286
@@ -4519,7 +4519,7 @@
             Roll: 132.337204
           }
           Scale {
-            X: 5.61083
+            X: 4.503
             Y: 7.18657
             Z: 0.641603112
           }

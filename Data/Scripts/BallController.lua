@@ -165,7 +165,7 @@ Events.Connect("Multiball", function()
 		local posX = math.max(0, math.min(1, (ballPosition.x - utils.FLOOR_X) / utils.AREA_HEIGHT)) * 2^9
 		posY, posX = math.floor(posY + .5), math.floor(posX + .5)
 		local serial = utils.decTo64((posY << 9) + posX) -- 3 characters
-		if #serials[#serials] < 120 then -- multiple ball position serials are concatenated
+		if #serials[#serials] < 100 then -- multiple ball position serials are concatenated
 			serials[#serials] = serials[#serials]..serial
 		else -- multiple broadcasts are used if they can't all fit in one
 			serials[#serials+1] = serial

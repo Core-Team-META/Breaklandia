@@ -3,7 +3,7 @@
 local LASER_TEMPLATE = script:GetCustomProperty("LaserTemplate")
 
 local LASER_SPEED = 2000
-local LASER_LENGTH = 200
+local LASER_LENGTH = 320
 
 local LaserBlast = {
 	laserLength = LASER_LENGTH

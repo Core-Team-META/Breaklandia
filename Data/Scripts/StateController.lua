@@ -79,6 +79,13 @@ local function startTimerCountdown(endTime, timerUI, emptyToSolid)
 				end
 			elseif timerUI == LASER_TIMER then
 				StateController.currentPaddle.laserEnabled = false
+				for _, object in pairs(StateController.currentPaddle.groupClient:GetChildren()) do
+					if object.name:find("Laser") then
+						object.visibility = Visibility.FORCE_OFF
+					else
+						object.visibility = Visibility.INHERIT
+					end
+				end
 			end
 		end
 	end)
@@ -98,6 +105,13 @@ Events.Connect("PaddleReference", function(reference)
 		if property == "LaserTimeout" then
 			utils.PlaySound("laserPowerupGet", paddleObject:GetWorldPosition())
 			StateController.currentPaddle.laserEnabled = true
+			for _, object in pairs(StateController.currentPaddle.groupClient:GetChildren()) do
+				if object.name:find("Laser") then
+					object.visibility = Visibility.INHERIT
+				elseif object.name ~= "Ball" then -- balls attached are inside the group, don't turn them invisible
+					object.visibility = Visibility.FORCE_OFF
+				end
+			end
 			startTimerCountdown(paddleObject:GetCustomProperty("LaserTimeout"), LASER_TIMER)
 		elseif property == "GrabTimeout" then
 			utils.PlaySound("grabPowerupGet", paddleObject:GetWorldPosition())

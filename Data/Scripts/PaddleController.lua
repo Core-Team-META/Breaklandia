@@ -29,8 +29,18 @@ function PaddleController.SetPaddle(container)
 	StateController.currentPaddle = paddle
 
 	local function checkPaddleProperties()
-		paddle.width = container:GetCustomProperty("Width")
-		paddleObject:SetWorldScale(paddleObject:GetWorldScale() * Vector3.New(1, 0, 1) + Vector3.New(0, paddle.width / 100, 0))
+		local oldWidth = paddle.width
+		local newWidth = container:GetCustomProperty("Width")
+		paddle.width = newWidth
+		for _, object in pairs(group:GetChildren()) do
+			if object.name:find("Paddle") then
+				local width = 3 + ((newWidth / 100) - 3)*3/1.75 -- paddle is correct size at width 3, mesh used isn't 100 cm so needs a coefficient
+				object:SetWorldScale(object:GetWorldScale() * Vector3.New(0, 1, 1) + Vector3.New(width, 0, 0))
+			else
+				local oldPosition = object:GetPosition()
+				object:SetPosition(oldPosition + Vector3.RIGHT * (oldPosition.y > 0 and 1 or -1) * (newWidth - oldWidth) / 2)
+			end
+		end
 	end
 
 	checkPaddleProperties()
@@ -79,10 +89,16 @@ function PaddleController.SetPaddle(container)
 						firingTask = nil
 						return
 					end
+					for _, vfx in pairs(group:GetChildren()) do
+						if vfx.name:find("VFX") then
+							vfx:Play()
+						end
+					end
 					utils.PlaySound("laserShot", paddleObject:GetWorldPosition())
 					local spawnCenter = paddle.position + Vector3.FORWARD * LaserBlast.laserLength / 2 + paddle.round.position
-					LaserBlast.New(paddle, spawnCenter - Vector3.RIGHT * paddle.width / 2)
-					LaserBlast.New(paddle, spawnCenter + Vector3.RIGHT * paddle.width / 2)
+					local widthOffset = paddle.width / 2 - 36 -- turrets are inset slightly
+					LaserBlast.New(paddle, spawnCenter - Vector3.RIGHT * widthOffset)
+					LaserBlast.New(paddle, spawnCenter + Vector3.RIGHT * widthOffset)
 				end, lastFire + utils.LASER_FIRE_INTERVAL - os.clock())
 				firingTask.repeatCount = -1
 				firingTask.repeatInterval = utils.LASER_FIRE_INTERVAL
