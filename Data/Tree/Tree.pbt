@@ -2928,7 +2928,7 @@ Objects {
     Value: "mc:ecollisionsetting:inheritfromparent"
   }
   Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
+    Value: "mc:evisibilitysetting:forceoff"
   }
   Control {
     Width: 300
@@ -4289,6 +4289,18 @@ Objects {
         Type {
           Value: "mc:enetreferencetype:leaderboard"
         }
+      }
+    }
+    Overrides {
+      Name: "cs:PaddleTemplate"
+      AssetReference {
+        Id: 11199168865757551476
+      }
+    }
+    Overrides {
+      Name: "cs:ScreenObject"
+      AssetReference {
+        Id: 15202632891423869944
       }
     }
   }

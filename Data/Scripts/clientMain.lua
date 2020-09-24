@@ -31,6 +31,24 @@ local LEADERBOARD_HERE = LEADERBOARD:GetCustomProperty("HereLeaderboard"):WaitFo
 local LEADERBOARD_GLOBAL = LEADERBOARD:GetCustomProperty("GlobalLeaderboard"):WaitForObject()
 local LEADERBOARD_ROW = script:GetCustomProperty("LeaderboardRow")
 local HIGH_SCORE = script:GetCustomProperty("HighScore")
+local ScreenObject = require(script:GetCustomProperty("ScreenObject"))
+local PADDLE_TEMPLATE = script:GetCustomProperty("PaddleTemplate")
+
+local SCREEN_OBJECTS = {}
+for i, icon in pairs(LIFE_CONTAINER:GetChildren()) do
+	local screenSize = UI.GetScreenSize()
+	local scale = 1/4
+	local object = World.SpawnAsset(PADDLE_TEMPLATE, {scale = Vector3.ONE * scale})
+	local screenObject = ScreenObject.New(object, {
+		objectWidth = 300 * scale,
+		pixelWidth = 140,--70,
+		pixelPosX = (i-1)*160 + 100,
+		pixelPosY = screenSize.y - 35,
+		faceCamera = false
+	})
+	screenObject.object.visibility = icon.visibility
+	SCREEN_OBJECTS[i] = screenObject
+end
 
 local player = Game.GetLocalPlayer()
 player.isVisibleToSelf = false
@@ -51,6 +69,9 @@ local function updateResource(resource, value)
 		end
 		for i = value+1, #lifeIcons do
 			lifeIcons[i].visibility = Visibility.FORCE_OFF
+		end
+		for i = 1, #lifeIcons do
+			SCREEN_OBJECTS[i].object.visibility = lifeIcons[i].visibility
 		end
 		if value > currentLifeCount and player:GetResource("Score") ~= 0 then -- life powerup was collected
 			utils.PlaySound("lifePowerupGet", player:GetWorldPosition())
