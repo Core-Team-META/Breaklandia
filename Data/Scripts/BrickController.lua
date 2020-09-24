@@ -119,6 +119,17 @@ function BrickController.Destroy(brickObject)
 		round.brickGrid[brick.y][brick.x] = nil
 		brick.object:Destroy()
 		round.edgeList = BallPhysics.ComputeEdges(round)
+		
+		local breakableBrickExists = false
+		for _, brick in pairs(round.brickSet) do
+			if brick.life ~= 7 then -- found a destructible brick
+				breakableBrickExists = true
+				break
+			end
+		end
+		if not breakableBrickExists then
+			round.isActive = false
+		end
 	end
 end
 

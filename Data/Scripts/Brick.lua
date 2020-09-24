@@ -3,7 +3,7 @@ local TRIGGER_TEMPLATE = script:GetCustomProperty("TriggerTemplate")
 
 local BRICK_WIDTH, BRICK_HEIGHT
 local POWERUP_DROP_CHANCE
-local AREA_WIDTH, AREA_HEIGHT, AREA_TOP
+local AREA_WIDTH, AREA_TOP
 local GRID_WIDTH, GRID_HEIGHT
 
 local Brick = {}
@@ -22,7 +22,7 @@ function Brick.Setup(dependencies)
 	BRICK_WIDTH, BRICK_HEIGHT = utils.BRICK_WIDTH, utils.BRICK_HEIGHT
 	POWERUP_DROP_CHANCE = utils.POWERUP_DROP_CHANCE
 	
-	AREA_WIDTH, AREA_HEIGHT = utils.AREA_WIDTH, utils.AREA_HEIGHT
+	AREA_WIDTH = utils.AREA_WIDTH
 	AREA_TOP = utils.AREA_TOP
 	
 	GRID_WIDTH, GRID_HEIGHT = utils.GRID_WIDTH, utils.GRID_HEIGHT

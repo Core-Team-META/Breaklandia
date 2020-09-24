@@ -94,6 +94,15 @@ local function startTimerCountdown(endTime, timerUI, emptyToSolid)
 	return timerTasks[timerUI]
 end
 
+function roundSetup() -- when paddle and round both exist
+	local round = StateController.round
+	local paddle = StateController.currentPaddle
+	StateController.currentPaddle.round = round
+	StateController.round.playerPaddles[player] = paddle
+	local ball = BallController.CreateBall(StateController.round, paddle.object:GetWorldPosition(), Vector3.FORWARD * utils.BALL_SPEED)
+	StateController.currentPaddle:GrabBall(ball, Vector3.ZERO)
+end
+
 Events.Connect("PaddleReference", function(reference)
 	local paddleObject = reference:WaitForObject()
 	paddleObject.destroyEvent:Connect(function()
@@ -120,8 +129,8 @@ Events.Connect("PaddleReference", function(reference)
 		end
 	end)
 	PaddleController.SetPaddle(paddleObject)
-	if StateController.round then
-		StateController.round.playerPaddles[player] = StateController.currentPaddle
+	if StateController.round and StateController.round.isActive then
+		roundSetup()
 	end
 end)
 
@@ -147,7 +156,7 @@ Events.Connect("StartRound", function(boxReference)
 	}
 	StateController.round = round
 	if StateController.currentPaddle then
-		StateController.currentPaddle.round = round
+		roundSetup()
 	end
 	BallController.SetRound(round)
 	BrickController.SetRound(round)

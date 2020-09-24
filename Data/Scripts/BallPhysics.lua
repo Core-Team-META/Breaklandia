@@ -125,7 +125,10 @@ function CheckCollisions(ball)
 						ball.velocity = reflectionNormal * utils.BALL_SPEED
 						ball.attachedPaddle = paddle.paddleClient
 						ball.subject.parent = paddle.groupClient
-						ballsGrabbing[ball] = {ball.object:GetReference(), (currentPosition - paddlePosition).y}
+						paddle:GrabBall(ball)
+						
+						-- server-controlled ball attach
+						--[=[ballsGrabbing[ball] = {ball.object:GetReference(), (currentPosition - paddlePosition).y}
 						if not busySending then
 							busySending = true
 							Task.Spawn(function()
@@ -164,14 +167,9 @@ function CheckCollisions(ball)
 									busySending = false
 								end
 							end)
-						end
+						end]=]
 					end
 				end
-			elseif paddle.grabEnabled then
-				--[[paddle:GrabBall(ball)
-				ball.subject:StopMove()
-				ball.velocity = reflectionNormal * utils.BALL_SPEED
-				ball.subject:SetWorldPosition(ball.subject:GetWorldPosition() * Vector3.New(0, 1, 1) + paddlePosition * Vector3.New(1, 0, 0) + Vector3.New(ball.radius, 0, 0))]]
 			end
 			break
 		end

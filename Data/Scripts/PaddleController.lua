@@ -24,9 +24,18 @@ function PaddleController.SetPaddle(container)
 		position = Vector3.ZERO,
 		width = utils.DEFAULT_PADDLE_WIDTH,
 		groupClient = group,
-		paddleClient = paddleObject
+		paddleClient = paddleObject,
+		attachedBalls = {}
 	}
 	StateController.currentPaddle = paddle
+	
+	function paddle:GrabBall(ball, offset)
+		local offset = offset or ball.ballClient:GetWorldPosition() - paddleObject:GetWorldPosition()
+		ball.ballClient.parent = group
+		ball.ballClient:SetPosition(Vector3.New(ball.radius + utils.PADDLE_THICKNESS / 2, offset.y, 0))
+		ball.attachedPaddle = container
+		paddle.attachedBalls[#paddle.attachedBalls + 1] = ball
+	end
 
 	local function checkPaddleProperties()
 		local oldWidth = paddle.width
@@ -113,9 +122,14 @@ function PaddleController.SetPaddle(container)
 				firingTask:Cancel()
 				firingTask = nil
 			end
-			if paddle.attachedBalls then
-				paddle:ReleaseBalls()
+			for i = 1, #paddle.attachedBalls do
+				local ball = paddle.attachedBalls[i]
+				if Object.IsValid(ball.ballClient) then
+					ball.ballClient.parent = ball.clientContext
+				end
+				ball.attachedPaddle = nil
 			end
+			paddle.attachedBalls = {}
 		end
 	end)
 end

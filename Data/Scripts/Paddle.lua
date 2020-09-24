@@ -67,7 +67,7 @@ function Paddle:ApplyPowerup(powerupType)
 	elseif powerupType == "Multiball" then
 		utils.SendBroadcast(self.owner, "Multiball")
 		
-		local ballList = {}
+		--[[local ballList = {}
 		for object, ball in pairs(self.round.ballSet) do
 			ballList[#ballList + 1] = ball
 		end
@@ -75,7 +75,7 @@ function Paddle:ApplyPowerup(powerupType)
 		local ballCount = math.min(utils.MAX_BALLS, #ballList*3)
 		if ballCount > 10 then
 			utils.SendBroadcast("Feed", ("%s has %d balls at once!"):format(self.owner.name, ballCount))
-		end
+		end]]
 	elseif powerupType == "Life" then
 		local player = self.owner
 		local data = RoundService.players[player]

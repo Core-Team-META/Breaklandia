@@ -7,8 +7,8 @@
 GlobalEntries {
   Id: "BOT_Bot1"
   Name: "Bot1"
-  ScoreFormatted: "6050.0"
-  DateTime: "2020-09-23T05:53:22.874Z"
+  ScoreFormatted: "10900.0"
+  DateTime: "2020-09-24T06:36:45.770Z"
 }
 Config {
   SortType {

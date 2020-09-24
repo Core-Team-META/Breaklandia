@@ -4,9 +4,9 @@
   PlatformAssetType: 5
   TemplateAsset {
     ObjectBlock {
-      RootId: 10563601602419401599
+      RootId: 9290986186089694533
       Objects {
-        Id: 10563601602419401599
+        Id: 9290986186089694533
         Name: "Ball"
         Transform {
           Scale {
@@ -16,122 +16,20 @@
           }
         }
         ParentId: 4781671109827199097
-        ChildIds: 8434097175055040637
-        ChildIds: 9290986186089694533
+        ChildIds: 14599857967596237095
         UnregisteredParameters {
           Overrides {
-            Name: "cs:ServerTrigger"
-            ObjectReference {
-              SubObjectId: 8434097175055040637
-            }
-          }
-          Overrides {
-            Name: "cs:AttachedPaddle"
-            ObjectReference {
-            }
-          }
-          Overrides {
-            Name: "cs:AttachmentOffset"
-            Vector {
-              X: 50
-            }
-          }
-          Overrides {
-            Name: "cs:Box"
-            ObjectReference {
-            }
-          }
-          Overrides {
-            Name: "cs:ClientTrigger"
+            Name: "cs:Trigger"
             ObjectReference {
               SubObjectId: 1628703934406845945
             }
           }
           Overrides {
-            Name: "cs:ClientBall"
+            Name: "cs:Ball"
             ObjectReference {
               SubObjectId: 14599857967596237095
             }
           }
-          Overrides {
-            Name: "cs:ClientContext"
-            ObjectReference {
-              SubObjectId: 9290986186089694533
-            }
-          }
-          Overrides {
-            Name: "cs:AttachedPaddle:isrep"
-            Bool: true
-          }
-          Overrides {
-            Name: "cs:AttachmentOffset:isrep"
-            Bool: true
-          }
-          Overrides {
-            Name: "cs:Box:isrep"
-            Bool: true
-          }
-        }
-        WantsNetworking: true
-        Collidable_v2 {
-          Value: "mc:ecollisionsetting:inheritfromparent"
-        }
-        Visible_v2 {
-          Value: "mc:evisibilitysetting:inheritfromparent"
-        }
-        Folder {
-          IsGroup: true
-        }
-      }
-      Objects {
-        Id: 8434097175055040637
-        Name: "ServerTrigger"
-        Transform {
-          Location {
-          }
-          Rotation {
-          }
-          Scale {
-            X: 0.5
-            Y: 0.5
-            Z: 0.5
-          }
-        }
-        ParentId: 10563601602419401599
-        WantsNetworking: true
-        Collidable_v2 {
-          Value: "mc:ecollisionsetting:inheritfromparent"
-        }
-        Visible_v2 {
-          Value: "mc:evisibilitysetting:inheritfromparent"
-        }
-        Trigger {
-          TeamSettings {
-            IsTeamCollisionEnabled: true
-            IsEnemyCollisionEnabled: true
-          }
-          TriggerShape_v2 {
-            Value: "mc:etriggershape:sphere"
-          }
-        }
-      }
-      Objects {
-        Id: 9290986186089694533
-        Name: "ClientContext"
-        Transform {
-          Location {
-          }
-          Rotation {
-          }
-          Scale {
-            X: 1
-            Y: 1
-            Z: 1
-          }
-        }
-        ParentId: 10563601602419401599
-        ChildIds: 14599857967596237095
-        UnregisteredParameters {
         }
         WantsNetworking: true
         Collidable_v2 {

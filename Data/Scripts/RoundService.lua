@@ -76,9 +76,9 @@ function RoundService.LoseLife(player)
 	else
 		data.lives = data.lives - 1
 		player:SetResource("Lives", data.lives)
-		local paddle = data.paddle
+		--[[local paddle = data.paddle
 		local ball = Ball.New(paddle.round, paddle.position)
-		paddle:GrabBall(ball)
+		paddle:GrabBall(ball)]]
 	end
 end
 Events.ConnectForPlayer("LoseLife", RoundService.LoseLife)
@@ -146,11 +146,11 @@ function RoundService.StartRound(round)
 		utils.SendBroadcast(player, "StartRound", round.box:GetReference())
 	end
 	
-	for i = 1, 1 do
+	--[[for i = 1, 1 do
 		local paddle = paddleList[math.random(#paddleList)]
 		local ball = Ball.New(round, paddle.position + Vector3.FORWARD * 150)
 		paddle:GrabBall(ball)
-	end
+	end]]
 end
 
 function RoundService.EndRound(round, advancingToNextRound)

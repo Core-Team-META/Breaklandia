@@ -82,4 +82,8 @@ function Powerup:Destroy()
 	self.round.powerupSet[self.object] = nil
 end
 
+Events.ConnectForPlayer("MultiballFeed", function(player, ballCount)
+	utils.SendBroadcast("Feed", ("%s has %d balls at once!"):format(player.name, ballCount))
+end)
+
 return Powerup
