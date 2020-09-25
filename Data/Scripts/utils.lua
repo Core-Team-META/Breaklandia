@@ -81,7 +81,10 @@ SOUNDS = {
 	dropBall = script:GetCustomProperty("dropBall"),
 	loseLife = script:GetCustomProperty("loseLife"),
 	lifePowerupGet = script:GetCustomProperty("lifePowerupGet"),
-	hitIndestructibleBrick = script:GetCustomProperty("hitIndestructibleBrick")
+	hitIndestructibleBrick = script:GetCustomProperty("hitIndestructibleBrick"),
+	roundFinished = script:GetCustomProperty("roundFinished"),
+	gameOver = script:GetCustomProperty("gameOver"),
+	roundStart = script:GetCustomProperty("roundStart")
 }
 function PlaySound(name, position)
 	local sound = World.SpawnAsset(SOUNDS[name], {position = position})

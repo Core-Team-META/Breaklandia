@@ -10,6 +10,24 @@ GlobalEntries {
   ScoreFormatted: "10900.0"
   DateTime: "2020-09-24T06:36:45.770Z"
 }
+GlobalEntries {
+  Id: "BOT_Bot2"
+  Name: "Bot2"
+  ScoreFormatted: "3220.0"
+  DateTime: "2020-09-24T23:27:30.258Z"
+}
+GlobalEntries {
+  Id: "BOT_Bot4"
+  Name: "Bot4"
+  ScoreFormatted: "1700.0"
+  DateTime: "2020-09-24T23:30:58.380Z"
+}
+GlobalEntries {
+  Id: "BOT_Bot3"
+  Name: "Bot3"
+  ScoreFormatted: "150.0"
+  DateTime: "2020-09-24T23:27:42.318Z"
+}
 Config {
   SortType {
     Value: "mc:ecoresdkleaderboardsorting:higherisbetter"

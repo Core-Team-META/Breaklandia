@@ -76,6 +76,9 @@ function CheckCollisions(ball)
 						ballCount = ballCount + 1
 					end
 					if ballCount == 1 then -- this was the last ball
+						if Game.GetLocalPlayer():GetResource("Lives") == 0 then
+							utils.PlaySound("gameOver", ball.round.position)
+						end
 						local light = ball.round.light
 						if light.visibility == Visibility.FORCE_OFF then
 							light.visibility = Visibility.INHERIT

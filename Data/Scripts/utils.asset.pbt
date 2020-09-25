@@ -76,6 +76,24 @@
           Id: 17868963822350484326
         }
       }
+      Overrides {
+        Name: "cs:roundFinished"
+        AssetReference {
+          Id: 12268466399571410635
+        }
+      }
+      Overrides {
+        Name: "cs:gameOver"
+        AssetReference {
+          Id: 15316497082714207955
+        }
+      }
+      Overrides {
+        Name: "cs:roundStart"
+        AssetReference {
+          Id: 17153586369859599210
+        }
+      }
     }
   }
   SerializationVersion: 63

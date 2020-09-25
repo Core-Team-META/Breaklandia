@@ -133,17 +133,19 @@ Task.Spawn(function() -- global leaderboard update loop
 	local rows = {}
 	while true do
 		local leaderboard = Leaderboards.GetLeaderboard(HIGH_SCORE, LeaderboardType.GLOBAL)
-		for i = 1, math.min(10, #leaderboard) do
-			if not rows[i] then
-				rows[i] = World.SpawnAsset(LEADERBOARD_ROW, {parent = LEADERBOARD_GLOBAL})
-				rows[i].y = 60*i
-			end
-			local text = leaderboard[i].name.." "..math.floor(leaderboard[i].score)
-			for _, uitext in pairs(rows[i]:GetChildren()) do
-				uitext.text = text
+		if leaderboard then
+			for i = 1, math.min(10, #leaderboard) do
+				if not rows[i] then
+					rows[i] = World.SpawnAsset(LEADERBOARD_ROW, {parent = LEADERBOARD_GLOBAL})
+					rows[i].y = 60*i
+				end
+				local text = leaderboard[i].name.." "..math.floor(leaderboard[i].score)
+				for _, uitext in pairs(rows[i]:GetChildren()) do
+					uitext.text = text
+				end
 			end
 		end
-		Task.Wait(10)
+		Task.Wait(5)
 	end
 end)
 Task.Spawn(function() -- local leaderboard update loop
@@ -170,6 +172,7 @@ Task.Spawn(function() -- local leaderboard update loop
 		end
 		for i = #userList+1, #rows do -- remove excess rows when players leave
 			rows[i]:Destroy()
+			rows[i] = nil
 		end
 		Task.Wait(1)
 	end

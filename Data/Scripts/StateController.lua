@@ -164,6 +164,7 @@ Events.Connect("StartRound", function(boxReference)
 	box.destroyEvent:Connect(function()
 		round.isActive = false
 	end)
+	utils.PlaySound("roundStart", round.position)
 end)
 
 return StateController
