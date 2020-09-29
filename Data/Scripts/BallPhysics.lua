@@ -79,21 +79,7 @@ function CheckCollisions(ball)
 						if Game.GetLocalPlayer():GetResource("Lives") == 0 then
 							utils.PlaySound("gameOver", ball.round.position)
 						end
-						local light = ball.round.light
-						if light.visibility == Visibility.FORCE_OFF then
-							light.visibility = Visibility.INHERIT
-							for i = 0, 30 do
-								light.attenuationRadius = 6000 * i/30
-								Task.Wait()
-								if not Object.IsValid(light) then return end
-							end
-							for i = 70, 0, -1 do
-								light.attenuationRadius = 6000 * i/70
-								Task.Wait()
-								if not Object.IsValid(light) then return end
-							end
-							light.visibility = Visibility.FORCE_OFF
-						end
+						utils.FlashLight(ball.round.light, Color.New(1, 0, 0))
 					end
 				end
 			else

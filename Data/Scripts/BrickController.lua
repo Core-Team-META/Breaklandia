@@ -130,6 +130,7 @@ function BrickController.Destroy(brickObject)
 		if not breakableBrickExists then
 			round.isActive = false
 			utils.PlaySound("roundFinished", round.position)
+			utils.FlashLight(round.light, Color.New(0, 1, 0))
 		end
 	end
 end

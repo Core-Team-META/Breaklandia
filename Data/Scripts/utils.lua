@@ -153,4 +153,22 @@ function shuffle(t) -- fisher-yates
 	return t
 end
 
+function FlashLight(light, color)
+	light:SetColor(color)
+	if light.visibility == Visibility.FORCE_OFF then
+		light.visibility = Visibility.INHERIT
+		for i = 0, 30 do
+			light.attenuationRadius = 6000 * i/30
+			Task.Wait()
+			if not Object.IsValid(light) then return end
+		end
+		for i = 70, 0, -1 do
+			light.attenuationRadius = 6000 * i/70
+			Task.Wait()
+			if not Object.IsValid(light) then return end
+		end
+		light.visibility = Visibility.FORCE_OFF
+	end
+end
+
 return _ENV

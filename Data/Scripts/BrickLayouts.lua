@@ -632,7 +632,6 @@ easy = {
 	waffle[4], -- diagonal
 	jordan10[1], -- design
 	jordan10[2], -- france flag
-	jordan10[5], -- pride flag
 	jordan10[6], -- sweden flag
 	jordan10[7], -- mali flag
 	jordan10[8], -- brazil flag
@@ -655,6 +654,7 @@ medium = {
 }
 hard = {
 	waffle[6], -- indestructible gap
+	jordan10[5], -- pride flag (hard to reach gap on the right)
 	jordan10[9], -- indestructible 1x1 gap diagonal
 	jordan20[3], -- creeper (contains hard-to-reach areas blocked by indestructible walls)
 	jordan20[8], -- unreal logo (hard to reach places)
