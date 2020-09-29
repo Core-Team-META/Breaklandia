@@ -185,7 +185,7 @@ Events.Connect("Multiball", function()
 	for object, ball in pairs(round.ballSet) do
 		ballList[#ballList + 1] = ball
 	end
-	local ballCount = 0
+	local ballCount = #ballList
 	for i = 1, #ballList do
 		if ballCount >= utils.MAX_BALLS then break end
 		local ballPosition = ballList[i].subject:GetWorldPosition() - round.position

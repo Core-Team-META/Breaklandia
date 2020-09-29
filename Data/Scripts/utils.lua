@@ -145,4 +145,12 @@ function DecodeBrickString(brickString)
 	return brickSequence
 end
 
+function shuffle(t) -- fisher-yates
+	for i = #t, 2, -1 do
+		local r = math.random(i)
+		t[i], t[r] = t[r], t[i]
+	end
+	return t
+end
+
 return _ENV

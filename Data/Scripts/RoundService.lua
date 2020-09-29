@@ -1,4 +1,4 @@
-﻿local utils, Paddle, Ball, Brick, Powerup
+﻿local utils, Paddle, Ball, Brick, Powerup, BrickLayouts
 
 local BOX_TEMPLATE = script:GetCustomProperty("Box")
 local HIGH_SCORE = script:GetCustomProperty("HighScore")
@@ -23,6 +23,7 @@ function RoundService.Setup(dependencies)
 	Ball = dependencies.Ball
 	Brick = dependencies.Brick
 	Powerup = dependencies.Powerup
+	BrickLayouts = dependencies.BrickLayouts
 end
 
 function RoundService.AddPlayer(player)
@@ -45,6 +46,14 @@ function RoundService.AddPlayer(player)
 			end
 		end
 	end)
+	
+	--[[player.bindingPressedEvent:Connect(function(_, binding) -- debug mode right click to change level
+		if binding == "ability_secondary" then
+			local round = data.round
+			player.serverUserData.level = player.serverUserData.level + 1
+			RoundService.StartRound(RoundService.CreateRound(round.players))
+		end
+	end)]]
 end
 
 function RoundService.RemovePlayer(player)
@@ -84,7 +93,7 @@ end
 Events.ConnectForPlayer("LoseLife", RoundService.LoseLife)
 
 local occupiedBoxPositions = {}
-function RoundService.CreateRound(players)
+function RoundService.CreateRound(players, levelQueue)
 	local boxPositionIndex = 1
 	for i = 1, math.huge do
 		if not occupiedBoxPositions[i] then
@@ -116,8 +125,29 @@ function RoundService.CreateRound(players)
 	for _, player in pairs(players) do
 		RoundService.players[player].round = round
 		player:SetWorldPosition(boxPosition + Vector3.UP * 100)
+		if levelQueue and player.serverUserData.level > #levelQueue then -- generate a new level sequence if the player reached the end
+			player.serverUserData.level = 1
+			levelQueue = nil
+		end
 		round.level = player.serverUserData.level
 	end
+	
+	if not levelQueue then
+		levelQueue = {}
+		local easy = utils.shuffle({table.unpack(BrickLayouts.easy)})
+		local medium = utils.shuffle({table.unpack(BrickLayouts.medium)})
+		local hard = utils.shuffle({table.unpack(BrickLayouts.hard)})
+		for i = 1, math.min(5, #easy) do
+			levelQueue[#levelQueue + 1] = easy[i]
+		end
+		for i = 1, math.min(4, #medium) do
+			levelQueue[#levelQueue + 1] = medium[i]
+		end
+		for i = 1, math.min(3, #hard) do
+			levelQueue[#levelQueue + 1] = hard[i]
+		end
+	end
+	round.levelQueue = levelQueue
 	
 	Brick.GenerateWall(round, round.level)
 	
@@ -194,7 +224,7 @@ function RoundService.EndRound(round, advancingToNextRound)
 		end
 	end
 
-	return RoundService.StartRound(RoundService.CreateRound(round.players)) -- tail call to prevent stack overflow
+	return RoundService.StartRound(RoundService.CreateRound(round.players, round.levelQueue)) -- tail call to prevent stack overflow
 end
 
 return RoundService

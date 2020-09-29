@@ -4407,6 +4407,12 @@ Objects {
       }
     }
     Overrides {
+      Name: "cs:BrickLayouts"
+      AssetReference {
+        Id: 2881117646679175733
+      }
+    }
+    Overrides {
       Name: "cs:HighScores"
       String: ""
     }
