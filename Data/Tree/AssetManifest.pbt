@@ -71,6 +71,15 @@ Assets {
   }
 }
 Assets {
+  Id: 3327765980461426997
+  Name: "Sci-fi Terminal Keyboard 01"
+  PlatformAssetType: 1
+  PrimaryAsset {
+    AssetType: "StaticMeshAssetRef"
+    AssetId: "sm_prop_scifi_keyboard_001_ref"
+  }
+}
+Assets {
   Id: 2617361319805279588
   Name: "Nebula"
   PlatformAssetType: 6
@@ -104,5 +113,14 @@ Assets {
   PrimaryAsset {
     AssetType: "BlueprintAssetRef"
     AssetId: "CORESKY_Moon"
+  }
+}
+Assets {
+  Id: 512374670192238661
+  Name: "Invisible"
+  PlatformAssetType: 2
+  PrimaryAsset {
+    AssetType: "MaterialAssetRef"
+    AssetId: "mi_invisible_001"
   }
 }

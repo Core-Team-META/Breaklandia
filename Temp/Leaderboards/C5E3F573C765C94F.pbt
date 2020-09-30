@@ -11,6 +11,12 @@ GlobalEntries {
   DateTime: "2020-09-24T06:36:45.770Z"
 }
 GlobalEntries {
+  Id: "901b7628983c4c8db4282f24afeda57a"
+  Name: "Buckmonster"
+  ScoreFormatted: "4290.0"
+  DateTime: "2020-09-30T09:42:58.588Z"
+}
+GlobalEntries {
   Id: "BOT_Bot2"
   Name: "Bot2"
   ScoreFormatted: "3220.0"

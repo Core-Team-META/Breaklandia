@@ -125,7 +125,7 @@ HERE_BUTTON.clickedEvent:Connect(toggleLeaderboard)
 GLOBAL_BUTTON.clickedEvent:Connect(toggleLeaderboard)
 player.bindingPressedEvent:Connect(function(_, abilityBinding)
 	if abilityBinding == "ability_extra_24" then -- T
-		toggleLeaderboard()
+		-- toggleLeaderboard()
 	end
 end)
 
@@ -141,7 +141,9 @@ Task.Spawn(function() -- global leaderboard update loop
 				end
 				local text = leaderboard[i].name.." "..math.floor(leaderboard[i].score)
 				for _, uitext in pairs(rows[i]:GetChildren()) do
-					uitext.text = text
+					if (uitext:IsA("UIText")) then
+						uitext.text = text
+					end
 				end
 			end
 		end
@@ -167,7 +169,9 @@ Task.Spawn(function() -- local leaderboard update loop
 			end
 			local text = userList[i].name.." "..math.floor(scores[userList[i]])
 			for _, uitext in pairs(rows[i]:GetChildren()) do
-				uitext.text = text
+				if (uitext:IsA("UIText")) then
+					uitext.text = text
+				end
 			end
 		end
 		for i = #userList+1, #rows do -- remove excess rows when players leave

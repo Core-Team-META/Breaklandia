@@ -21,6 +21,8 @@ Objects {
   ChildIds: 4105456477874349227
   ChildIds: 9702658192086695053
   ChildIds: 14506848262931602477
+  ChildIds: 9529841999697550945
+  ChildIds: 9179583998828210173
   UnregisteredParameters {
   }
   Collidable_v2 {
@@ -30,6 +32,376 @@ Objects {
     Value: "mc:evisibilitysetting:forceon"
   }
   Folder {
+  }
+}
+Objects {
+  Id: 9179583998828210173
+  Name: "Score"
+  Transform {
+    Location {
+      X: 1012.04865
+      Y: 1813.61218
+      Z: 950.691284
+    }
+    Rotation {
+    }
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 4781671109827199097
+  ChildIds: 11411675379138140755
+  ChildIds: 10771433533596970940
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  Folder {
+    IsGroup: true
+  }
+}
+Objects {
+  Id: 10771433533596970940
+  Name: "Sci-fi Console Screen 03"
+  Transform {
+    Location {
+    }
+    Rotation {
+      Pitch: 0.327616841
+      Yaw: 89.9994888
+      Roll: 20.4264107
+    }
+    Scale {
+      X: 4.33422
+      Y: 4.75128126
+      Z: 4.75128031
+    }
+  }
+  ParentId: 9179583998828210173
+  UnregisteredParameters {
+    Overrides {
+      Name: "ma:Shared_Detail4:id"
+      AssetReference {
+        Id: 512374670192238661
+      }
+    }
+    Overrides {
+      Name: "ma:Shared_Detail4:color"
+      Color {
+        A: 1
+      }
+    }
+    Overrides {
+      Name: "ma:Shared_Detail3:id"
+      AssetReference {
+        Id: 13313186996776760906
+      }
+    }
+    Overrides {
+      Name: "ma:Shared_BaseMaterial:id"
+      AssetReference {
+        Id: 512374670192238661
+      }
+    }
+    Overrides {
+      Name: "ma:Shared_Detail1:id"
+      AssetReference {
+        Id: 512374670192238661
+      }
+    }
+    Overrides {
+      Name: "ma:Shared_Detail2:id"
+      AssetReference {
+        Id: 512374670192238661
+      }
+    }
+    Overrides {
+      Name: "ma:Shared_Detail3:smart"
+      Bool: false
+    }
+    Overrides {
+      Name: "ma:Shared_Detail3:color"
+      Color {
+        G: 0.397615612
+        B: 0.789999962
+        A: 1
+      }
+    }
+  }
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  CoreMesh {
+    MeshAsset {
+      Id: 3327765980461426997
+    }
+    Teams {
+      IsTeamCollisionEnabled: true
+      IsEnemyCollisionEnabled: true
+    }
+    EnableCameraCollision: true
+    StaticMesh {
+      Physics {
+      }
+    }
+  }
+}
+Objects {
+  Id: 11411675379138140755
+  Name: "Sci-fi Console Screen 03"
+  Transform {
+    Location {
+      Z: 6.52227783
+    }
+    Rotation {
+      Pitch: 0.327616841
+      Yaw: 89.9994888
+      Roll: 20.426424
+    }
+    Scale {
+      X: 4.33422
+      Y: 4.75128126
+      Z: 4.75128031
+    }
+  }
+  ParentId: 9179583998828210173
+  UnregisteredParameters {
+    Overrides {
+      Name: "ma:Shared_Detail4:id"
+      AssetReference {
+        Id: 512374670192238661
+      }
+    }
+    Overrides {
+      Name: "ma:Shared_Detail4:color"
+      Color {
+        A: 1
+      }
+    }
+    Overrides {
+      Name: "ma:Shared_Detail3:id"
+      AssetReference {
+        Id: 638045149337742642
+      }
+    }
+    Overrides {
+      Name: "ma:Shared_BaseMaterial:id"
+      AssetReference {
+        Id: 7736220887916591162
+      }
+    }
+  }
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  CoreMesh {
+    MeshAsset {
+      Id: 3327765980461426997
+    }
+    Teams {
+      IsTeamCollisionEnabled: true
+      IsEnemyCollisionEnabled: true
+    }
+    EnableCameraCollision: true
+    StaticMesh {
+      Physics {
+      }
+    }
+  }
+}
+Objects {
+  Id: 9529841999697550945
+  Name: "High Score"
+  Transform {
+    Location {
+      X: 1012.04865
+      Y: 2219.23755
+      Z: 950.691284
+    }
+    Rotation {
+    }
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 4781671109827199097
+  ChildIds: 17776810842136476811
+  ChildIds: 15392648897407861142
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  Folder {
+    IsGroup: true
+  }
+}
+Objects {
+  Id: 15392648897407861142
+  Name: "Sci-fi Console Screen 03"
+  Transform {
+    Location {
+    }
+    Rotation {
+      Pitch: 0.327616841
+      Yaw: 89.9994888
+      Roll: 20.4264107
+    }
+    Scale {
+      X: 4.33422
+      Y: 4.75128126
+      Z: 4.75128031
+    }
+  }
+  ParentId: 9529841999697550945
+  UnregisteredParameters {
+    Overrides {
+      Name: "ma:Shared_Detail4:id"
+      AssetReference {
+        Id: 512374670192238661
+      }
+    }
+    Overrides {
+      Name: "ma:Shared_Detail4:color"
+      Color {
+        A: 1
+      }
+    }
+    Overrides {
+      Name: "ma:Shared_Detail3:id"
+      AssetReference {
+        Id: 13313186996776760906
+      }
+    }
+    Overrides {
+      Name: "ma:Shared_BaseMaterial:id"
+      AssetReference {
+        Id: 512374670192238661
+      }
+    }
+    Overrides {
+      Name: "ma:Shared_Detail1:id"
+      AssetReference {
+        Id: 512374670192238661
+      }
+    }
+    Overrides {
+      Name: "ma:Shared_Detail2:id"
+      AssetReference {
+        Id: 512374670192238661
+      }
+    }
+    Overrides {
+      Name: "ma:Shared_Detail3:smart"
+      Bool: false
+    }
+    Overrides {
+      Name: "ma:Shared_Detail3:color"
+      Color {
+        G: 0.397615612
+        B: 0.789999962
+        A: 1
+      }
+    }
+  }
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  CoreMesh {
+    MeshAsset {
+      Id: 3327765980461426997
+    }
+    Teams {
+      IsTeamCollisionEnabled: true
+      IsEnemyCollisionEnabled: true
+    }
+    EnableCameraCollision: true
+    StaticMesh {
+      Physics {
+      }
+    }
+  }
+}
+Objects {
+  Id: 17776810842136476811
+  Name: "Sci-fi Console Screen 03"
+  Transform {
+    Location {
+      Z: 6.52227783
+    }
+    Rotation {
+      Pitch: 0.327616841
+      Yaw: 89.9994888
+      Roll: 20.426424
+    }
+    Scale {
+      X: 4.33422
+      Y: 4.75128126
+      Z: 4.75128031
+    }
+  }
+  ParentId: 9529841999697550945
+  UnregisteredParameters {
+    Overrides {
+      Name: "ma:Shared_Detail4:id"
+      AssetReference {
+        Id: 512374670192238661
+      }
+    }
+    Overrides {
+      Name: "ma:Shared_Detail4:color"
+      Color {
+        A: 1
+      }
+    }
+    Overrides {
+      Name: "ma:Shared_Detail3:id"
+      AssetReference {
+        Id: 638045149337742642
+      }
+    }
+    Overrides {
+      Name: "ma:Shared_BaseMaterial:id"
+      AssetReference {
+        Id: 2813975549538832089
+      }
+    }
+  }
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  CoreMesh {
+    MeshAsset {
+      Id: 3327765980461426997
+    }
+    Teams {
+      IsTeamCollisionEnabled: true
+      IsEnemyCollisionEnabled: true
+    }
+    EnableCameraCollision: true
+    StaticMesh {
+      Physics {
+      }
+    }
   }
 }
 Objects {
@@ -101,6 +473,7 @@ Objects {
     }
   }
   ParentId: 9702658192086695053
+  ChildIds: 12403298176153897993
   ChildIds: 1821016063774626287
   ChildIds: 1735557410747877248
   ChildIds: 6661207375619324652
@@ -678,7 +1051,8 @@ Objects {
   Control {
     Width: 400
     Height: 100
-    UIX: 50
+    UIX: 42.2112122
+    UIY: 20.7607746
     RenderTransformPivot {
       Anchor {
         Value: "mc:euianchor:middlecenter"
@@ -724,7 +1098,8 @@ Objects {
   Control {
     Width: 500
     Height: 90
-    UIY: 90
+    UIX: 10.6964626
+    UIY: 52.0677719
     RenderTransformPivot {
       Anchor {
         Value: "mc:euianchor:middlecenter"
@@ -738,7 +1113,7 @@ Objects {
         B: 1
         A: 1
       }
-      Size: 50
+      Size: 40
       Justification {
         Value: "mc:etextjustify:right"
       }
@@ -781,20 +1156,22 @@ Objects {
   Control {
     Width: 500
     Height: 90
+    UIX: 10.6964626
+    UIY: 2.66638565
     RenderTransformPivot {
       Anchor {
         Value: "mc:euianchor:middlecenter"
       }
     }
     Text {
-      Label: "High Score"
+      Label: "HIGH SCORE"
       Color {
         R: 1
         G: 1
         B: 1
         A: 1
       }
-      Size: 50
+      Size: 33
       Justification {
         Value: "mc:etextjustify:right"
       }
@@ -837,8 +1214,8 @@ Objects {
   Control {
     Width: 500
     Height: 90
-    UIX: -500
-    UIY: 90
+    UIX: -351.315918
+    UIY: 52.0677719
     RenderTransformPivot {
       Anchor {
         Value: "mc:euianchor:middlecenter"
@@ -852,7 +1229,7 @@ Objects {
         B: 1
         A: 1
       }
-      Size: 50
+      Size: 40
       Justification {
         Value: "mc:etextjustify:right"
       }
@@ -895,21 +1272,22 @@ Objects {
   Control {
     Width: 500
     Height: 90
-    UIX: -500
+    UIX: -351.315918
+    UIY: 2.66638565
     RenderTransformPivot {
       Anchor {
         Value: "mc:euianchor:middlecenter"
       }
     }
     Text {
-      Label: "Score"
+      Label: "SCORE"
       Color {
         R: 1
         G: 1
         B: 1
         A: 1
       }
-      Size: 50
+      Size: 33
       Justification {
         Value: "mc:etextjustify:right"
       }
@@ -3687,7 +4065,6 @@ Objects {
   ParentId: 9988479098138247358
   ChildIds: 7086211148063481587
   ChildIds: 13261402634799000936
-  ChildIds: 12403298176153897993
   ChildIds: 17857025272255335645
   UnregisteredParameters {
     Overrides {
@@ -3724,7 +4101,7 @@ Objects {
   Control {
     Width: 100
     Height: 100
-    UIX: -30
+    UIX: -10
     UIY: 30
     RenderTransformPivot {
       Anchor {
@@ -3772,8 +4149,9 @@ Objects {
     Value: "mc:evisibilitysetting:inheritfromparent"
   }
   Control {
-    Width: 100
-    Height: 100
+    Width: 320
+    Height: 736
+    UIX: -5
     RenderTransformPivot {
       Anchor {
         Value: "mc:euianchor:middlecenter"
@@ -3814,42 +4192,6 @@ Objects {
   }
   TemplateInstance {
     ParameterOverrideMap {
-      key: 9293575015102341591
-      value {
-        Overrides {
-          Name: "Label"
-          String: "High Scores (Global)"
-        }
-      }
-    }
-    ParameterOverrideMap {
-      key: 10005530197510500831
-      value {
-        Overrides {
-          Name: "Label"
-          String: "High Scores (Global)"
-        }
-      }
-    }
-    ParameterOverrideMap {
-      key: 13512878243618755291
-      value {
-        Overrides {
-          Name: "Label"
-          String: "High Scores (Global)"
-        }
-      }
-    }
-    ParameterOverrideMap {
-      key: 13869148485365805241
-      value {
-        Overrides {
-          Name: "Label"
-          String: "High Scores (Global)"
-        }
-      }
-    }
-    ParameterOverrideMap {
       key: 15727628853237688651
       value {
         Overrides {
@@ -3865,150 +4207,6 @@ Objects {
           Name: "Rotation"
           Rotator {
           }
-        }
-      }
-    }
-    ParameterOverrideMap {
-      key: 17091386681941051417
-      value {
-        Overrides {
-          Name: "Label"
-          String: "High Scores (Global)"
-        }
-      }
-    }
-    TemplateAsset {
-      Id: 2587742162255074138
-    }
-  }
-}
-Objects {
-  Id: 12403298176153897993
-  Name: "HereLeaderboard"
-  Transform {
-    Location {
-    }
-    Rotation {
-    }
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 1821016063774626287
-  ChildIds: 14113451347964409255
-  UnregisteredParameters {
-  }
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:forceoff"
-  }
-  Control {
-    Width: 100
-    Height: 100
-    RenderTransformPivot {
-      Anchor {
-        Value: "mc:euianchor:middlecenter"
-      }
-    }
-    Panel {
-    }
-    AnchorLayout {
-      SelfAnchor {
-        Anchor {
-          Value: "mc:euianchor:topright"
-        }
-      }
-      TargetAnchor {
-        Anchor {
-          Value: "mc:euianchor:topright"
-        }
-      }
-    }
-  }
-}
-Objects {
-  Id: 14113451347964409255
-  Name: "LeaderboardRow"
-  Transform {
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 12403298176153897993
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  TemplateInstance {
-    ParameterOverrideMap {
-      key: 9293575015102341591
-      value {
-        Overrides {
-          Name: "Label"
-          String: "High Scores"
-        }
-      }
-    }
-    ParameterOverrideMap {
-      key: 10005530197510500831
-      value {
-        Overrides {
-          Name: "Label"
-          String: "High Scores"
-        }
-      }
-    }
-    ParameterOverrideMap {
-      key: 13512878243618755291
-      value {
-        Overrides {
-          Name: "Label"
-          String: "High Scores"
-        }
-      }
-    }
-    ParameterOverrideMap {
-      key: 13869148485365805241
-      value {
-        Overrides {
-          Name: "Label"
-          String: "High Scores"
-        }
-      }
-    }
-    ParameterOverrideMap {
-      key: 15727628853237688651
-      value {
-        Overrides {
-          Name: "Name"
-          String: "LeaderboardRow"
-        }
-        Overrides {
-          Name: "Position"
-          Vector {
-          }
-        }
-        Overrides {
-          Name: "Rotation"
-          Rotator {
-          }
-        }
-      }
-    }
-    ParameterOverrideMap {
-      key: 17091386681941051417
-      value {
-        Overrides {
-          Name: "Label"
-          String: "High Scores"
         }
       }
     }
@@ -4036,7 +4234,7 @@ Objects {
     Value: "mc:ecollisionsetting:inheritfromparent"
   }
   Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
+    Value: "mc:evisibilitysetting:forceoff"
   }
   Control {
     Width: 100
@@ -4118,7 +4316,7 @@ Objects {
     Value: "mc:ecollisionsetting:inheritfromparent"
   }
   Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
+    Value: "mc:evisibilitysetting:forceoff"
   }
   Control {
     Width: 100
@@ -4179,6 +4377,163 @@ Objects {
           Value: "mc:euianchor:topleft"
         }
       }
+    }
+  }
+}
+Objects {
+  Id: 12403298176153897993
+  Name: "HereLeaderboard"
+  Transform {
+    Location {
+    }
+    Rotation {
+    }
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 9988479098138247358
+  ChildIds: 14113451347964409255
+  UnregisteredParameters {
+  }
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:forceon"
+  }
+  Control {
+    Width: 100
+    Height: 100
+    UIX: 200
+    UIY: 30
+    RenderTransformPivot {
+      Anchor {
+        Value: "mc:euianchor:middlecenter"
+      }
+    }
+    Panel {
+    }
+    AnchorLayout {
+      SelfAnchor {
+        Anchor {
+          Value: "mc:euianchor:topleft"
+        }
+      }
+      TargetAnchor {
+        Anchor {
+          Value: "mc:euianchor:topleft"
+        }
+      }
+    }
+  }
+}
+Objects {
+  Id: 14113451347964409255
+  Name: "LeaderboardRow"
+  Transform {
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 12403298176153897993
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  TemplateInstance {
+    ParameterOverrideMap {
+      key: 9293575015102341591
+      value {
+        Overrides {
+          Name: "Label"
+          String: "CURRENT SCORES"
+        }
+        Overrides {
+          Name: "Size"
+          Int: 25
+        }
+      }
+    }
+    ParameterOverrideMap {
+      key: 10005530197510500831
+      value {
+        Overrides {
+          Name: "Label"
+          String: "CURRENT SCORES"
+        }
+        Overrides {
+          Name: "Size"
+          Int: 25
+        }
+      }
+    }
+    ParameterOverrideMap {
+      key: 13512878243618755291
+      value {
+        Overrides {
+          Name: "Label"
+          String: "CURRENT SCORES"
+        }
+        Overrides {
+          Name: "Size"
+          Int: 25
+        }
+      }
+    }
+    ParameterOverrideMap {
+      key: 13869148485365805241
+      value {
+        Overrides {
+          Name: "Label"
+          String: "CURRENT SCORES"
+        }
+        Overrides {
+          Name: "Size"
+          Int: 25
+        }
+      }
+    }
+    ParameterOverrideMap {
+      key: 15727628853237688651
+      value {
+        Overrides {
+          Name: "Name"
+          String: "LeaderboardRow"
+        }
+        Overrides {
+          Name: "Position"
+          Vector {
+          }
+        }
+        Overrides {
+          Name: "Rotation"
+          Rotator {
+          }
+        }
+      }
+    }
+    ParameterOverrideMap {
+      key: 17091386681941051417
+      value {
+        Overrides {
+          Name: "Label"
+          String: "CURRENT SCORES"
+        }
+        Overrides {
+          Name: "Size"
+          Int: 25
+        }
+      }
+    }
+    TemplateAsset {
+      Id: 2587742162255074138
     }
   }
 }

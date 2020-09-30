@@ -15,7 +15,8 @@
             Z: 1
           }
         }
-        ParentId: 1821016063774626287
+        ParentId: 17857025272255335645
+        ChildIds: 1803719068379380088
         ChildIds: 10005530197510500831
         ChildIds: 17091386681941051417
         ChildIds: 9293575015102341591
@@ -52,6 +53,61 @@
         }
       }
       Objects {
+        Id: 1803719068379380088
+        Name: "UI Image"
+        Transform {
+          Location {
+          }
+          Rotation {
+          }
+          Scale {
+            X: 1
+            Y: 1
+            Z: 1
+          }
+        }
+        ParentId: 15727628853237688651
+        Collidable_v2 {
+          Value: "mc:ecollisionsetting:inheritfromparent"
+        }
+        Visible_v2 {
+          Value: "mc:evisibilitysetting:inheritfromparent"
+        }
+        Control {
+          Width: 200
+          Height: 200
+          UIX: 10
+          RenderTransformPivot {
+            Anchor {
+              Value: "mc:euianchor:middlecenter"
+            }
+          }
+          UseParentWidth: true
+          UseParentHeight: true
+          Image {
+            Brush {
+            }
+            Color {
+              A: 0.33
+            }
+            TeamSettings {
+            }
+          }
+          AnchorLayout {
+            SelfAnchor {
+              Anchor {
+                Value: "mc:euianchor:topleft"
+              }
+            }
+            TargetAnchor {
+              Anchor {
+                Value: "mc:euianchor:topleft"
+              }
+            }
+          }
+        }
+      }
+      Objects {
         Id: 10005530197510500831
         Name: "Shadow"
         Transform {
@@ -82,11 +138,11 @@
             }
           }
           Text {
-            Label: "Highest Scores"
+            Label: "TOP SCORES"
             Color {
               A: 1
             }
-            Size: 30
+            Size: 25
             Justification {
               Value: "mc:etextjustify:right"
             }
@@ -136,11 +192,11 @@
             }
           }
           Text {
-            Label: "Highest Scores"
+            Label: "TOP SCORES"
             Color {
               A: 1
             }
-            Size: 30
+            Size: 25
             Justification {
               Value: "mc:etextjustify:right"
             }
@@ -190,11 +246,11 @@
             }
           }
           Text {
-            Label: "Highest Scores"
+            Label: "TOP SCORES"
             Color {
               A: 1
             }
-            Size: 30
+            Size: 25
             Justification {
               Value: "mc:etextjustify:right"
             }
@@ -244,11 +300,11 @@
             }
           }
           Text {
-            Label: "Highest Scores"
+            Label: "TOP SCORES"
             Color {
               A: 1
             }
-            Size: 30
+            Size: 25
             Justification {
               Value: "mc:etextjustify:right"
             }
@@ -297,14 +353,14 @@
             }
           }
           Text {
-            Label: "Highest Scores"
+            Label: "TOP SCORES"
             Color {
               R: 1
               G: 1
               B: 1
               A: 1
             }
-            Size: 30
+            Size: 25
             Justification {
               Value: "mc:etextjustify:right"
             }
