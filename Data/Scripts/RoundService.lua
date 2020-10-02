@@ -137,12 +137,18 @@ function RoundService.CreateRound(players, levelQueue)
 		local easy = utils.shuffle({table.unpack(BrickLayouts.easy)})
 		local medium = utils.shuffle({table.unpack(BrickLayouts.medium)})
 		local hard = utils.shuffle({table.unpack(BrickLayouts.hard)})
-		for i = 1, math.min(5, #easy) do
+		local transitional = utils.shuffle({table.unpack(BrickLayouts.transitional)})
+		
+		for i = 1, math.min(3, #easy) do
 			levelQueue[#levelQueue + 1] = easy[i]
 		end
-		for i = 1, math.min(4, #medium) do
+		levelQueue[#levelQueue + 1] = transitional[1]
+		
+		for i = 1, math.min(5, #medium) do
 			levelQueue[#levelQueue + 1] = medium[i]
 		end
+		levelQueue[#levelQueue + 1] = transitional[2]
+		
 		for i = 1, math.min(3, #hard) do
 			levelQueue[#levelQueue + 1] = hard[i]
 		end
