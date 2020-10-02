@@ -245,6 +245,49 @@ Objects {
   }
 }
 Objects {
+  Id: 12656842353755649537
+  Name: "Electronic Music Score Set 01"
+  Transform {
+    Location {
+    }
+    Rotation {
+    }
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 3846085128276031378
+  UnregisteredParameters {
+    Overrides {
+      Name: "bp:Type"
+      Enum {
+        Value: "mc:emx_electronicmusic:61"
+      }
+    }
+  }
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  Blueprint {
+    BlueprintAsset {
+      Id: 13781698529190780776
+    }
+    TeamSettings {
+    }
+    AudioBP {
+      Repeat: true
+      Volume: 1
+      Falloff: 3600
+      Radius: 400
+    }
+  }
+}
+Objects {
   Id: 12894429668300995652
   Name: "MusicPlayer"
   Transform {
