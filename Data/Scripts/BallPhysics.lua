@@ -186,7 +186,7 @@ function ComputeEdges(round)
 				repeat
 					local canExpandHorizontally = true
 					for i = x, x + rectangleHeight - 1 do
-						if not grid[y + rectangleWidth] or not grid[y + rectangleWidth][i] then
+						if not grid[y + rectangleWidth] or not grid[y + rectangleWidth][i] or usedCells[y + rectangleWidth][i] then
 							canExpandHorizontally = false
 							break
 						end
@@ -199,7 +199,7 @@ function ComputeEdges(round)
 					end
 					local canExpandVertically = true
 					for i = y, y + rectangleWidth - 1 do
-						if not grid[i] or not grid[i][x + rectangleHeight] then
+						if not grid[i] or not grid[i][x + rectangleHeight] or usedCells[i][x + rectangleHeight] then
 							canExpandVertically = false
 							break
 						end
