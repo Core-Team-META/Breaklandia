@@ -802,12 +802,4 @@ impossible = {
 	jordan30[10], -- stalactites (tightly spaced indestructible vertical columns)
 }
 
-layouts = {}
-sets = {easy, medium, hard} -- impossible not included
-for i = 1, #sets do
-	for j = 1, #sets[i] do
-		layouts[#layouts + 1] = sets[i][j]
-	end
-end
-
 return _ENV

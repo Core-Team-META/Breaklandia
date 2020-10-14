@@ -1,5 +1,6 @@
 ﻿local utils, StateController, LaserBlast
 local ABILITY_FOLDER = script:GetCustomProperty("ABILITY_FOLDER"):WaitForObject()
+local CURSOR = script:GetCustomProperty("Cursor"):WaitForObject()
 local player = Game.GetLocalPlayer()
 
 local PaddleController = {}
@@ -69,6 +70,24 @@ function PaddleController.SetPaddle(container)
 				local impactPosition = Vector3.New(mousePos) -- copy
 				mousePos.y = math.max(utils.LEFT_WALL_Y, math.min(utils.RIGHT_WALL_Y, mousePos.y - StateController.boxPositionY))
 				paddle.position = Vector3.New(0, mousePos.y, 0) + utils.PADDLE_OFFSET
+				if mousePos.y == utils.LEFT_WALL_Y or mousePos.y == utils.RIGHT_WALL_Y then -- show cursor when out of bounds
+					CURSOR.visibility = Visibility.INHERIT
+					local cursorPos = UI.GetCursorPosition()
+					local deltaX = CURSOR.x - cursorPos.x
+					CURSOR.x = cursorPos.x
+					CURSOR.y = cursorPos.y
+					local rotSpeed
+					if not CURSOR.clientUserData.rotSpeed then
+						rotSpeed = 10 * (mousePos.y == utils.LEFT_WALL_Y and -1 or 1)
+					else
+						rotSpeed = CURSOR.clientUserData.rotSpeed - deltaX/100
+					end
+					CURSOR.rotationAngle = CURSOR.rotationAngle + rotSpeed - deltaX*.75
+					CURSOR.clientUserData.rotSpeed = rotSpeed*.98
+				else
+					CURSOR.visibility = Visibility.FORCE_OFF
+					CURSOR.clientUserData.rotSpeed = nil
+				end
 				group:SetWorldPosition(paddle.position + Vector3.New(0, StateController.boxPositionY, 0))
 				if mousePos then
 					local rotation = Rotation.New((impactPosition - lookPos):GetNormalized(), Vector3.UP)

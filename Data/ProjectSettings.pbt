@@ -11,8 +11,3 @@
     EntryLimit: 100
   }
 }
-SharedKeysList {
-  StorageKeys {
-    Key: "LocalGameStorageKey"
-  }
-}

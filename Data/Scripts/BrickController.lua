@@ -1,4 +1,4 @@
-﻿local utils, BallPhysics
+﻿local utils, BallPhysics, StateController
 local BRICK_TEMPLATE = script:GetCustomProperty("BrickTemplate")
 
 local BrickController = {}
@@ -6,6 +6,7 @@ local BrickController = {}
 function BrickController.Setup(dependencies)
 	utils = dependencies.utils
 	BallPhysics = dependencies.BallPhysics
+	StateController = dependencies.StateController
 end
 
 local brickColors = {
@@ -21,6 +22,7 @@ function BrickController.SetRound(round)
 	BrickController.currentRound = round
 	local brickSequence = utils.DecodeBrickString(round.box:GetCustomProperty("BrickString"))
 	local brickIndex = 0
+	local destructibleBrickCount, destructibleBrickLifeSum = 0, 0
 	for y = 1, utils.GRID_WIDTH do
 		round.brickGrid[y] = {}
 		for x = 1, utils.GRID_HEIGHT do
@@ -36,12 +38,18 @@ function BrickController.SetRound(round)
 					insideObject = brickObject:GetCustomProperty("Inside"):WaitForObject(),
 					emissiveObject = brickObject:GetCustomProperty("Emissive"):WaitForObject()
 				}
+				if brick.life ~= 7 then
+					destructibleBrickCount = destructibleBrickCount + 1
+					destructibleBrickLifeSum = destructibleBrickLifeSum + brick.life
+				end
 				BrickController.ColorBrick(brick)
 				round.brickGrid[y][x] = brick
 				round.brickSet[brickObject] = brick
 			end
 		end
 	end
+	round.originalBrickCount = destructibleBrickCount
+	round.originalBrickLifeSum = destructibleBrickLifeSum
 	round.edgeList = BallPhysics.ComputeEdges(round)
 	
 	round.box.networkedPropertyChangedEvent:Connect(function(_, property)
@@ -91,7 +99,7 @@ function BrickController.Break(brickObject, ball)
 		utils.PlaySound("destroyBrick", brick.object:GetWorldPosition())
 		BrickController.Destroy(brickObject)
 	else
-		utils.PlaySound("breakBrick", brick.object:GetWorldPosition())
+		utils.PlaySound("breakBrick", brick.object:GetWorldPosition()).pitch = 200 * (brick.life - 1)
 		BrickController.ColorBrick(brick)
 	end
 	local existingBricks = utils.GetBrickString(round)
@@ -128,9 +136,7 @@ function BrickController.Destroy(brickObject)
 			end
 		end
 		if not breakableBrickExists then
-			round.isActive = false
-			utils.PlaySound("roundFinished", round.position)
-			utils.FlashLight(round.light, Color.New(0, 1, 0))
+			StateController.RoundEndEffect(round)
 		end
 	end
 end

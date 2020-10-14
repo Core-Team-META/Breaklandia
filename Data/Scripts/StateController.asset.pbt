@@ -34,6 +34,12 @@
           SelfId: 13780791317169723459
         }
       }
+      Overrides {
+        Name: "cs:Intermission"
+        ObjectReference {
+          SelfId: 1592328099169523986
+        }
+      }
     }
   }
   SerializationVersion: 65

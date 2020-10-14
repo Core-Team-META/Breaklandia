@@ -43,14 +43,16 @@ function BounceOffNearestEdge(ball, brickPosition)
 			reflectionNormal = (ballPosition - closestEdge[2]):GetNormalized()
 		end
 		local alreadyReflectedThisNormal = false
-		for _, previousNormal in pairs(ball.reflectionsThisFrame) do
-			if (previousNormal ^ reflectionNormal).sizeSquared < .1 then
-				alreadyReflectedThisNormal = true
+		if not ball.reflectionsThisFrame[1] then
+			for _, previousNormal in pairs(ball.reflectionsThisFrame) do
+				if (previousNormal ^ reflectionNormal).sizeSquared < .1 then
+					alreadyReflectedThisNormal = true
+				end
 			end
-		end
-		if not alreadyReflectedThisNormal then
-			ball.reflectionsThisFrame[#ball.reflectionsThisFrame + 1] = reflectionNormal
-			ReflectAcrossNormal(ball, reflectionNormal)
+			if not alreadyReflectedThisNormal then
+				ball.reflectionsThisFrame[#ball.reflectionsThisFrame + 1] = reflectionNormal
+				ReflectAcrossNormal(ball, reflectionNormal)
+			end
 		end
 	end
 end
@@ -115,48 +117,6 @@ function CheckCollisions(ball)
 						ball.attachedPaddle = paddle.paddleClient
 						ball.subject.parent = paddle.groupClient
 						paddle:GrabBall(ball)
-						
-						-- server-controlled ball attach
-						--[=[ballsGrabbing[ball] = {ball.object:GetReference(), (currentPosition - paddlePosition).y}
-						if not busySending then
-							busySending = true
-							Task.Spawn(function()
-								while next(ballsGrabbing) do
-									if time() - lastSendTime < .2 then
-										Task.Wait(.2 - (time() - lastSendTime))
-									end
-									while true do
-										local grabbedList = {}
-										local grabbed = {}
-										for ballGrabbing, data in pairs(ballsGrabbing) do
-											if Object.IsValid(ballGrabbing.object) then
-												local attachedPaddle = ballGrabbing.object:GetCustomProperty("AttachedPaddle")
-												attachedPaddle = attachedPaddle and attachedPaddle:GetObject() and attachedPaddle:GetObject() ~= ballGrabbing.object
-												if not attachedPaddle then
-													if #grabbedList < 3 then
-														grabbedList[#grabbedList + 1] = data
-													end
-												else
-													grabbed[#grabbed + 1] = ballGrabbing
-												end
-											else
-												grabbed[#grabbed + 1] = ballGrabbing -- ball is not valid, remove from list
-											end
-										end
-										for i = 1, #grabbed do
-											ballsGrabbing[grabbed[i]] = nil
-										end
-										if Events.BroadcastToServer("GrabBall", table.unpack(grabbedList)) == BroadcastEventResultCode.EXCEEDED_RATE_LIMIT then
-											Task.Wait()
-										else
-											break
-										end
-									end
-									lastSendTime = time()
-									busySending = false
-								end
-							end)
-						end]=]
 					end
 				end
 			end
@@ -177,7 +137,10 @@ function ComputeEdges(round)
 	end
 	for y = 1, gridWidth do
 		for x = 1, gridHeight do
-			if grid[y][x] and not usedCells[y][x] and grid[y][x+1] and grid[y+1] and grid[y+1][x] and grid[y+1][x+1] then
+			if grid[y][x] and not usedCells[y][x]
+			 and grid[y][x+1] and not usedCells[y][x+1]
+			 and grid[y+1] and grid[y+1][x] and not usedCells[y+1][x]
+			 and grid[y+1][x+1] and not usedCells[y+1][x+1] then
 				usedCells[y][x] = true
 				usedCells[y+1][x] = true
 				usedCells[y][x+1] = true

@@ -5,6 +5,7 @@
 local LASER_TIMER = script:GetCustomProperty("LaserTimer"):WaitForObject()
 local GRAB_TIMER = script:GetCustomProperty("GrabTimer"):WaitForObject()
 local POWERUP_TIMERS = script:GetCustomProperty("PowerupTimers"):WaitForObject()
+local INTERMISSION = script:GetCustomProperty("Intermission"):WaitForObject()
 
 LASER_TIMER.visibility = Visibility.FORCE_OFF
 GRAB_TIMER.visibility = Visibility.FORCE_OFF
@@ -29,6 +30,23 @@ function StateController.Setup(dependencies)
 	BallController = dependencies.BallController
 	BrickController = dependencies.BrickController
 	PaddleController = dependencies.PaddleController
+end
+
+function StateController.RoundEndEffect(round)
+	round.isActive = false
+	INTERMISSION.visibility = Visibility.INHERIT
+	local points = round.originalBrickLifeSum * 10
+	local bricks = round.originalBrickCount
+	for _, ui in pairs(INTERMISSION:GetCustomProperty("Points"):WaitForObject():GetChildren()) do
+		ui.text = tostring(points)
+	end
+	for _, ui in pairs(INTERMISSION:GetCustomProperty("Bricks"):WaitForObject():GetChildren()) do
+		ui.text = tostring(bricks)
+	end
+	utils.PlaySound("roundFinished", round.position)
+	utils.FlashLight(round.light, Color.New(0, 1, 0))
+	Task.Wait(5)
+	INTERMISSION.visibility = Visibility.FORCE_OFF
 end
 
 local timerTasks = {}

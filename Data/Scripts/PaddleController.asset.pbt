@@ -10,6 +10,12 @@
           SelfId: 14506848262931602477
         }
       }
+      Overrides {
+        Name: "cs:Cursor"
+        ObjectReference {
+          SelfId: 18242617952716879566
+        }
+      }
     }
   }
   SerializationVersion: 65
