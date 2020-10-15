@@ -13,7 +13,6 @@ local MOUSE_ABILITY = script:GetCustomProperty("MOUSE_ABILITY")
 local ABILITY_FOLDER = script:GetCustomProperty("ABILITY_FOLDER"):WaitForObject()
 
 local RoundService = {
-	INTERMISSION_LENGTH = 5,
 	players = {}
 }
 
@@ -27,7 +26,7 @@ function RoundService.Setup(dependencies)
 end
 
 function RoundService.AddPlayer(player)
-	local data = {lives = 4}
+	local data = {lives = utils.STARTING_LIVES}
 	RoundService.players[player] = data
 	player:SetResource("HighScore", Storage.GetPlayerData(player).HighScore or 0)
 	player.serverUserData.level = 1
@@ -171,7 +170,7 @@ function RoundService.StartRound(round)
 		end
 		if data.startingNewGame then
 			data.startingNewGame = false
-			data.lives = 4
+			data.lives = utils.STARTING_LIVES
 			player:SetResource("Score", 0)
 		end
 		player:SetResource("Lives", data.lives)
@@ -199,7 +198,7 @@ function RoundService.EndRound(round, advancingToNextRound)
 		powerup:Destroy()
 	end
 	
-	Task.Wait(RoundService.INTERMISSION_LENGTH)
+	Task.Wait(utils.INTERMISSION_LENGTH)
 	
 	while true do
 		local object, ball = next(round.ballSet)

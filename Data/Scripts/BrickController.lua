@@ -136,7 +136,9 @@ function BrickController.Destroy(brickObject)
 			end
 		end
 		if not breakableBrickExists then
-			StateController.RoundEndEffect(round)
+			Task.Spawn(function()
+				StateController.RoundEndEffect(round)
+			end)
 		end
 	end
 end

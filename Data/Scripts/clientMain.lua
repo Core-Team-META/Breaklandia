@@ -33,10 +33,12 @@ local LEADERBOARD_ROW = script:GetCustomProperty("LeaderboardRow")
 local HIGH_SCORE = script:GetCustomProperty("HighScore")
 local ScreenObject = require(script:GetCustomProperty("ScreenObject"))
 local PADDLE_TEMPLATE = script:GetCustomProperty("PaddleTemplate")
+local LIVES_BACKGROUND = script:GetCustomProperty("LivesBackground")
+local SCORE_BACKGROUND = script:GetCustomProperty("ScoreBackground")
 
 local SCREEN_OBJECTS = {}
+local screenSize = UI.GetScreenSize()
 for i, icon in pairs(LIFE_CONTAINER:GetChildren()) do
-	local screenSize = UI.GetScreenSize()
 	local scale = 1/4
 	local object = World.SpawnAsset(PADDLE_TEMPLATE, {scale = Vector3.ONE * scale})
 	local screenObject = ScreenObject.New(object, {
@@ -50,8 +52,35 @@ for i, icon in pairs(LIFE_CONTAINER:GetChildren()) do
 	SCREEN_OBJECTS[i] = screenObject
 end
 
+ScreenObject.New(World.SpawnAsset(LIVES_BACKGROUND, {scale = Vector3.ONE * 1.4}), {
+	objectWidth = 330,
+	pixelWidth = 600,
+	pixelPosX = 500,
+	pixelPosY = screenSize.y - 35,
+	faceCamera = false
+})
+
+ScreenObject.New(World.SpawnAsset(SCORE_BACKGROUND, {scale = Vector3.ONE}), {
+	objectWidth = 350,
+	pixelWidth = 300,
+	pixelPosX = screenSize.x / 2 - 200,
+	pixelPosY = 75,
+	faceCamera = false
+})
+ScreenObject.New(World.SpawnAsset(SCORE_BACKGROUND, {scale = Vector3.ONE}), {
+	objectWidth = 350,
+	pixelWidth = 300,
+	pixelPosX = screenSize.x / 2 + 200,
+	pixelPosY = 75,
+	faceCamera = false
+})
+
 local player = Game.GetLocalPlayer()
 player.isVisibleToSelf = false
+
+local camera = script:GetCustomProperty("Camera"):WaitForObject()
+local screenSize = UI.GetScreenSize()
+camera:SetPositionOffset(camera:GetPositionOffset()*Vector3.New((screenSize.x/16) / (screenSize.y/9), 1, 1))
 
 local function updateResource(resource, value)
 	if resource == "Score" then
@@ -83,6 +112,7 @@ player.resourceChangedEvent:Connect(function(_, resource, value)
 	updateResource(resource, value)
 end)
 updateResource("HighScore", player:GetResource("HighScore"))
+updateResource("Lives", player:GetResource("Lives"))
 
 Events.Connect("Feed", function(message)
 	local row = World.SpawnAsset(FEED_ROW, {parent = FEED_CONTAINER})

@@ -45,7 +45,7 @@ function StateController.RoundEndEffect(round)
 	end
 	utils.PlaySound("roundFinished", round.position)
 	utils.FlashLight(round.light, Color.New(0, 1, 0))
-	Task.Wait(5)
+	Task.Wait(utils.INTERMISSION_LENGTH)
 	INTERMISSION.visibility = Visibility.FORCE_OFF
 end
 

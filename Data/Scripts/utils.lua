@@ -58,8 +58,11 @@ PADDLE_THICKNESS = 50
 PADDLE_OFFSET = Vector3.New(PADDLE_FORWARD, 0, ELEVATION)
 DEFAULT_PADDLE_WIDTH = 300
 
+STARTING_LIVES = 4
 MAX_LIVES = 6
 MAX_BALLS = 100
+
+INTERMISSION_LENGTH = 5 -- delay after clearing a round before the next one begins
 
 ABILITY_BINDINGS = {
 	ability_primary = true, -- click

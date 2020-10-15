@@ -21,8 +21,6 @@ Objects {
   ChildIds: 4105456477874349227
   ChildIds: 9702658192086695053
   ChildIds: 14506848262931602477
-  ChildIds: 9529841999697550945
-  ChildIds: 9179583998828210173
   UnregisteredParameters {
   }
   Collidable_v2 {
@@ -32,376 +30,6 @@ Objects {
     Value: "mc:evisibilitysetting:forceon"
   }
   Folder {
-  }
-}
-Objects {
-  Id: 9179583998828210173
-  Name: "Score"
-  Transform {
-    Location {
-      X: 1012.04865
-      Y: 1813.61218
-      Z: 950.691284
-    }
-    Rotation {
-    }
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 4781671109827199097
-  ChildIds: 11411675379138140755
-  ChildIds: 10771433533596970940
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:forceoff"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  Folder {
-    IsGroup: true
-  }
-}
-Objects {
-  Id: 10771433533596970940
-  Name: "Sci-fi Console Screen 03"
-  Transform {
-    Location {
-    }
-    Rotation {
-      Pitch: 0.327616841
-      Yaw: 89.9994888
-      Roll: 20.4264107
-    }
-    Scale {
-      X: 4.33422
-      Y: 4.75128126
-      Z: 4.75128031
-    }
-  }
-  ParentId: 9179583998828210173
-  UnregisteredParameters {
-    Overrides {
-      Name: "ma:Shared_Detail4:id"
-      AssetReference {
-        Id: 512374670192238661
-      }
-    }
-    Overrides {
-      Name: "ma:Shared_Detail4:color"
-      Color {
-        A: 1
-      }
-    }
-    Overrides {
-      Name: "ma:Shared_Detail3:id"
-      AssetReference {
-        Id: 13313186996776760906
-      }
-    }
-    Overrides {
-      Name: "ma:Shared_BaseMaterial:id"
-      AssetReference {
-        Id: 512374670192238661
-      }
-    }
-    Overrides {
-      Name: "ma:Shared_Detail1:id"
-      AssetReference {
-        Id: 512374670192238661
-      }
-    }
-    Overrides {
-      Name: "ma:Shared_Detail2:id"
-      AssetReference {
-        Id: 512374670192238661
-      }
-    }
-    Overrides {
-      Name: "ma:Shared_Detail3:smart"
-      Bool: false
-    }
-    Overrides {
-      Name: "ma:Shared_Detail3:color"
-      Color {
-        G: 0.397615612
-        B: 0.789999962
-        A: 1
-      }
-    }
-  }
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  CoreMesh {
-    MeshAsset {
-      Id: 3327765980461426997
-    }
-    Teams {
-      IsTeamCollisionEnabled: true
-      IsEnemyCollisionEnabled: true
-    }
-    EnableCameraCollision: true
-    StaticMesh {
-      Physics {
-      }
-    }
-  }
-}
-Objects {
-  Id: 11411675379138140755
-  Name: "Sci-fi Console Screen 03"
-  Transform {
-    Location {
-      Z: 6.52227783
-    }
-    Rotation {
-      Pitch: 0.327616841
-      Yaw: 89.9994888
-      Roll: 20.426424
-    }
-    Scale {
-      X: 4.33422
-      Y: 4.75128126
-      Z: 4.75128031
-    }
-  }
-  ParentId: 9179583998828210173
-  UnregisteredParameters {
-    Overrides {
-      Name: "ma:Shared_Detail4:id"
-      AssetReference {
-        Id: 512374670192238661
-      }
-    }
-    Overrides {
-      Name: "ma:Shared_Detail4:color"
-      Color {
-        A: 1
-      }
-    }
-    Overrides {
-      Name: "ma:Shared_Detail3:id"
-      AssetReference {
-        Id: 638045149337742642
-      }
-    }
-    Overrides {
-      Name: "ma:Shared_BaseMaterial:id"
-      AssetReference {
-        Id: 7736220887916591162
-      }
-    }
-  }
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  CoreMesh {
-    MeshAsset {
-      Id: 3327765980461426997
-    }
-    Teams {
-      IsTeamCollisionEnabled: true
-      IsEnemyCollisionEnabled: true
-    }
-    EnableCameraCollision: true
-    StaticMesh {
-      Physics {
-      }
-    }
-  }
-}
-Objects {
-  Id: 9529841999697550945
-  Name: "High Score"
-  Transform {
-    Location {
-      X: 1012.04865
-      Y: 2219.23755
-      Z: 950.691284
-    }
-    Rotation {
-    }
-    Scale {
-      X: 1
-      Y: 1
-      Z: 1
-    }
-  }
-  ParentId: 4781671109827199097
-  ChildIds: 17776810842136476811
-  ChildIds: 15392648897407861142
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:forceoff"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  Folder {
-    IsGroup: true
-  }
-}
-Objects {
-  Id: 15392648897407861142
-  Name: "Sci-fi Console Screen 03"
-  Transform {
-    Location {
-    }
-    Rotation {
-      Pitch: 0.327616841
-      Yaw: 89.9994888
-      Roll: 20.4264107
-    }
-    Scale {
-      X: 4.33422
-      Y: 4.75128126
-      Z: 4.75128031
-    }
-  }
-  ParentId: 9529841999697550945
-  UnregisteredParameters {
-    Overrides {
-      Name: "ma:Shared_Detail4:id"
-      AssetReference {
-        Id: 512374670192238661
-      }
-    }
-    Overrides {
-      Name: "ma:Shared_Detail4:color"
-      Color {
-        A: 1
-      }
-    }
-    Overrides {
-      Name: "ma:Shared_Detail3:id"
-      AssetReference {
-        Id: 13313186996776760906
-      }
-    }
-    Overrides {
-      Name: "ma:Shared_BaseMaterial:id"
-      AssetReference {
-        Id: 512374670192238661
-      }
-    }
-    Overrides {
-      Name: "ma:Shared_Detail1:id"
-      AssetReference {
-        Id: 512374670192238661
-      }
-    }
-    Overrides {
-      Name: "ma:Shared_Detail2:id"
-      AssetReference {
-        Id: 512374670192238661
-      }
-    }
-    Overrides {
-      Name: "ma:Shared_Detail3:smart"
-      Bool: false
-    }
-    Overrides {
-      Name: "ma:Shared_Detail3:color"
-      Color {
-        G: 0.397615612
-        B: 0.789999962
-        A: 1
-      }
-    }
-  }
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  CoreMesh {
-    MeshAsset {
-      Id: 3327765980461426997
-    }
-    Teams {
-      IsTeamCollisionEnabled: true
-      IsEnemyCollisionEnabled: true
-    }
-    EnableCameraCollision: true
-    StaticMesh {
-      Physics {
-      }
-    }
-  }
-}
-Objects {
-  Id: 17776810842136476811
-  Name: "Sci-fi Console Screen 03"
-  Transform {
-    Location {
-      Z: 6.52227783
-    }
-    Rotation {
-      Pitch: 0.327616841
-      Yaw: 89.9994888
-      Roll: 20.426424
-    }
-    Scale {
-      X: 4.33422
-      Y: 4.75128126
-      Z: 4.75128031
-    }
-  }
-  ParentId: 9529841999697550945
-  UnregisteredParameters {
-    Overrides {
-      Name: "ma:Shared_Detail4:id"
-      AssetReference {
-        Id: 512374670192238661
-      }
-    }
-    Overrides {
-      Name: "ma:Shared_Detail4:color"
-      Color {
-        A: 1
-      }
-    }
-    Overrides {
-      Name: "ma:Shared_Detail3:id"
-      AssetReference {
-        Id: 638045149337742642
-      }
-    }
-    Overrides {
-      Name: "ma:Shared_BaseMaterial:id"
-      AssetReference {
-        Id: 2813975549538832089
-      }
-    }
-  }
-  Collidable_v2 {
-    Value: "mc:ecollisionsetting:inheritfromparent"
-  }
-  Visible_v2 {
-    Value: "mc:evisibilitysetting:inheritfromparent"
-  }
-  CoreMesh {
-    MeshAsset {
-      Id: 3327765980461426997
-    }
-    Teams {
-      IsTeamCollisionEnabled: true
-      IsEnemyCollisionEnabled: true
-    }
-    EnableCameraCollision: true
-    StaticMesh {
-      Physics {
-      }
-    }
   }
 }
 Objects {
@@ -3144,8 +2772,7 @@ Objects {
   Control {
     Width: 400
     Height: 100
-    UIX: 42.2112122
-    UIY: 20.7607746
+    UIY: 20
     RenderTransformPivot {
       Anchor {
         Value: "mc:euianchor:middlecenter"
@@ -3189,10 +2816,9 @@ Objects {
     Value: "mc:evisibilitysetting:inheritfromparent"
   }
   Control {
-    Width: 500
+    Width: 200
     Height: 90
-    UIX: 10.6964626
-    UIY: 52.0677719
+    UIY: 50
     RenderTransformPivot {
       Anchor {
         Value: "mc:euianchor:middlecenter"
@@ -3208,7 +2834,7 @@ Objects {
       }
       Size: 40
       Justification {
-        Value: "mc:etextjustify:right"
+        Value: "mc:etextjustify:center"
       }
     }
     AnchorLayout {
@@ -3219,7 +2845,7 @@ Objects {
       }
       TargetAnchor {
         Anchor {
-          Value: "mc:euianchor:middlecenter"
+          Value: "mc:euianchor:middleright"
         }
       }
     }
@@ -3247,10 +2873,8 @@ Objects {
     Value: "mc:evisibilitysetting:inheritfromparent"
   }
   Control {
-    Width: 500
+    Width: 200
     Height: 90
-    UIX: 10.6964626
-    UIY: 2.66638565
     RenderTransformPivot {
       Anchor {
         Value: "mc:euianchor:middlecenter"
@@ -3266,7 +2890,7 @@ Objects {
       }
       Size: 33
       Justification {
-        Value: "mc:etextjustify:right"
+        Value: "mc:etextjustify:center"
       }
     }
     AnchorLayout {
@@ -3277,7 +2901,7 @@ Objects {
       }
       TargetAnchor {
         Anchor {
-          Value: "mc:euianchor:middlecenter"
+          Value: "mc:euianchor:middleright"
         }
       }
     }
@@ -3305,10 +2929,9 @@ Objects {
     Value: "mc:evisibilitysetting:inheritfromparent"
   }
   Control {
-    Width: 500
+    Width: 200
     Height: 90
-    UIX: -351.315918
-    UIY: 52.0677719
+    UIY: 50
     RenderTransformPivot {
       Anchor {
         Value: "mc:euianchor:middlecenter"
@@ -3324,7 +2947,7 @@ Objects {
       }
       Size: 40
       Justification {
-        Value: "mc:etextjustify:right"
+        Value: "mc:etextjustify:center"
       }
     }
     AnchorLayout {
@@ -3335,7 +2958,7 @@ Objects {
       }
       TargetAnchor {
         Anchor {
-          Value: "mc:euianchor:middlecenter"
+          Value: "mc:euianchor:middleleft"
         }
       }
     }
@@ -3363,10 +2986,8 @@ Objects {
     Value: "mc:evisibilitysetting:inheritfromparent"
   }
   Control {
-    Width: 500
+    Width: 200
     Height: 90
-    UIX: -351.315918
-    UIY: 2.66638565
     RenderTransformPivot {
       Anchor {
         Value: "mc:euianchor:middlecenter"
@@ -3382,7 +3003,7 @@ Objects {
       }
       Size: 33
       Justification {
-        Value: "mc:etextjustify:right"
+        Value: "mc:etextjustify:center"
       }
     }
     AnchorLayout {
@@ -3393,7 +3014,7 @@ Objects {
       }
       TargetAnchor {
         Anchor {
-          Value: "mc:euianchor:middlecenter"
+          Value: "mc:euianchor:middleleft"
         }
       }
     }
@@ -6751,6 +6372,24 @@ Objects {
         Id: 15202632891423869944
       }
     }
+    Overrides {
+      Name: "cs:LivesBackground"
+      AssetReference {
+        Id: 17966701165003608848
+      }
+    }
+    Overrides {
+      Name: "cs:ScoreBackground"
+      AssetReference {
+        Id: 1826030025846398517
+      }
+    }
+    Overrides {
+      Name: "cs:Camera"
+      ObjectReference {
+        SelfId: 3567959178173361743
+      }
+    }
   }
   Collidable_v2 {
     Value: "mc:ecollisionsetting:inheritfromparent"
@@ -7624,11 +7263,10 @@ Objects {
   Camera {
     UseAsDefault: true
     AttachToLocalPlayer: true
-    InitialDistance: 1200
     MinDistance: 300
     MaxDistance: 600
     PositionOffset {
-      X: -300
+      X: -1500
       Z: 600
     }
     RotationOffset {
