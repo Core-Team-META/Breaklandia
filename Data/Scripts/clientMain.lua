@@ -186,7 +186,7 @@ Task.Spawn(function() -- local leaderboard update loop
 		local userList = Game.GetPlayers()
 		local scores = {}
 		for _, user in pairs(userList) do
-			local score = user:GetResource("HighScore")
+			local score = user:GetResource("Score")--user:GetResource("HighScore")
 			scores[user] = score
 		end
 		table.sort(userList, function(a, b)
