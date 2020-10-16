@@ -775,7 +775,6 @@ transitional = {
 medium = {
 	waffle[5], -- layers
 	waffle[7], -- rainbow diagonals
-	waffle[8], -- core logo
 	jordan10[4], -- rainbow
 	jordan10[10], -- columns
 	jordan20[10], -- pacman
@@ -784,11 +783,11 @@ medium = {
 }
 hard = {
 	waffle[6], -- indestructible gap
+	waffle[8], -- core logo (1x1 indestructible gaps)
 	jordan10[5], -- pride flag (hard to reach gap on the right)
 	jordan10[9], -- indestructible 1x1 gap diagonal
 	jordan20[3], -- creeper (contains hard-to-reach areas blocked by indestructible walls)
 	jordan20[8], -- unreal logo (hard to reach places)
-	jordan30[6], -- skull
 }
 impossible = {
 	jordan10[3], -- usa flag (tightly spaced long indestructible rows)
@@ -798,6 +797,7 @@ impossible = {
 	jordan20[9], -- labyrinth (chance-based, ball has to go along a certain path)
 	jordan30[3], -- labyrinth 2 (chance-based)
 	jordan30[5], -- indestructible rows (ball must follow a specific path with no control over it)
+	jordan30[6], -- skull (luck-based hard to reach 1x1 gaps)
 	jordan30[9], -- indestructible cups (many 1x1 gaps without line of sight)
 	jordan30[10], -- stalactites (tightly spaced indestructible vertical columns)
 }

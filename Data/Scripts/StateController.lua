@@ -1,4 +1,4 @@
-﻿local utils, BallController, BrickController, PaddleController
+﻿local utils, BallController, BrickController, PaddleController, MusicController
 
 --local LASER_TIMER = script:GetCustomProperty("LaserPowerupTimer"):WaitForObject()
 --local GRAB_TIMER = script:GetCustomProperty("GrabPowerupTimer"):WaitForObject()
@@ -30,6 +30,7 @@ function StateController.Setup(dependencies)
 	BallController = dependencies.BallController
 	BrickController = dependencies.BrickController
 	PaddleController = dependencies.PaddleController
+	MusicController = dependencies.MusicController
 end
 
 function StateController.RoundEndEffect(round)
@@ -183,6 +184,7 @@ Events.Connect("StartRound", function(boxReference)
 		round.isActive = false
 	end)
 	utils.PlaySound("roundStart", round.position)
+	MusicController.PlayRandomTrack()
 end)
 
 return StateController

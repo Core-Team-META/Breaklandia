@@ -6385,6 +6385,12 @@ Objects {
       }
     }
     Overrides {
+      Name: "cs:MusicController"
+      AssetReference {
+        Id: 7178059353641854650
+      }
+    }
+    Overrides {
       Name: "cs:Camera"
       ObjectReference {
         SelfId: 3567959178173361743
