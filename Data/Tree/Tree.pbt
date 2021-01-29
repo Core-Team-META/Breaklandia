@@ -165,7 +165,7 @@ Objects {
   }
   Control {
     Width: 686
-    Height: 100
+    Height: 141
     UIX: -27.125
     UIY: -19.881
     RenderTransformPivot {
@@ -211,17 +211,17 @@ Objects {
     Value: "mc:evisibilitysetting:inheritfromparent"
   }
   Control {
-    Width: 574
-    Height: 78
-    UIX: -65.099
-    UIY: -10.8441162
+    Width: 593
+    Height: 121
+    UIX: -46.5019531
+    UIY: -4.63861084
     RenderTransformPivot {
       Anchor {
         Value: "mc:euianchor:middlecenter"
       }
     }
     Text {
-      Label: "Welcome to the tournament.  Only high scores during the tournament will be displayed for the tournament."
+      Label: "Welcome to the Core Clash tournament for Breaklandia! Get as high a score as you can by Monday, Feb 1, 12pm PST. The top ten will receive a special Core Profile Pic!"
       Color {
         R: 1
         G: 1
