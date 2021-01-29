@@ -1,4 +1,4 @@
-local START_TIME = tonumber(os.time({year=2021, month=01, day=29, hour=23, min=00})) -- Jan. 29th 2021 at 8pm GMT (noon pacific)
+local START_TIME = tonumber(os.time({year=2021, month=01, day=29, hour=22, min=00})) -- Jan. 29th 2021 at 8pm GMT (noon pacific)
 local END_TIME = tonumber(os.time({year=2021, month=02, day=01, hour=20}))    -- Dec. 31st 2020 at 8pm GMT (noon pacific)
 
 local utils = require(script:GetCustomProperty("utils"))
@@ -95,7 +95,6 @@ local screenSize = UI.GetScreenSize()
 camera:SetPositionOffset(camera:GetPositionOffset()*Vector3.New((screenSize.x/16) / (screenSize.y/9), 1, 1))
 
 local function canLogScore() -- This will return true during the official tournament period, when the leaderboard can be updated.
-	if Game:GetLocalPlayer().id == "0c02423d08c14cbfb63a8b7c6e04a747" then return true end
     local currentTime = tonumber(os.time(os.date("!*t", os.time())))
     if (currentTime >= START_TIME and currentTime < END_TIME) then
         return true

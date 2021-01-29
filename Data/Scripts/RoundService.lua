@@ -1,5 +1,5 @@
 ﻿local utils, Paddle, Ball, Brick, Powerup, BrickLayouts
-local START_TIME = tonumber(os.time({year=2021, month=01, day=29, hour=23, min=00})) -- Jan. 29th 2021 at 8pm GMT (noon pacific)
+local START_TIME = tonumber(os.time({year=2021, month=01, day=29, hour=22, min=00})) -- Jan. 29th 2021 at 8pm GMT (noon pacific)
 local END_TIME = tonumber(os.time({year=2021, month=02, day=01, hour=20}))    -- Dec. 31st 2020 at 8pm GMT (noon pacific)
 
 local BOX_TEMPLATE = script:GetCustomProperty("Box")
