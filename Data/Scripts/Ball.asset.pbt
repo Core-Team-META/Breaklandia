@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 17868365157565654252
   Name: "Ball"
   PlatformAssetType: 3
@@ -12,5 +12,5 @@
       }
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

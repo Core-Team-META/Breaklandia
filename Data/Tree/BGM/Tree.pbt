@@ -1,4 +1,4 @@
-﻿Name: "BGM"
+Name: "BGM"
 RootId: 3846085128276031378
 Objects {
   Id: 17962599397366022961

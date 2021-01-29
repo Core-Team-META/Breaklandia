@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 11217174774435817116
   Name: "Paddle"
   PlatformAssetType: 3
@@ -12,5 +12,5 @@
       }
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

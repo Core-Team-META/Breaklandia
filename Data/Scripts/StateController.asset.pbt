@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 1332491955166838128
   Name: "StateController"
   PlatformAssetType: 3
@@ -42,5 +42,5 @@
       }
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

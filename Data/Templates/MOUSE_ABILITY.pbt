@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 7794166090476625898
   Name: "MOUSE_ABILITY"
   PlatformAssetType: 5
@@ -68,5 +68,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 17298214183796088587
   Name: "Nineslice Panel"
   PlatformAssetType: 5
@@ -4479,5 +4479,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

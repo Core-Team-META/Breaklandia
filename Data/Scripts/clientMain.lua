@@ -1,4 +1,7 @@
-﻿local utils = require(script:GetCustomProperty("utils"))
+local START_TIME = tonumber(os.time({year=2021, month=01, day=29, hour=23, min=00})) -- Jan. 29th 2021 at 8pm GMT (noon pacific)
+local END_TIME = tonumber(os.time({year=2021, month=02, day=01, hour=20}))    -- Dec. 31st 2020 at 8pm GMT (noon pacific)
+
+local utils = require(script:GetCustomProperty("utils"))
 local BallController = require(script:GetCustomProperty("BallController"))
 local BrickController = require(script:GetCustomProperty("BrickController"))
 local StateController = require(script:GetCustomProperty("StateController"))
@@ -21,6 +24,7 @@ for _, dependency in pairs(DEPENDENCIES) do
 		dependency.Setup(DEPENDENCIES)
 	end
 end
+
 local SCORE_TEXT = script:GetCustomProperty("ScoreText"):WaitForObject()
 local HIGH_SCORE_TEXT = script:GetCustomProperty("HighScoreText"):WaitForObject()
 local LIFE_CONTAINER = script:GetCustomProperty("LifeContainer"):WaitForObject()
@@ -32,7 +36,13 @@ local GLOBAL_BUTTON = LEADERBOARD:GetCustomProperty("GlobalButton"):WaitForObjec
 local LEADERBOARD_HERE = LEADERBOARD:GetCustomProperty("HereLeaderboard"):WaitForObject()
 local LEADERBOARD_GLOBAL = LEADERBOARD:GetCustomProperty("GlobalLeaderboard"):WaitForObject()
 local LEADERBOARD_ROW = script:GetCustomProperty("LeaderboardRow")
+
 local HIGH_SCORE = script:GetCustomProperty("HighScore")
+local TOURNAMENT_HIGH_SCORE = script:GetCustomProperty("TournamentHighScore")
+local HIGH_SCORE_LABEL = script:GetCustomProperty("HighScoreLabel"):WaitForObject()
+local LEADERBOARD_LABEL= script:GetCustomProperty("TopScoresLabel"):WaitForObject()
+local TOURNAMENT_TEXT = script:GetCustomProperty("TournamentText"):WaitForObject()
+
 local ScreenObject = require(script:GetCustomProperty("ScreenObject"))
 local PADDLE_TEMPLATE = script:GetCustomProperty("PaddleTemplate")
 local LIVES_BACKGROUND = script:GetCustomProperty("LivesBackground")
@@ -84,10 +94,21 @@ local camera = script:GetCustomProperty("Camera"):WaitForObject()
 local screenSize = UI.GetScreenSize()
 camera:SetPositionOffset(camera:GetPositionOffset()*Vector3.New((screenSize.x/16) / (screenSize.y/9), 1, 1))
 
+local function canLogScore() -- This will return true during the official tournament period, when the leaderboard can be updated.
+	if Game:GetLocalPlayer().id == "0c02423d08c14cbfb63a8b7c6e04a747" then return true end
+    local currentTime = tonumber(os.time(os.date("!*t", os.time())))
+    if (currentTime >= START_TIME and currentTime < END_TIME) then
+        return true
+    end
+    return false
+end
+
 local function updateResource(resource, value)
 	if resource == "Score" then
 		SCORE_TEXT.text = ("%02d"):format(value)
-	elseif resource == "HighScore" then
+	elseif resource == "HighScore" and not canLogScore() then
+		HIGH_SCORE_TEXT.text = ("%02d"):format(value)
+	elseif resource == "TournamentHighScore" and canLogScore() then
 		HIGH_SCORE_TEXT.text = ("%02d"):format(value)
 	elseif resource == "Lives" then
 		local lifeIcons = LIFE_CONTAINER:GetChildren()
@@ -113,7 +134,10 @@ end
 player.resourceChangedEvent:Connect(function(_, resource, value)
 	updateResource(resource, value)
 end)
+
 updateResource("HighScore", player:GetResource("HighScore"))
+updateResource("TournamentHighScore", player:GetResource("TournamentHighScore"))
+
 updateResource("Lives", player:GetResource("Lives"))
 
 Events.Connect("Feed", function(message)
@@ -161,11 +185,45 @@ player.bindingPressedEvent:Connect(function(_, abilityBinding)
 	end
 end)
 
+local function removeLeaderBoardRows()
+	local rowsToDelete = LEADERBOARD_GLOBAL:GetChildren()
+	for rowNum, row in ipairs(rowsToDelete) do
+		if rownNum > 1 then
+			row[rowNum]:Destroy()
+		end
+	end
+end
+
+
 Task.Spawn(function() -- global leaderboard update loop
 	local rows = {}
+	local trynum = 0
+	local error = {}
 	while true do
-		local leaderboard = Leaderboards.GetLeaderboard(HIGH_SCORE, LeaderboardType.GLOBAL)
-		if leaderboard then
+		--local rows = {}
+		local leaderboard
+		local lastState = ""
+		print(canLogScore())
+		if canLogScore() then
+			if lastState ~= "Tournament" then
+				lastState = "Tournament"
+				leaderboard = Leaderboards.GetLeaderboard(TOURNAMENT_HIGH_SCORE, LeaderboardType.GLOBAL)
+				if LEADERBOARD_LABEL.text ~= "TOURNAMENT SCORES" then
+					LEADERBOARD_LABEL.text = "TOURNAMENT SCORES"
+					TOURNAMENT_TEXT.visibility = Visibility.FORCE_ON
+				end
+			end
+		else
+			if lastState ~= "NotTournament" then
+				lastState = "NotTournament"
+				leaderboard = Leaderboards.GetLeaderboard(HIGH_SCORE, LeaderboardType.GLOBAL)
+				if LEADERBOARD_LABEL.text ~= "TOP SCORES" then
+					LEADERBOARD_LABEL.text = "TOP SCORES"
+					TOURNAMENT_TEXT.visibility = Visibility.FORCE_OFF
+				end
+			end
+		end
+		if leaderboard ~= nil then
 			for i = 1, math.min(10, #leaderboard) do
 				if not rows[i] then
 					rows[i] = World.SpawnAsset(LEADERBOARD_ROW, {parent = LEADERBOARD_GLOBAL})
@@ -178,6 +236,12 @@ Task.Spawn(function() -- global leaderboard update loop
 					end
 				end
 			end
+			--[[print(#rows)
+			for i = 1, #rows do
+				if i > #leaderboard then
+					row[i]:Destroy()
+				end
+			end ]]
 		end
 		Task.Wait(5)
 	end

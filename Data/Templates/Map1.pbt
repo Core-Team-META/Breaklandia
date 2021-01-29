@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 14431087918210614244
   Name: "Map1"
   PlatformAssetType: 5
@@ -3987,7 +3987,7 @@
     }
     Assets {
       Id: 9493188079052154321
-      Name: "Sci-Fi Base Wall 02"
+      Name: "Sci-fi Base Wall 02"
       PlatformAssetType: 1
       PrimaryAsset {
         AssetType: "StaticMeshAssetRef"
@@ -4005,7 +4005,7 @@
     }
     Assets {
       Id: 14631716589231304463
-      Name: "Sci-Fi Base Trim 02 4m"
+      Name: "Sci-fi Base Trim 02 4m"
       PlatformAssetType: 1
       PrimaryAsset {
         AssetType: "StaticMeshAssetRef"
@@ -4044,5 +4044,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

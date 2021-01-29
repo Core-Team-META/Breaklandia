@@ -1,8 +1,8 @@
-﻿Assets {
+Assets {
   Id: 9930776735919183206
   Name: "Dark High Score Metal"
   PlatformAssetType: 13
-  SerializationVersion: 65
+  SerializationVersion: 73
   CustomMaterialAsset {
     BaseMaterialId: 9907190003256959986
     ParameterOverrides {

@@ -1,8 +1,8 @@
-﻿Assets {
+Assets {
   Id: 15563566151717261216
   Name: "High Score Animated Screen"
   PlatformAssetType: 13
-  SerializationVersion: 65
+  SerializationVersion: 73
   CustomMaterialAsset {
     BaseMaterialId: 12780374486049578050
     ParameterOverrides {

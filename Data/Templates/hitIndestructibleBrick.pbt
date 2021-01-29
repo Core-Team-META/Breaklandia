@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 17868963822350484326
   Name: "hitIndestructibleBrick"
   PlatformAssetType: 5
@@ -48,5 +48,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

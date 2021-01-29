@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 2587742162255074138
   Name: "LeaderboardRow"
   PlatformAssetType: 5
@@ -385,5 +385,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

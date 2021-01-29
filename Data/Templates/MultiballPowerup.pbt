@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 15966232006559494015
   Name: "MultiballPowerup"
   PlatformAssetType: 5
@@ -230,5 +230,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

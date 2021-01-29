@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 7766220486297453908
   Name: "LaserBlast"
   PlatformAssetType: 3
@@ -12,5 +12,5 @@
       }
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

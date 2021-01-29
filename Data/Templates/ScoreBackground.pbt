@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 1826030025846398517
   Name: "ScoreBackground"
   PlatformAssetType: 5
@@ -266,5 +266,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 3549602224319917585
   Name: "utils"
   PlatformAssetType: 3
@@ -96,5 +96,5 @@
       }
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

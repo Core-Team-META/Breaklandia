@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 17422871333185216973
   Name: "Box"
   PlatformAssetType: 5
@@ -447,5 +447,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 15906643237844770552
   Name: "lifePowerupGet"
   PlatformAssetType: 5
@@ -60,5 +60,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

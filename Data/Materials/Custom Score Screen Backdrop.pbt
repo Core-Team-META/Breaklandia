@@ -1,8 +1,8 @@
-﻿Assets {
+Assets {
   Id: 13313186996776760906
   Name: "Custom Score Screen Backdrop"
   PlatformAssetType: 13
-  SerializationVersion: 65
+  SerializationVersion: 73
   CustomMaterialAsset {
     BaseMaterialId: 310935755678717879
     ParameterOverrides {

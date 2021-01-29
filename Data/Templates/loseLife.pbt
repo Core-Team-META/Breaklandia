@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 5696136033217144251
   Name: "loseLife"
   PlatformAssetType: 5
@@ -60,5 +60,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

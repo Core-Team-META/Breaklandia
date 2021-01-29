@@ -1,8 +1,8 @@
-﻿Assets {
+Assets {
   Id: 8626208413425047512
   Name: "Custom Frosted Glass No Distortion"
   PlatformAssetType: 13
-  SerializationVersion: 65
+  SerializationVersion: 73
   CustomMaterialAsset {
     BaseMaterialId: 7000735300420379304
     ParameterOverrides {

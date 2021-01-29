@@ -1,4 +1,4 @@
-﻿Name: "Root"
+Name: "Root"
 RootId: 4781671109827199097
 Objects {
   Id: 4781671109827199097
@@ -111,6 +111,7 @@ Objects {
   ChildIds: 13780791317169723459
   ChildIds: 18242617952716879566
   ChildIds: 1592328099169523986
+  ChildIds: 16730956083602784917
   Collidable_v2 {
     Value: "mc:ecollisionsetting:inheritfromparent"
   }
@@ -134,6 +135,169 @@ Objects {
       TargetAnchor {
         Anchor {
           Value: "mc:euianchor:topleft"
+        }
+      }
+    }
+  }
+}
+Objects {
+  Id: 16730956083602784917
+  Name: "Tournament"
+  Transform {
+    Location {
+    }
+    Rotation {
+    }
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 9988479098138247358
+  ChildIds: 10154284545041726683
+  ChildIds: 3339445265601307903
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:forceoff"
+  }
+  Control {
+    Width: 686
+    Height: 100
+    UIX: -27.125
+    UIY: -19.881
+    RenderTransformPivot {
+      Anchor {
+        Value: "mc:euianchor:middlecenter"
+      }
+    }
+    Panel {
+    }
+    AnchorLayout {
+      SelfAnchor {
+        Anchor {
+          Value: "mc:euianchor:bottomright"
+        }
+      }
+      TargetAnchor {
+        Anchor {
+          Value: "mc:euianchor:bottomright"
+        }
+      }
+    }
+  }
+}
+Objects {
+  Id: 3339445265601307903
+  Name: "UI Text Box"
+  Transform {
+    Location {
+    }
+    Rotation {
+    }
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 16730956083602784917
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  Control {
+    Width: 574
+    Height: 78
+    UIX: -65.099
+    UIY: -10.8441162
+    RenderTransformPivot {
+      Anchor {
+        Value: "mc:euianchor:middlecenter"
+      }
+    }
+    Text {
+      Label: "Welcome to the tournament.  Only high scores during the tournament will be displayed for the tournament."
+      Color {
+        R: 1
+        G: 1
+        B: 1
+        A: 1
+      }
+      Size: 20
+      Justification {
+        Value: "mc:etextjustify:left"
+      }
+      AutoWrapText: true
+    }
+    AnchorLayout {
+      SelfAnchor {
+        Anchor {
+          Value: "mc:euianchor:bottomright"
+        }
+      }
+      TargetAnchor {
+        Anchor {
+          Value: "mc:euianchor:bottomright"
+        }
+      }
+    }
+  }
+}
+Objects {
+  Id: 10154284545041726683
+  Name: "UI Image"
+  Transform {
+    Location {
+    }
+    Rotation {
+    }
+    Scale {
+      X: 1
+      Y: 1
+      Z: 1
+    }
+  }
+  ParentId: 16730956083602784917
+  Collidable_v2 {
+    Value: "mc:ecollisionsetting:inheritfromparent"
+  }
+  Visible_v2 {
+    Value: "mc:evisibilitysetting:inheritfromparent"
+  }
+  Control {
+    Width: 200
+    Height: 200
+    RenderTransformPivot {
+      Anchor {
+        Value: "mc:euianchor:middlecenter"
+      }
+    }
+    UseParentWidth: true
+    UseParentHeight: true
+    Image {
+      Brush {
+        Id: 14060330023043759337
+      }
+      Color {
+        A: 0.655000031
+      }
+      TeamSettings {
+      }
+    }
+    AnchorLayout {
+      SelfAnchor {
+        Anchor {
+          Value: "mc:euianchor:bottomright"
+        }
+      }
+      TargetAnchor {
+        Anchor {
+          Value: "mc:euianchor:bottomright"
         }
       }
     }
@@ -6352,6 +6516,15 @@ Objects {
       }
     }
     Overrides {
+      Name: "cs:TournamentHighScore"
+      NetReference {
+        Key: "E750AB46FB5320B8"
+        Type {
+          Value: "mc:enetreferencetype:leaderboard"
+        }
+      }
+    }
+    Overrides {
       Name: "cs:HighScore"
       NetReference {
         Key: "C5E3F573C765C94F"
@@ -6394,6 +6567,27 @@ Objects {
       Name: "cs:Camera"
       ObjectReference {
         SelfId: 3567959178173361743
+      }
+    }
+    Overrides {
+      Name: "cs:HighScoreLabel"
+      ObjectReference {
+        SelfId: 1962577339882922339
+      }
+    }
+    Overrides {
+      Name: "cs:TopScoresLabel"
+      ObjectReference {
+        SelfId: 14204087319218859041
+        SubObjectId: 13869148485365805241
+        InstanceId: 14685003186711171897
+        TemplateId: 2587742162255074138
+      }
+    }
+    Overrides {
+      Name: "cs:TournamentText"
+      ObjectReference {
+        SelfId: 16730956083602784917
       }
     }
   }
@@ -6834,7 +7028,7 @@ Objects {
   ParentId: 16881013949565504445
   UnregisteredParameters {
     Overrides {
-      Name: "bp:Star Brightness "
+      Name: "bp:Star Brightness"
       Float: 0.95
     }
     Overrides {
@@ -7349,6 +7543,10 @@ Objects {
       }
       AppearanceChannelingTime: 2
       FlipOnMultiJump: true
+      CanMoveUp: true
+      CanMoveDown: true
+      IsMountEnabled: true
+      MaxHitpoints: 100
     }
   }
 }
@@ -7409,6 +7607,27 @@ Objects {
       EnablePlayerStorage: true
       ChatMode {
         Value: "mc:echatmode:teamandall"
+      }
+      ChatSettings {
+        ChatMode {
+        }
+        ChatPosition {
+          X: 40
+        }
+        ChatSize {
+          X: 450
+          Y: 400
+        }
+        ChatHorizontalAlignment {
+          Value: "mc:ecorehorizontalalign:left"
+        }
+        ChatVerticalAlignment {
+          Value: "mc:ecorehorizontalalign:center"
+        }
+      }
+      PhysicsSettings {
+        MinContactOffset: 2
+        MaxContactOffset: 8
       }
     }
   }

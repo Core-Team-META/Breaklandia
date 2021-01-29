@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 5502098385372088198
   Name: "paddleHit"
   PlatformAssetType: 5
@@ -48,5 +48,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

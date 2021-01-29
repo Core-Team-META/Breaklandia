@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 3593753121500046067
   Name: "dropBall"
   PlatformAssetType: 5
@@ -60,5 +60,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

@@ -1,8 +1,8 @@
-﻿Assets {
+Assets {
   Id: 7736220887916591162
   Name: "Custom Score Panel - Current"
   PlatformAssetType: 13
-  SerializationVersion: 65
+  SerializationVersion: 73
   CustomMaterialAsset {
     BaseMaterialId: 4194742270795936142
     ParameterOverrides {

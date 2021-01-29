@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 15316497082714207955
   Name: "gameOver"
   PlatformAssetType: 5
@@ -48,5 +48,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 9899484001348260034
   Name: "PaddleController"
   PlatformAssetType: 3
@@ -18,5 +18,5 @@
       }
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

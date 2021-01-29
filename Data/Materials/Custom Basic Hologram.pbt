@@ -1,8 +1,8 @@
-﻿Assets {
+Assets {
   Id: 1710731813240950407
   Name: "Custom Score UI"
   PlatformAssetType: 13
-  SerializationVersion: 65
+  SerializationVersion: 73
   CustomMaterialAsset {
     BaseMaterialId: 13599394984594059683
     ParameterOverrides {

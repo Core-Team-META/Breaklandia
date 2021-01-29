@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 13781698529190780776
   Name: "Electronic Music Score Set 01"
   PlatformAssetType: 10

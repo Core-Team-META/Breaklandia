@@ -1,8 +1,8 @@
-﻿Assets {
+Assets {
   Id: 2568358901415589030
   Name: "Custom High Score Screen Back"
   PlatformAssetType: 13
-  SerializationVersion: 65
+  SerializationVersion: 73
   CustomMaterialAsset {
     BaseMaterialId: 15947171829734163287
     ParameterOverrides {

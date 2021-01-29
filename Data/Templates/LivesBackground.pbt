@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 17966701165003608848
   Name: "LivesBackground"
   PlatformAssetType: 5
@@ -132,5 +132,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

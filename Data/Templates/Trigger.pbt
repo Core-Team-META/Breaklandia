@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 4186457484079492479
   Name: "Trigger"
   PlatformAssetType: 5
@@ -39,5 +39,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

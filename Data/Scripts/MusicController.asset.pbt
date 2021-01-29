@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 7178059353641854650
   Name: "MusicController"
   PlatformAssetType: 3
@@ -12,5 +12,5 @@
       }
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

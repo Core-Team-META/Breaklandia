@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 18441810659176357459
   Name: "Planet"
   PlatformAssetType: 6

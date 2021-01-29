@@ -1,7 +1,10 @@
 ﻿local utils, Paddle, Ball, Brick, Powerup, BrickLayouts
+local START_TIME = tonumber(os.time({year=2021, month=01, day=29, hour=23, min=00})) -- Jan. 29th 2021 at 8pm GMT (noon pacific)
+local END_TIME = tonumber(os.time({year=2021, month=02, day=01, hour=20}))    -- Dec. 31st 2020 at 8pm GMT (noon pacific)
 
 local BOX_TEMPLATE = script:GetCustomProperty("Box")
 local HIGH_SCORE = script:GetCustomProperty("HighScore")
+local TOURNAMENT_HIGH_SCORE = script:GetCustomProperty("TournamentHighScore")
 
 local MAP_TEMPLATES = {
 	(script:GetCustomProperty("Map1")),
@@ -16,6 +19,14 @@ local RoundService = {
 	players = {}
 }
 
+local function canLogScore() -- This will return true during the official tournament period, when the leaderboard can be updated.
+    local currentTime = tonumber(os.time(os.date("!*t", os.time())))
+    if (currentTime >= START_TIME and currentTime < END_TIME) then
+        return true
+    end
+    return false
+end
+
 function RoundService.Setup(dependencies)
 	utils = dependencies.utils
 	Paddle = dependencies.Paddle
@@ -29,6 +40,7 @@ function RoundService.AddPlayer(player)
 	local data = {lives = utils.STARTING_LIVES}
 	RoundService.players[player] = data
 	player:SetResource("HighScore", Storage.GetPlayerData(player).HighScore or 0)
+	player:SetResource("TournamentHighScore", Storage.GetPlayerData(player).TournamentHighScore or 0)
 	player.serverUserData.level = 1
 	
 	local ability = World.SpawnAsset(MOUSE_ABILITY)
@@ -67,6 +79,19 @@ end
 function RoundService.AddPoints(player, amount)
 	player:AddResource("Score", amount)
 	local score = player:GetResource("Score")
+
+	-- TODO add date/time check in here.  
+	if canLogScore() then
+		--warn("logging tournament high score")
+		if score > player:GetResource("TournamentHighScore") then
+			player:SetResource("TournamentHighScore", score)
+			local data = Storage.GetPlayerData(player)
+			data.TournamentHighScore = score
+			Storage.SetPlayerData(player, data)
+			Leaderboards.SubmitPlayerScore(TOURNAMENT_HIGH_SCORE, player, score)
+		end
+	end
+
 	if score > player:GetResource("HighScore") then
 		player:SetResource("HighScore", score)
 		local data = Storage.GetPlayerData(player)

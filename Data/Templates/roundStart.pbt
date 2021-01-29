@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 17153586369859599210
   Name: "roundStart"
   PlatformAssetType: 5
@@ -48,5 +48,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

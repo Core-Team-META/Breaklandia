@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 8365392262078967723
   Name: "Brick"
   PlatformAssetType: 5
@@ -219,5 +219,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

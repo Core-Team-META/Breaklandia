@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 2076401891344902436
   Name: "PaddlePowerup"
   PlatformAssetType: 5
@@ -260,5 +260,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

@@ -1,8 +1,8 @@
-﻿Assets {
+Assets {
   Id: 11407932262276129203
   Name: "Custom Animated Glowing Hex"
   PlatformAssetType: 13
-  SerializationVersion: 65
+  SerializationVersion: 73
   CustomMaterialAsset {
     BaseMaterialId: 9382817552081113944
     ParameterOverrides {

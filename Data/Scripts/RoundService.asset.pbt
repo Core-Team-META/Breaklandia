@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 18305914487848899700
   Name: "RoundService"
   PlatformAssetType: 3
@@ -20,6 +20,15 @@
         Name: "cs:HighScore"
         NetReference {
           Key: "C5E3F573C765C94F"
+          Type {
+            Value: "mc:enetreferencetype:leaderboard"
+          }
+        }
+      }
+      Overrides {
+        Name: "cs:TournamentHighScore"
+        NetReference {
+          Key: "E750AB46FB5320B8"
           Type {
             Value: "mc:enetreferencetype:leaderboard"
           }
@@ -57,5 +66,5 @@
       }
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

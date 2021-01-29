@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 16660121693062520470
   Name: "BrickController"
   PlatformAssetType: 3
@@ -12,5 +12,5 @@
       }
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 16346612924480021801
   Name: "FeedRow"
   PlatformAssetType: 5
@@ -327,5 +327,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

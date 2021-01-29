@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 12999280366459454783
   Name: "BallPhysics"
   PlatformAssetType: 3
@@ -12,5 +12,5 @@
       }
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

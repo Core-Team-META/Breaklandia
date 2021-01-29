@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 17400670692671925460
   Name: "Laser"
   PlatformAssetType: 5
@@ -311,5 +311,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

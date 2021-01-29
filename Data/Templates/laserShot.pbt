@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 12775522207108345392
   Name: "laserShot"
   PlatformAssetType: 5
@@ -60,5 +60,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

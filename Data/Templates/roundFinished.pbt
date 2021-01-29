@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 12268466399571410635
   Name: "roundFinished"
   PlatformAssetType: 5
@@ -48,5 +48,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

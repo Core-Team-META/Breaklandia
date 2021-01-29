@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 7689100267124146061
   Name: "Ball"
   PlatformAssetType: 5
@@ -149,5 +149,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

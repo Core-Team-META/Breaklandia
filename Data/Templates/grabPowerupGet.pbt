@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 6712705906928381294
   Name: "grabPowerupGet"
   PlatformAssetType: 5
@@ -48,5 +48,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

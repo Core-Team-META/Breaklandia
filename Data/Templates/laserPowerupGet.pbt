@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 15164013430570029557
   Name: "laserPowerupGet"
   PlatformAssetType: 5
@@ -60,5 +60,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

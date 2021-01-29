@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 9727240550323261870
   Name: "Powerup"
   PlatformAssetType: 3
@@ -36,5 +36,5 @@
       }
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

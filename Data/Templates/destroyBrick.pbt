@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 16834798517672184806
   Name: "destroyBrick"
   PlatformAssetType: 5
@@ -48,5 +48,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }

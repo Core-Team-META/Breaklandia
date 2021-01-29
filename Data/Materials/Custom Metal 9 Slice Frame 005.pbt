@@ -1,8 +1,8 @@
-﻿Assets {
+Assets {
   Id: 463859600366493025
   Name: "Custom Slice High Score"
   PlatformAssetType: 13
-  SerializationVersion: 65
+  SerializationVersion: 73
   CustomMaterialAsset {
     BaseMaterialId: 8655240511124531147
     ParameterOverrides {

@@ -1,4 +1,4 @@
-﻿Assets {
+Assets {
   Id: 10265289939690442053
   Name: "multiball"
   PlatformAssetType: 5
@@ -60,5 +60,5 @@
       AssetId: "None"
     }
   }
-  SerializationVersion: 65
+  SerializationVersion: 73
 }
