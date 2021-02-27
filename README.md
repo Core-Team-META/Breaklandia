@@ -2,7 +2,7 @@
 
 # Breaklandia
 
-[![](https://www.coregames.com/games/61b5c4/breaklandia-retro)](https://i.imgur.com/HspWn3J.jpeg)
+[![](https://i.imgur.com/HspWn3Jl.jpg)](https://www.coregames.com/games/61b5c4/breaklandia-retro)
 </div>
 
 Breaklandia takes the classic block breaking game to an addictive new level, complete with stunning sci-fi graphics and sound effects. 
