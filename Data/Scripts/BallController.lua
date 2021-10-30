@@ -1,4 +1,4 @@
-﻿local utils, BrickController, BallPhysics, StateController
+local utils, BrickController, BallPhysics, StateController
 
 local BALL_TEMPLATE = script:GetCustomProperty("Ball")
 local player = Game.GetLocalPlayer()

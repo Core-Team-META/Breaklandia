@@ -1,4 +1,4 @@
-﻿local utils, BallPhysics, StateController
+local utils, BallPhysics, StateController
 local BRICK_TEMPLATE = script:GetCustomProperty("BrickTemplate")
 
 local BrickController = {}

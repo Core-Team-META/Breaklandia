@@ -1,4 +1,4 @@
-﻿local BrickController
+local BrickController
 
 local LASER_TEMPLATE = script:GetCustomProperty("LaserTemplate")
 

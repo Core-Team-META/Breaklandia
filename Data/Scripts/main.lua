@@ -1,4 +1,4 @@
-﻿--[[
+--[[
 	Server has control over creation of all instances
 	Client has authority over ball physics, brick destruction, paddle position
 	Server keeps track of game state by simulating in parallel and receiving updates from the client

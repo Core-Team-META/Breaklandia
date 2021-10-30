@@ -1,4 +1,4 @@
-﻿
+
 local FluidUI_InternalAPI = script:GetCustomProperty("FluidUI_InternalAPI")
 
 local FrameImage = script:GetCustomProperty("FrameImage")

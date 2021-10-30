@@ -1,4 +1,4 @@
-﻿GlobalEntries {
+GlobalEntries {
   Id: "581ff579fd864966aec56450754db1fb"
   Name: "Waffle"
   ScoreFormatted: "35030.0"

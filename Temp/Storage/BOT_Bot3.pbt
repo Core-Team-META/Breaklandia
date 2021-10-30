@@ -1,4 +1,4 @@
-﻿Entries {
+Entries {
   Key {
     StringVar: "HighScore"
   }

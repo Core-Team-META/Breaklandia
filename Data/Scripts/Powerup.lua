@@ -1,4 +1,4 @@
-﻿local utils
+local utils
 
 local POWERUP_TYPES = {"BiggerPaddle", "Laser", "Multiball", "Grab", "Life"}
 local POWERUP_TEMPLATES = {

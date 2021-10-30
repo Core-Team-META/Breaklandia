@@ -1,4 +1,4 @@
-﻿local utils, StateController, LaserBlast
+local utils, StateController, LaserBlast
 local ABILITY_FOLDER = script:GetCustomProperty("ABILITY_FOLDER"):WaitForObject()
 local CURSOR = script:GetCustomProperty("Cursor"):WaitForObject()
 local player = Game.GetLocalPlayer()

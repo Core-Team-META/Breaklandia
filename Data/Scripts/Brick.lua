@@ -1,4 +1,4 @@
-﻿local utils, Ball, Powerup, RoundService, BallPhysics
+local utils, Ball, Powerup, RoundService, BallPhysics
 local TRIGGER_TEMPLATE = script:GetCustomProperty("TriggerTemplate")
 
 local BRICK_WIDTH, BRICK_HEIGHT

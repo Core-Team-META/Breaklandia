@@ -1,4 +1,4 @@
-﻿local CONTAINER = script:GetCustomProperty("Container"):WaitForObject()
+local CONTAINER = script:GetCustomProperty("Container"):WaitForObject()
 local CLIENT_CONTEXT = script:GetCustomProperty("ClientContext"):WaitForObject()
 local BALL = script:GetCustomProperty("Ball"):WaitForObject()
 

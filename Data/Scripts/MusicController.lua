@@ -1,4 +1,4 @@
-﻿local MusicController = {}
+local MusicController = {}
 
 function MusicController.Setup(dependencies)
 	local BGM = script:GetCustomProperty("BGM"):WaitForObject()

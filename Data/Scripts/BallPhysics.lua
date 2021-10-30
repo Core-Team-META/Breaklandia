@@ -1,4 +1,4 @@
-﻿local utils = require(script:GetCustomProperty("utils"))
+local utils = require(script:GetCustomProperty("utils"))
 
 local function distanceToLineSegment(point, lineStart, lineEnd)
 	local alpha = ((point - lineStart) .. (lineEnd - lineStart)) / (lineEnd - lineStart).sizeSquared

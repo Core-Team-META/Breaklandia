@@ -1,4 +1,4 @@
-﻿local utils, Ball, RoundService
+local utils, Ball, RoundService
 
 local PADDLE_TEMPLATE = script:GetCustomProperty("PaddleTemplate")
 

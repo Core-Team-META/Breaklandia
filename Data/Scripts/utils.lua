@@ -1,4 +1,4 @@
-﻿isClientContext = pcall(Game.GetLocalPlayer)
+isClientContext = pcall(Game.GetLocalPlayer)
 
 if isClientContext then
 	local clientQueue = 0

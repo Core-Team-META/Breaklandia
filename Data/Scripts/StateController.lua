@@ -1,4 +1,4 @@
-﻿local utils, BallController, BrickController, PaddleController, MusicController
+local utils, BallController, BrickController, PaddleController, MusicController
 
 --local LASER_TIMER = script:GetCustomProperty("LaserPowerupTimer"):WaitForObject()
 --local GRAB_TIMER = script:GetCustomProperty("GrabPowerupTimer"):WaitForObject()
